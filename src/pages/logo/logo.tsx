@@ -1,5 +1,5 @@
 type Props = {
-  className: string;
+  className?: string;
 }
 
 function Logo({className = 'logo__link'} : Props): JSX.Element {

@@ -1,4 +1,7 @@
 function Player(): JSX.Element {
+  const style = {
+    left: '30%'
+  };
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
@@ -9,7 +12,7 @@ function Player(): JSX.Element {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style="left: 30%;">Toggler</div>
+            <div className="player__toggler" style={style}>Toggler</div>
           </div>
           <div className="player__time-value">1:30:29</div>
         </div>
