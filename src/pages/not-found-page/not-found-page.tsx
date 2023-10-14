@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
-import React, {CSSProperties} from 'react';
+import {CSSProperties} from 'react';
 
 function NotFoundPage(): JSX.Element {
   const style : CSSProperties = {
