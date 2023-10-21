@@ -1,9 +1,15 @@
 import Logo from '../../components/logo/logo';
 import Rating from '../../components/rating/rating';
+import {useParams} from 'react-router-dom';
+import {Review} from '../../types/review-type';
+import {AppRoutes} from '../../routes';
 
 const StarCount = 10;
 
-function AddReview(): JSX.Element {
+function AddReview(reviews : Review[]): JSX.Element {
+  const params = useParams();
+  const id = params.id;
+  const review : Review = reviews[id - 1];
   const list : string[] = [];
   for (let i = StarCount; i > 0; i--) {
     list.push(i.toString());
@@ -12,7 +18,7 @@ function AddReview(): JSX.Element {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={review.bgImgSrc} alt={review.title}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -23,7 +29,7 @@ function AddReview(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href={AppRoutes.Film(review.id)} className="breadcrumbs__link">{review.title}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -44,7 +50,7 @@ function AddReview(): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+          <img src={review.imgSrc} alt={review.title} width="218"
             height="327"
           />
         </div>

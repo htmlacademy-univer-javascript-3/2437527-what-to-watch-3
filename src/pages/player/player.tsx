@@ -1,10 +1,12 @@
-function Player(): JSX.Element {
+import {VideoPlayer} from '../../types/video-player-type';
+
+function Player(videoPlayer : VideoPlayer): JSX.Element {
   const style = {
     left: '30%'
   };
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={videoPlayer.video} className="player__video" poster={videoPlayer.poster}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
