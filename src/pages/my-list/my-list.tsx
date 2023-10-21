@@ -2,8 +2,9 @@ import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import {Film} from '../../types/film-type';
 import FilmsList from '../../components/films-list/films-list';
+import {ReactElement} from 'react';
 
-function MyList(films : Film[]): JSX.Element {
+function MyList(films : Film[]): ReactElement {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

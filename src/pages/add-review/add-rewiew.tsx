@@ -1,19 +1,14 @@
 import Logo from '../../components/logo/logo';
-import Rating from '../../components/rating/rating';
 import {useParams} from 'react-router-dom';
 import {Review} from '../../types/review-type';
 import {AppRoutes} from '../../routes';
+import CommentSubmissionForm from '../../components/comment-submission-form/comment-submission-form';
+import {ReactElement} from 'react';
 
-const StarCount = 10;
-
-function AddReview(reviews : Review[]): JSX.Element {
+function AddReview(reviews : Review[]): ReactElement {
   const params = useParams();
   const id = params.id;
   const review : Review = reviews[id - 1];
-  const list : string[] = [];
-  for (let i = StarCount; i > 0; i--) {
-    list.push(i.toString());
-  }
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -56,26 +51,7 @@ function AddReview(reviews : Review[]): JSX.Element {
         </div>
       </div>
 
-      <div className="add-review">
-        <form action="#" className="add-review__form">
-          <div className="rating">
-            <div className="rating__stars">
-              {list.map((value) => (<Rating value = {value} key = {value}/>))}
-            </div>
-          </div>
-
-          <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text"
-              placeholder="Review text"
-            />
-            <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
-            </div>
-
-          </div>
-        </form>
-      </div>
-
+      <CommentSubmissionForm />
     </section>
   );
 }

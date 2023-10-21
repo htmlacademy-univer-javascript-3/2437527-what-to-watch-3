@@ -1,6 +1,7 @@
 import {Film} from '../../types/film-type';
 import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../routes';
+import {ReactElement} from 'react';
 
 type FilmCardProps = {
   film: Film;
@@ -8,7 +9,7 @@ type FilmCardProps = {
   onMouseExit: () => void;
 };
 
-function FilmCard({film, onMouseEnter, onMouseExit} : FilmCardProps): JSX.Element {
+function FilmCard({film, onMouseEnter, onMouseExit} : FilmCardProps): ReactElement {
   return (
     <article className="small-film-card catalog__films-card"
       onMouseEnter={() => onMouseEnter(film.id)}

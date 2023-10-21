@@ -1,8 +1,8 @@
 import FilmCard from '../film-card/film-card';
 import {Film} from '../../types/film-type';
-import React from 'react';
+import React, {ReactElement} from 'react';
 
-function FilmsList(films : Film[]): JSX.Element {
+function FilmsList(films : Film[]): ReactElement {
   const [, setActiveCardId] = React.useState(0);
 
   const onMouseEnter = (id: number) => {

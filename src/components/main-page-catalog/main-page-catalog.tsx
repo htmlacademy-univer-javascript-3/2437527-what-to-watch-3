@@ -2,8 +2,9 @@ import Footer from '../footer/footer';
 import GenresList from '../genres-list/genres-list';
 import FilmsList from '../films-list/films-list';
 import {Film} from '../../types/film-type';
+import {ReactElement} from 'react';
 
-function MainPageCatalog(films : Film[]): JSX.Element {
+function MainPageCatalog(films : Film[]): ReactElement {
   return (
     <div className="page-content">
       <section className="catalog">

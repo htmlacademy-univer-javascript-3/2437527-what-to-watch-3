@@ -12,6 +12,7 @@ import {Review} from '../../types/review-type';
 import {VideoPlayer} from '../../types/video-player-type';
 import Player from '../../pages/player/player';
 import {PromoFilm} from '../../types/promo-film-type';
+import {ReactElement} from 'react';
 
 type AppScreenProps = {
   promoFilm: PromoFilm;
@@ -20,7 +21,7 @@ type AppScreenProps = {
   videoPlayer: VideoPlayer;
 }
 
-function App({promoFilm, films, reviews, videoPlayer}: AppScreenProps): JSX.Element {
+function App({promoFilm, films, reviews, videoPlayer}: AppScreenProps): ReactElement {
   return (
     <BrowserRouter>
       <Routes>

@@ -1,6 +1,7 @@
 import Logo from '../logo/logo';
+import {ReactElement} from 'react';
 
-function Footer(): JSX.Element {
+function Footer(): ReactElement {
   return (
     <footer className="page-footer">
       <Logo className = {'logo__link logo__link--light'}/>

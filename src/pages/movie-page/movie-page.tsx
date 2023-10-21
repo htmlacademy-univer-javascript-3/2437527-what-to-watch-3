@@ -1,7 +1,8 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
+import {ReactElement} from 'react';
 
-function MoviePage(): JSX.Element {
+function MoviePage(): ReactElement {
   return (
     <>
       <section className="film-card film-card--full">

@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../routes';
-import {CSSProperties} from 'react';
+import {CSSProperties, ReactElement} from 'react';
 
-function NotFoundPage(): JSX.Element {
+function NotFoundPage(): ReactElement {
   const style : CSSProperties = {
     color: 'red',
     textAlign: 'center',

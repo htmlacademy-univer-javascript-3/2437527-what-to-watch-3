@@ -1,6 +1,7 @@
 import {VideoPlayer} from '../../types/video-player-type';
+import {ReactElement} from 'react';
 
-function Player(videoPlayer : VideoPlayer): JSX.Element {
+function Player(videoPlayer : VideoPlayer): ReactElement {
   const style = {
     left: '30%'
   };

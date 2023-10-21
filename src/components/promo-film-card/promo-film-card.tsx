@@ -1,7 +1,8 @@
 import Logo from '../logo/logo';
 import {PromoFilm} from '../../types/promo-film-type';
+import {ReactElement} from 'react';
 
-function PromoFilmCard({title, genre, year, imgSrc, bgImgSrc} : PromoFilm): JSX.Element {
+function PromoFilmCard({title, genre, year, imgSrc, bgImgSrc} : PromoFilm): ReactElement {
   return (
     <section className="film-card">
       <div className="film-card__bg">
