@@ -1,5 +1,5 @@
-import PromoFilmCard from '../promo-film-card/promo-film-card';
-import MainPageCatalog from '../main-page-catalog/main-page-catalog';
+import PromoFilmCard from '../../components/promo-film-card/promo-film-card';
+import MainPageCatalog from '../../components/main-page-catalog/main-page-catalog';
 
 export const Genres = ['All genres-list', 'Comedies', 'Crime', 'Documentary', 'Dramas', 'Horror',
   'Kids & Family', 'Romance', 'Sci-Fi', 'Thrillers'];

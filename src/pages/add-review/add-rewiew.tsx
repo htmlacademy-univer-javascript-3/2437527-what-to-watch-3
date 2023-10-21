@@ -1,5 +1,5 @@
-import Logo from '../logo/logo';
-import Rating from '../rating/rating';
+import Logo from '../../components/logo/logo';
+import Rating from '../../components/rating/rating';
 
 const StarCount = 10;
 

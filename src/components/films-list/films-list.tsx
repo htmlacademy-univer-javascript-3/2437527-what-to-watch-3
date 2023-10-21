@@ -1,5 +1,5 @@
 import FilmCard from '../film-card/film-card';
-import {FilmsInCatalogCount} from '../main-page/main-page';
+import {FilmsInCatalogCount} from '../../pages/main-page/main-page';
 
 export const Film = {
   src: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',

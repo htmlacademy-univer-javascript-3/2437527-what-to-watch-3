@@ -1,4 +1,4 @@
-import {Genres} from '../main-page/main-page';
+import {Genres} from '../../pages/main-page/main-page';
 
 function GenresList(): JSX.Element {
   const genres : JSX.Element[] = [];
