@@ -5,7 +5,7 @@ import {ReactElement} from 'react';
 
 type FilmCardProps = {
   film: Film;
-  onMouseEnter: (id) => void;
+  onMouseEnter: (id : number) => void;
   onMouseExit: () => void;
 };
 

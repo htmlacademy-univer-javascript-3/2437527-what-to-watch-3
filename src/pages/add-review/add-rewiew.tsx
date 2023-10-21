@@ -7,7 +7,7 @@ import {ReactElement} from 'react';
 
 function AddReview(reviews : Review[]): ReactElement {
   const params = useParams();
-  const id = params.id;
+  const id = Number(params.id) ?? 1;
   const review : Review = reviews[id - 1];
   return (
     <section className="film-card film-card--full">

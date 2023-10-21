@@ -1,8 +1,8 @@
-import {ReactElement} from 'react';
+import {ReactElement, SyntheticEvent} from 'react';
 
 type RatingProps = {
   value: string;
-  onStarClick: (evt) => void;
+  onStarClick: (evt : SyntheticEvent) => void;
 };
 
 function Rating({value, onStarClick} : RatingProps): ReactElement {

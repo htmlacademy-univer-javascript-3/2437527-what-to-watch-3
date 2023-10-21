@@ -15,13 +15,13 @@ function CommentSubmissionForm(): ReactElement {
   });
 
   const handleFieldChange = (evt : SyntheticEvent) => {
-    const {name, value} = evt.target;
-    setFormData({...formData, [name]: value as string});
+    const {name, value} = evt.target as HTMLTextAreaElement;
+    setFormData({...formData, [name]: value});
   };
 
   const onStarClick = (evt : SyntheticEvent) => {
-    const {name, value} = evt.target;
-    setFormData({...formData, [name]: value as string});
+    const {name, value} = evt.target as HTMLInputElement;
+    setFormData({...formData, [name]: value});
   };
 
   return (
