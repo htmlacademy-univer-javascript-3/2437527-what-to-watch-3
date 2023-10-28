@@ -1,18 +1,19 @@
 import Logo from '../../components/logo/logo';
-import Rating from '../../components/rating/rating';
+import {useParams} from 'react-router-dom';
+import {Review} from '../../types/review-type';
+import {AppRoutes} from '../../routes';
+import CommentSubmissionForm from '../../components/comment-submission-form/comment-submission-form';
+import {ReactElement} from 'react';
 
-const StarCount = 10;
-
-function AddReview(): JSX.Element {
-  const list : string[] = [];
-  for (let i = StarCount; i > 0; i--) {
-    list.push(i.toString());
-  }
+function AddReview(reviews : Review[]): ReactElement {
+  const params = useParams();
+  const id = Number(params.id) ?? 1;
+  const review : Review = reviews[id - 1];
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={review.bgImgSrc} alt={review.title}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -23,7 +24,7 @@ function AddReview(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href={AppRoutes.Film(review.id)} className="breadcrumbs__link">{review.title}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -44,32 +45,13 @@ function AddReview(): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+          <img src={review.imgSrc} alt={review.title} width="218"
             height="327"
           />
         </div>
       </div>
 
-      <div className="add-review">
-        <form action="#" className="add-review__form">
-          <div className="rating">
-            <div className="rating__stars">
-              {list.map((value) => (<Rating value = {value} key = {value}/>))}
-            </div>
-          </div>
-
-          <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text"
-              placeholder="Review text"
-            />
-            <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
-            </div>
-
-          </div>
-        </form>
-      </div>
-
+      <CommentSubmissionForm />
     </section>
   );
 }

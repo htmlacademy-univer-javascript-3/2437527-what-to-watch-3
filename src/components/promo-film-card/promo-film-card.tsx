@@ -1,16 +1,12 @@
 import Logo from '../logo/logo';
+import {PromoFilm} from '../../types/promo-film-type';
+import {ReactElement} from 'react';
 
-type PromoFilmData = {
-  Title: string;
-  Genre: string;
-  Year: string;
-};
-
-function PromoFilmCard({Title, Genre, Year}: PromoFilmData): JSX.Element {
+function PromoFilmCard({title, genre, year, imgSrc, bgImgSrc} : PromoFilm): ReactElement {
   return (
     <section className="film-card">
       <div className="film-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+        <img src={bgImgSrc} alt={title}/>
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -33,16 +29,16 @@ function PromoFilmCard({Title, Genre, Year}: PromoFilmData): JSX.Element {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+            <img src={imgSrc} alt={`${title} poster`} width="218"
               height="327"
             />
           </div>
 
           <div className="film-card__desc">
-            <h2 className="film-card__title">{Title}</h2>
+            <h2 className="film-card__title">{title}</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">{Genre}</span>
-              <span className="film-card__year">{Year}</span>
+              <span className="film-card__genre">{genre}</span>
+              <span className="film-card__year">{year}</span>
             </p>
 
             <div className="film-card__buttons">

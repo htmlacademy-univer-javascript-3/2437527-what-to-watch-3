@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
+import {films} from './mocks/films';
+import {reviews} from './mocks/reviews';
+import {videoPlayer} from './mocks/video-player';
+import {PromoFilm} from './types/promo-film-type';
 
-export const PromoFilmData = {
-  Title: 'The Grand Budapest Hotel',
-  Genre: 'Drama',
-  Year: '2014'
+export const promoFilm : PromoFilm = {
+  title: 'The Grand Budapest Hotel',
+  genre: 'Drama',
+  year: '2014',
+  imgSrc: 'img/the-grand-budapest-hotel-poster.jpg',
+  bgImgSrc: 'img/bg-the-grand-budapest-hotel.jpg'
 };
 
 const root = ReactDOM.createRoot(
@@ -14,6 +20,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App title={PromoFilmData.Title} genre={PromoFilmData.Genre} year={PromoFilmData.Year}/>
+    <App
+      promoFilm={promoFilm}
+      films={films}
+      reviews={reviews}
+      videoPlayer={videoPlayer}
+    />
   </React.StrictMode>
 );

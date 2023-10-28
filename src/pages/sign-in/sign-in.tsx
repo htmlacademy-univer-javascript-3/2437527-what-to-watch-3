@@ -1,7 +1,8 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
+import {ReactElement} from 'react';
 
-function SignIn(): JSX.Element {
+function SignIn(): ReactElement {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

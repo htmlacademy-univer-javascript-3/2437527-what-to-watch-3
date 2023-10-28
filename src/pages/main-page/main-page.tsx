@@ -1,22 +1,22 @@
 import PromoFilmCard from '../../components/promo-film-card/promo-film-card';
 import MainPageCatalog from '../../components/main-page-catalog/main-page-catalog';
+import {Film} from '../../types/film-type';
+import {PromoFilm} from '../../types/promo-film-type';
+import {ReactElement} from 'react';
 
 export const Genres = ['All genres-list', 'Comedies', 'Crime', 'Documentary', 'Dramas', 'Horror',
   'Kids & Family', 'Romance', 'Sci-Fi', 'Thrillers'];
 
-export const FilmsInCatalogCount = 20;
+type AppScreenProps = {
+  promoFilm: PromoFilm;
+  films: Film[];
+}
 
-type PromoFilmData = {
-  title: string;
-  genre: string;
-  year: string;
-};
-
-function MainPage({title, genre, year}: PromoFilmData): JSX.Element {
+function MainPage({promoFilm, films}: AppScreenProps): ReactElement {
   return (
     <>
-      <PromoFilmCard Title={title} Genre={genre} Year={year}/>
-      <MainPageCatalog />
+      <PromoFilmCard {...promoFilm}/>
+      <MainPageCatalog {...films}/>
     </>
   );
 }

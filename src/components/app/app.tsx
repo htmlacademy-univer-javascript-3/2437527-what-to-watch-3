@@ -1,53 +1,59 @@
 import MainPage from '../../pages/main-page/main-page';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoutes, AuthorizationStatus} from '../../routes';
 import SignIn from '../../pages/sign-in/sign-in';
 import MyList from '../../pages/my-list/my-list';
 import MoviePage from '../../pages/movie-page/movie-page';
 import AddReview from '../../pages/add-review/add-rewiew';
-import Player from '../../pages/player/player';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import {Film} from '../../types/film-type';
+import {Review} from '../../types/review-type';
+import {VideoPlayer} from '../../types/video-player-type';
+import Player from '../../pages/player/player';
+import {PromoFilm} from '../../types/promo-film-type';
+import {ReactElement} from 'react';
 
-type PromoFilmData = {
-  title: string;
-  genre: string;
-  year: string;
-};
+type AppScreenProps = {
+  promoFilm: PromoFilm;
+  films: Film[];
+  reviews: Review[];
+  videoPlayer: VideoPlayer;
+}
 
-function App({title, genre, year}: PromoFilmData): JSX.Element {
+function App({promoFilm, films, reviews, videoPlayer}: AppScreenProps): ReactElement {
   return (
     <BrowserRouter>
       <Routes>
         <Route
-          path={AppRoute.Main}
-          element={<MainPage title={title} genre={genre} year={year}/>}
+          path={AppRoutes.Main}
+          element={<MainPage promoFilm={promoFilm} films={films}/>}
         />
         <Route
-          path={AppRoute.SignIn}
+          path={AppRoutes.SignIn}
           element={<SignIn />}
         />
         <Route
-          path={AppRoute.MyList}
+          path={AppRoutes.MyList}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <MyList />
+              <MyList {...films}/>
             </PrivateRoute>
           }
         />
         <Route
-          path={AppRoute.Film}
+          path={AppRoutes.Film(':id')}
           element={<MoviePage />}
         />
         <Route
-          path={AppRoute.AddReview}
-          element={<AddReview />}
+          path={AppRoutes.AddReview(':id')}
+          element={<AddReview {...reviews}/>}
         />
         <Route
-          path={AppRoute.Player}
-          element={<Player />}
+          path={AppRoutes.Player(':id')}
+          element={<Player {...videoPlayer}/>}
         />
         <Route
           path="*"

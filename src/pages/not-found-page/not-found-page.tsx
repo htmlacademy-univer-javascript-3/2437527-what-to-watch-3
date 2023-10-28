@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import {CSSProperties} from 'react';
+import {AppRoutes} from '../../routes';
+import {CSSProperties, ReactElement} from 'react';
 
-function NotFoundPage(): JSX.Element {
+function NotFoundPage(): ReactElement {
   const style : CSSProperties = {
     color: 'red',
     textAlign: 'center',
@@ -12,7 +12,7 @@ function NotFoundPage(): JSX.Element {
   return (
     <div style={style}>
       <p>404. Страница не найдена</p>
-      <Link to={AppRoute.Main}>Вернуться на главную</Link>
+      <Link to={AppRoutes.Main}>Вернуться на главную</Link>
     </div>
   );
 }
