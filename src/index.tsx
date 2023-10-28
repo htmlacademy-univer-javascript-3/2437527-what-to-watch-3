@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import {films} from './mocks/films';
 import {reviews} from './mocks/reviews';
-import {videoPlayer} from './mocks/video-player';
+import {video} from './mocks/video';
 import {PromoFilm} from './types/promo-film-type';
 
 export const promoFilm : PromoFilm = {
@@ -24,7 +24,7 @@ root.render(
       promoFilm={promoFilm}
       films={films}
       reviews={reviews}
-      videoPlayer={videoPlayer}
+      videoPlayer={video}
     />
   </React.StrictMode>
 );

@@ -3,7 +3,7 @@ import {Film} from '../../types/film-type';
 import React, {ReactElement} from 'react';
 
 function FilmsList(films : Film[]): ReactElement {
-  const [, setActiveCardId] = React.useState(0);
+  const [activeId, setActiveCardId] = React.useState(0);
 
   const onMouseEnter = (id: number) => {
     setActiveCardId(id);
@@ -13,7 +13,7 @@ function FilmsList(films : Film[]): ReactElement {
     setActiveCardId(0);
   };
 
-  const filmsList : JSX.Element[] = [];
+  const filmsList : ReactElement[] = [];
   for (let i = 0; i < Object.keys(films).length; i++) {
     filmsList.push(
       <FilmCard
@@ -21,6 +21,7 @@ function FilmsList(films : Film[]): ReactElement {
         onMouseExit={onMouseExit}
         key={films[i].id}
         film={films[i]}
+        isPlaying={activeId === films[i].id}
       />);
   }
 
