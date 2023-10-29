@@ -1,13 +1,19 @@
-import {VideoPlayer} from '../../types/video-player-type';
-import {ReactElement} from 'react';
+import {Video} from '../../types/video';
+import VideoPlayer from '../../components/video-player/video-player';
+import {ReactElement, useState} from 'react';
 
-function Player(videoPlayer : VideoPlayer): ReactElement {
+function Player(videoPlayer : Video): ReactElement {
+  const [isPlaying, setIsPlaying] = useState(false);
   const style = {
     left: '30%'
   };
   return (
     <div className="player">
-      <video src={videoPlayer.video} className="player__video" poster={videoPlayer.poster}></video>
+      <div className="player__video">
+        <VideoPlayer isMiniPlayer={false} isPlaying={isPlaying}
+          videoSrc={videoPlayer.videoSrc} poster={videoPlayer.poster}
+        />
+      </div>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -21,7 +27,7 @@ function Player(videoPlayer : VideoPlayer): ReactElement {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
+          <button type="button" className="player__play" onClick={() => setIsPlaying(((prevState) => !prevState))}>
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref="#play-s"></use>
             </svg>

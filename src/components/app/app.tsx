@@ -9,7 +9,7 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import {Film} from '../../types/film-type';
 import {Review} from '../../types/review-type';
-import {VideoPlayer} from '../../types/video-player-type';
+import {Video} from '../../types/video';
 import Player from '../../pages/player/player';
 import {PromoFilm} from '../../types/promo-film-type';
 import {ReactElement} from 'react';
@@ -18,7 +18,7 @@ type AppScreenProps = {
   promoFilm: PromoFilm;
   films: Film[];
   reviews: Review[];
-  videoPlayer: VideoPlayer;
+  videoPlayer: Video;
 }
 
 function App({promoFilm, films, reviews, videoPlayer}: AppScreenProps): ReactElement {
