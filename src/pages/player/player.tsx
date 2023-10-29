@@ -9,9 +9,11 @@ function Player(videoPlayer : Video): ReactElement {
   };
   return (
     <div className="player">
-      <VideoPlayer className="player__video" isMiniPlayer={false} isPlaying={isPlaying}
-        videoSrc={videoPlayer.videoSrc} poster={videoPlayer.poster}
-      />
+      <div className="player__video">
+        <VideoPlayer isMiniPlayer={false} isPlaying={isPlaying}
+          videoSrc={videoPlayer.videoSrc} poster={videoPlayer.poster}
+        />
+      </div>
 
       <button type="button" className="player__exit">Exit</button>
 
