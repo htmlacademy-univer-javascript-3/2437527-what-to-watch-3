@@ -45,7 +45,7 @@ function App({promoFilm, films, reviews, videoPlayer}: AppScreenProps): ReactEle
         />
         <Route
           path={AppRoutes.Film(':id')}
-          element={<MoviePage />}
+          element={<MoviePage {...films}/>}
         />
         <Route
           path={AppRoutes.AddReview(':id')}
