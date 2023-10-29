@@ -4,7 +4,7 @@ import App from './components/app/app';
 import {films} from './mocks/films';
 import {reviews} from './mocks/reviews';
 import {video} from './mocks/video';
-import {PromoFilm} from './types/promo-film-type';
+import {PromoFilm} from './types/film-type';
 
 export const promoFilm : PromoFilm = {
   title: 'The Grand Budapest Hotel',

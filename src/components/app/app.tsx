@@ -11,7 +11,7 @@ import {Film} from '../../types/film-type';
 import {Review} from '../../types/review-type';
 import {Video} from '../../types/video';
 import Player from '../../pages/player/player';
-import {PromoFilm} from '../../types/promo-film-type';
+import {PromoFilm} from '../../types/film-type';
 import {ReactElement} from 'react';
 
 type AppScreenProps = {

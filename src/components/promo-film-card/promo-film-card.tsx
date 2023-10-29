@@ -1,5 +1,5 @@
 import Logo from '../logo/logo';
-import {PromoFilm} from '../../types/promo-film-type';
+import {PromoFilm} from '../../types/film-type';
 import {ReactElement} from 'react';
 
 function PromoFilmCard({title, genre, year, imgSrc, bgImgSrc} : PromoFilm): ReactElement {
