@@ -8,7 +8,7 @@ import AddReview from '../../pages/add-review/add-rewiew';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import {Film} from '../../types/film-type';
-import {Review} from '../../types/review-type';
+import {ReviewPage} from '../../types/review-page-type';
 import {Video} from '../../types/video';
 import Player from '../../pages/player/player';
 import {PromoFilm} from '../../types/film-type';
@@ -17,7 +17,7 @@ import {ReactElement} from 'react';
 type AppScreenProps = {
   promoFilm: PromoFilm;
   films: Film[];
-  reviews: Review[];
+  reviews: ReviewPage[];
   videoPlayer: Video;
 }
 

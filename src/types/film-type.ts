@@ -1,7 +1,18 @@
+import {Review} from './review';
+
 export type Film = {
   id: number;
-  title: string;
   src: string;
+  title: string;
+  genre: string;
+  releaseYear: number;
+  durationInMinutes: number;
+  description: string;
+  rating: number;
+  ratingsCount: number;
+  director: string;
+  starring: string[];
+  reviews: Review[];
 };
 
 export type PromoFilm = {

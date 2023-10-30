@@ -1,4 +1,4 @@
-export type Review = {
+export type ReviewPage = {
   id: number;
   title: string;
   imgSrc: string;
