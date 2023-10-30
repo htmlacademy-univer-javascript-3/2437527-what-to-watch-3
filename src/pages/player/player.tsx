@@ -20,7 +20,7 @@ function Player(videoPlayer : Video): ReactElement {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
+            <progress className="player__progress" value="30" max="100"/>
             <div className="player__toggler" style={style}>Toggler</div>
           </div>
           <div className="player__time-value">1:30:29</div>
@@ -29,7 +29,7 @@ function Player(videoPlayer : Video): ReactElement {
         <div className="player__controls-row">
           <button type="button" className="player__play" onClick={() => setIsPlaying(((prevState) => !prevState))}>
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+              <use xlinkHref="#play-s"/>
             </svg>
             <span>Play</span>
           </button>
@@ -37,7 +37,7 @@ function Player(videoPlayer : Video): ReactElement {
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
-              <use xlinkHref="#full-screen"></use>
+              <use xlinkHref="#full-screen"/>
             </svg>
             <span>Full screen</span>
           </button>

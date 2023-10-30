@@ -1,14 +1,9 @@
 import Rating from '../rating/rating';
 import React, {ReactElement, SyntheticEvent} from 'react';
 
-const StarCount = 10;
+const STAR_COUNT = 10;
 
 function CommentSubmissionForm(): ReactElement {
-  const ratingValues : string[] = [];
-  for (let i = StarCount; i > 0; i--) {
-    ratingValues.push(i.toString());
-  }
-
   const [formData, setFormData] = React.useState({
     rating: '',
     reviewText: ''
@@ -29,7 +24,8 @@ function CommentSubmissionForm(): ReactElement {
       <form action="#" className="add-review__form">
         <div className="rating">
           <div className="rating__stars">
-            {ratingValues.map((value) => (<Rating value = {value} key = {value} onStarClick={onStarClick}/>))}
+            {Array.from({length: STAR_COUNT}, (_, i) => (i + 1).toString()).reverse()
+              .map((value) => (<Rating value = {value} key = {value} onStarClick={onStarClick}/>))}
           </div>
         </div>
 

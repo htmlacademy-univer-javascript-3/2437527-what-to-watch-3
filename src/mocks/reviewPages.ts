@@ -1,6 +1,6 @@
-import {Review} from '../types/review-type';
+import {ReviewPage} from '../types/review-page-type';
 
-export const reviews : Review[] = [
+export const reviewPages : ReviewPage[] = [
   {
     id: 1,
     title: 'The Grand Budapest Hotel',

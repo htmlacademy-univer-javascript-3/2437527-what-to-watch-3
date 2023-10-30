@@ -1,14 +1,14 @@
 import Logo from '../../components/logo/logo';
 import {useParams} from 'react-router-dom';
-import {Review} from '../../types/review-type';
+import {ReviewPage} from '../../types/review-page-type';
 import {AppRoutes} from '../../routes';
 import CommentSubmissionForm from '../../components/comment-submission-form/comment-submission-form';
 import {ReactElement} from 'react';
 
-function AddReview(reviews : Review[]): ReactElement {
+function AddReview(reviews : ReviewPage[]): ReactElement {
   const params = useParams();
   const id = Number(params.id) ?? 1;
-  const review : Review = reviews[id - 1];
+  const review : ReviewPage = reviews[id - 1];
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">

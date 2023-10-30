@@ -4,7 +4,7 @@ import {ReactElement} from 'react';
 
 type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus;
-  children: JSX.Element;
+  children: ReactElement;
 }
 
 function PrivateRoute(props: PrivateRouteProps): ReactElement {

@@ -37,15 +37,13 @@ function VideoPlayer({isMiniPlayer, isPlaying, videoSrc, poster}: VideoPlayerPro
       return;
     }
 
-    const playVideo = () => {
-      playerElement.play();
-    };
-
     if (isPlaying) {
       if (isMiniPlayer) {
-        setTimeout(playVideo, MINI_PLAYER_MS_DELAY);
+        setTimeout(() => {
+          playerElement.play();
+        }, MINI_PLAYER_MS_DELAY);
       } else {
-        playVideo();
+        playerElement.play();
       }
       return;
     }
