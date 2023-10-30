@@ -20,7 +20,7 @@ function MoviePageReviews({film} : MoviePageReviewsProps): ReactElement {
                 <footer className="review__details">
                   <cite className="review__author">{review.author}</cite>
                   <time className="review__date" dateTime={review.publicationDate}>
-                    {convertDate(...review.publicationDate.split('-'))}
+                    {convertDate(review.publicationDate)}
                   </time>
                 </footer>
               </blockquote>

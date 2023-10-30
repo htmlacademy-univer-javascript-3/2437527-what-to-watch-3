@@ -13,6 +13,7 @@ const months : Record<string, string> = {
   '12': 'December'
 };
 
-export function convertDate(year: string, month: string, day: string) {
+export function convertDate(date : string) {
+  const [year, month, day] = date.split('-');
   return `${months[month]} ${day}, ${year}`;
 }
