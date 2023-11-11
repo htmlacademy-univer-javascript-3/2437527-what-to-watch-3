@@ -1,9 +1,11 @@
 import FilmCard from '../film-card/film-card';
 import {Film} from '../../types/film-type';
 import React, {ReactElement} from 'react';
+import {useAppSelector} from '../../hooks';
 
-function FilmsList(films : Film[]): ReactElement {
+function FilmsList(): ReactElement {
   const [activeId, setActiveCardId] = React.useState(0);
+  const films : Film[] = useAppSelector((state) => state.filmsOfGenre);
 
   const onMouseEnter = (id: number) => {
     setActiveCardId(id);
