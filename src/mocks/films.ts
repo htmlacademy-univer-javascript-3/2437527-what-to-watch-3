@@ -36,7 +36,7 @@ export const films : Film[] = [
     id: 2,
     src: 'img/bohemian-rhapsody.jpg',
     title: 'Bohemian Rhapsody',
-    genre: 'Drama',
+    genre: 'Comedy',
     releaseYear: 2014,
     durationInMinutes: 99,
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge\n' +
@@ -67,7 +67,7 @@ export const films : Film[] = [
     id: 3,
     src: 'img/macbeth.jpg',
     title: 'Macbeth',
-    genre: 'Drama',
+    genre: 'Crime',
     releaseYear: 2014,
     durationInMinutes: 99,
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge\n' +
@@ -98,7 +98,7 @@ export const films : Film[] = [
     id: 4,
     src: 'img/aviator.jpg',
     title: 'Aviator',
-    genre: 'Drama',
+    genre: 'Documentary',
     releaseYear: 2014,
     durationInMinutes: 99,
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge\n' +
@@ -129,7 +129,7 @@ export const films : Film[] = [
     id: 5,
     src: 'img/we-need-to-talk-about-kevin.jpg',
     title: 'We need to talk about Kevin',
-    genre: 'Drama',
+    genre: 'Horror',
     releaseYear: 2014,
     durationInMinutes: 99,
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge\n' +
@@ -160,7 +160,7 @@ export const films : Film[] = [
     id: 6,
     src: 'img/what-we-do-in-the-shadows.jpg',
     title: 'What We Do in the Shadows',
-    genre: 'Drama',
+    genre: 'Kids & Family',
     releaseYear: 2014,
     durationInMinutes: 99,
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge\n' +
@@ -191,7 +191,7 @@ export const films : Film[] = [
     id: 7,
     src: 'img/revenant.jpg',
     title: 'Revenant',
-    genre: 'Drama',
+    genre: 'Romance',
     releaseYear: 2014,
     durationInMinutes: 99,
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge\n' +
@@ -222,7 +222,7 @@ export const films : Film[] = [
     id: 8,
     src: 'img/johnny-english.jpg',
     title: 'Johnny English',
-    genre: 'Drama',
+    genre: 'Sci-Fi',
     releaseYear: 2014,
     durationInMinutes: 99,
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge\n' +

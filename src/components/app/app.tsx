@@ -13,6 +13,8 @@ import {Video} from '../../types/video';
 import Player from '../../pages/player/player';
 import {PromoFilm} from '../../types/film-type';
 import {ReactElement} from 'react';
+import {useAppDispatch} from '../../hooks';
+import {uploadFilms} from '../../store/action';
 
 type AppScreenProps = {
   promoFilm: PromoFilm;
@@ -22,12 +24,14 @@ type AppScreenProps = {
 }
 
 function App({promoFilm, films, reviews, videoPlayer}: AppScreenProps): ReactElement {
+  const dispatch = useAppDispatch();
+  dispatch(uploadFilms({films: films}));
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoutes.Main}
-          element={<MainPage promoFilm={promoFilm} films={films}/>}
+          element={<MainPage promoFilm={promoFilm}/>}
         />
         <Route
           path={AppRoutes.SignIn}
