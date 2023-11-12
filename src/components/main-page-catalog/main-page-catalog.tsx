@@ -5,13 +5,17 @@ import React, {ReactElement} from 'react';
 import {useAppSelector} from '../../hooks';
 import {Film} from '../../types/film-type';
 import ShowMore from '../show-more/show-more';
+import {filterFilms} from '../../helpers/filter-films';
 
 const FILMS_ON_PAGE = 8;
 
-function MainPageCatalog(): ReactElement {
+type MainPageCatalogProps = {
+  films: Film[];
+}
+
+function MainPageCatalog({films} : MainPageCatalogProps): ReactElement {
   const [pagesToShowCount, setPagesToShowCount] = React.useState(1);
-  const films : Film[] = useAppSelector((state) => state.films);
-  const filmsOfGenre : Film[] = useAppSelector((state) => state.filmsOfGenre);
+  const filmsOfGenre : Film[] = filterFilms(films, useAppSelector((state) => state.genre));
   const filmsToShow = pagesToShowCount * FILMS_ON_PAGE;
 
   const onClick = () => {

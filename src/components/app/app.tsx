@@ -13,25 +13,22 @@ import {Video} from '../../types/video';
 import Player from '../../pages/player/player';
 import {PromoFilm} from '../../types/film-type';
 import {ReactElement} from 'react';
-import {useAppDispatch} from '../../hooks';
-import {uploadFilms} from '../../store/action';
+import {useAppSelector} from '../../hooks';
 
 type AppScreenProps = {
   promoFilm: PromoFilm;
-  films: Film[];
   reviews: ReviewPage[];
   videoPlayer: Video;
 }
 
-function App({promoFilm, films, reviews, videoPlayer}: AppScreenProps): ReactElement {
-  const dispatch = useAppDispatch();
-  dispatch(uploadFilms({films: films}));
+function App({promoFilm, reviews, videoPlayer}: AppScreenProps): ReactElement {
+  const films : Film[] = useAppSelector((state) => state.films);
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoutes.Main}
-          element={<MainPage promoFilm={promoFilm}/>}
+          element={<MainPage films={films} promoFilm={promoFilm}/>}
         />
         <Route
           path={AppRoutes.SignIn}
