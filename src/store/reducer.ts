@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeGenre, uploadFilms} from './action';
+import {setGenre, setFilms} from './action';
 import {films} from '../mocks/films';
 
 export const ALL_GENRES_RUBRIC = 'All genres';
@@ -11,10 +11,10 @@ const initialState = {
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeGenre, (state, action) => {
+    .addCase(setGenre, (state, action) => {
       state.genre = action.payload.genre;
     })
-    .addCase(uploadFilms, (state, action) => {
+    .addCase(setFilms, (state, action) => {
       state.films = action.payload.films;
     });
 });

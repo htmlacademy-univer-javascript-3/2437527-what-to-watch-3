@@ -1,7 +1,7 @@
 import React, {ReactElement} from 'react';
 import {Film} from '../../types/film-type';
 import {useDispatch} from 'react-redux';
-import {changeGenre} from '../../store/action';
+import {setGenre} from '../../store/action';
 import {useAppSelector} from '../../hooks';
 import {getAllGenres} from '../../helpers/get-all-genres';
 
@@ -27,6 +27,11 @@ function GenresList({films} : GenreListProps): ReactElement {
   const [selectedGenre, setActiveGenre] = React.useState(useAppSelector((state) => state.genre));
   const genres : string[] = getAllGenres(films);
 
+  const onClick = (genre : string) => {
+    setActiveGenre(genre);
+    dispatch(setGenre({genre : genre}));
+  };
+
   return (
     <ul className="catalog__genres-list">
       {
@@ -34,11 +39,8 @@ function GenresList({films} : GenreListProps): ReactElement {
           <li key = {GenreNames[genre]}
             className={`catalog__genres-item ${genre === selectedGenre ? 'catalog__genres-item--active' : ''}`}
           >
-            <a onClick={() => {
-              setActiveGenre(genre);
-              dispatch(changeGenre({genre : genre}));
-            }}
-            className="catalog__genres-link"
+            <a onClick={() => onClick(genre)}
+              className="catalog__genres-link"
             >{GenreNames[genre]}
             </a>
           </li>
