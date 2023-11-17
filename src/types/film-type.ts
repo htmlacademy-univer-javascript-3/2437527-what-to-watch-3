@@ -1,24 +1,36 @@
-import {Review} from './review';
-
 export type Film = {
-  id: number;
-  src: string;
-  title: string;
-  genre: string;
-  releaseYear: number;
-  durationInMinutes: number;
+  id: string;
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+  backgroundColor: string;
+  videoLink: string;
   description: string;
   rating: number;
-  ratingsCount: number;
+  scoresCount: number;
   director: string;
   starring: string[];
-  reviews: Review[];
+  runTime: number;
+  genre: string;
+  released: number;
+  isFavorite: boolean;
 };
 
 export type PromoFilm = {
-  title: string;
+  id: string;
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+  videoLink: string;
   genre: string;
-  year: string;
-  imgSrc: string;
-  bgImgSrc: string;
+  released: number;
+  isFavorite: boolean;
+};
+
+export type FilmPreview = {
+  id: number;
+  name: string;
+  previewImage: string;
+  previewVideoLink: string;
+  genre: string;
 };

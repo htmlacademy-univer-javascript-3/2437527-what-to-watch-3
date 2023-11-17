@@ -1,8 +1,12 @@
 import FilmCard from '../film-card/film-card';
-import {Film} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-type';
 import React, {ReactElement} from 'react';
 
-function FilmsList(films : Film[]): ReactElement {
+type SimilarFilmsProps = {
+  filmPreviews: FilmPreview[];
+}
+
+function FilmsList({filmPreviews} : SimilarFilmsProps): ReactElement {
   const [activeId, setActiveCardId] = React.useState(0);
 
   const onMouseEnter = (id: number) => {
@@ -14,14 +18,14 @@ function FilmsList(films : Film[]): ReactElement {
   };
 
   const filmsList : ReactElement[] = [];
-  for (let i = 0; i < Object.keys(films).length; i++) {
+  for (let i = 0; i < Object.keys(filmPreviews).length; i++) {
     filmsList.push(
       <FilmCard
         onMouseEnter={onMouseEnter}
         onMouseExit={onMouseExit}
-        key={films[i].id}
-        film={films[i]}
-        isPlaying={activeId === films[i].id}
+        key={filmPreviews[i].id}
+        filmPreview={filmPreviews[i]}
+        isPlaying={activeId === filmPreviews[i].id}
       />);
   }
 

@@ -1,6 +1,4 @@
-import {PromoFilm} from '../types/film-type';
-
-export const promoFilm : PromoFilm = {
+export const promoFilm = {
   title: 'The Grand Budapest Hotel',
   genre: 'Drama',
   year: '2014',

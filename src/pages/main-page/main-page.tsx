@@ -1,18 +1,18 @@
 import PromoFilmCard from '../../components/promo-film-card/promo-film-card';
 import MainPageCatalog from '../../components/main-page-catalog/main-page-catalog';
-import {Film, PromoFilm} from '../../types/film-type';
+import {FilmPreview, PromoFilm} from '../../types/film-type';
 import {ReactElement} from 'react';
 
 type AppScreenProps = {
   promoFilm: PromoFilm;
-  films: Film[];
+  filmPreviews: FilmPreview[];
 }
 
-function MainPage({promoFilm, films}: AppScreenProps): ReactElement {
+function MainPage({promoFilm, filmPreviews}: AppScreenProps): ReactElement {
   return (
     <>
-      <PromoFilmCard {...promoFilm}/>
-      <MainPageCatalog films={films}/>
+      <PromoFilmCard promoFilm={promoFilm}/>
+      <MainPageCatalog filmPreviews={filmPreviews}/>
     </>
   );
 }

@@ -1,6 +1,4 @@
-import {Film} from '../types/film-type';
-
-export const films : Film[] = [
+export const films = [
   {
     id: 1,
     src: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',

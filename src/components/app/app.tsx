@@ -2,33 +2,42 @@ import MainPage from '../../pages/main-page/main-page';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {AppRoutes, AuthorizationStatus} from '../../routes';
 import SignIn from '../../pages/sign-in/sign-in';
-import MyList from '../../pages/my-list/my-list';
 import MoviePage from '../../pages/movie-page/movie-page';
 import AddReview from '../../pages/add-review/add-rewiew';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import PrivateRoute from '../private-route/private-route';
-import {Film} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-type';
 import {ReviewPage} from '../../types/review-page-type';
 import {Video} from '../../types/video';
 import Player from '../../pages/player/player';
 import {PromoFilm} from '../../types/film-type';
 import {ReactElement} from 'react';
 import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../loading-screen/loading-screen';
+import MyList from '../../pages/my-list/my-list';
+import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
-  promoFilm: PromoFilm;
   reviews: ReviewPage[];
   videoPlayer: Video;
 }
 
-function App({promoFilm, reviews, videoPlayer}: AppScreenProps): ReactElement {
-  const films : Film[] = useAppSelector((state) => state.films);
+function App({reviews, videoPlayer}: AppScreenProps): ReactElement {
+  const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
+  const filmPreviews : FilmPreview[] = useAppSelector((state) => state.filmPreviews);
+  const promoFilm : PromoFilm = useAppSelector((state) => state.promoFilm);
+
+  if (isFilmsDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoutes.Main}
-          element={<MainPage films={films} promoFilm={promoFilm}/>}
+          element={<MainPage filmPreviews={filmPreviews} promoFilm={promoFilm}/>}
         />
         <Route
           path={AppRoutes.SignIn}
@@ -40,13 +49,13 @@ function App({promoFilm, reviews, videoPlayer}: AppScreenProps): ReactElement {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <MyList {...films}/>
+              <MyList {...filmPreviews}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoutes.Film(':id')}
-          element={<MoviePage {...films}/>}
+          element={<MoviePage />}
         />
         <Route
           path={AppRoutes.AddReview(':id')}

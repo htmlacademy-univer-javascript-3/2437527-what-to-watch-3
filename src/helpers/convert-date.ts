@@ -14,6 +14,6 @@ const months : Record<string, string> = {
 };
 
 export function convertDate(date : string) {
-  const [year, month, day] = date.split('-');
+  const [year, month, day] = date.split('T')[0].split('-');
   return `${months[month]} ${day}, ${year}`;
 }

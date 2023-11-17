@@ -1,16 +1,16 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import {Film} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-type';
 import FilmsList from '../../components/films-list/films-list';
 import {ReactElement} from 'react';
 
-function MyList(films : Film[]): ReactElement {
+function MyList(filmPreviews : FilmPreview[]): ReactElement {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <Logo />
 
-        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{Object.keys(films).length}</span></h1>
+        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{Object.keys(filmPreviews).length}</span></h1>
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
@@ -26,7 +26,7 @@ function MyList(films : Film[]): ReactElement {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <FilmsList {...films}/>
+        <FilmsList filmPreviews={filmPreviews}/>
       </section>
 
       <Footer />

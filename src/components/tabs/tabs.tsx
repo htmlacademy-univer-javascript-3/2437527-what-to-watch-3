@@ -3,6 +3,7 @@ import MoviePageOverview from '../../pages/movie-page/movie-page-overview';
 import MoviePageDetails from '../../pages/movie-page/movie-page-details';
 import MoviePageReviews from '../../pages/movie-page/movie-page-reviews';
 import {Film} from '../../types/film-type';
+import {Review} from '../../types/review';
 
 type Tab = {
   name: string;
@@ -11,23 +12,24 @@ type Tab = {
 
 type TabsProps = {
   film: Film;
+  reviews: Review[];
 }
 
-function Tabs(film : TabsProps): ReactElement {
+function Tabs({film, reviews} : TabsProps): ReactElement {
   const [activeTab, setActiveTab] = React.useState(0);
 
   const tabs : Tab[] = [
     {
       name: 'Overview',
-      component: <MoviePageOverview {...film}/>
+      component: <MoviePageOverview film={film}/>
     },
     {
       name: 'Details',
-      component: <MoviePageDetails {...film}/>
+      component: <MoviePageDetails film={film}/>
     },
     {
       name: 'Reviews',
-      component: <MoviePageReviews {...film}/>
+      component: <MoviePageReviews reviews={reviews}/>
     }
   ];
 
