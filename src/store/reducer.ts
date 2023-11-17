@@ -61,13 +61,13 @@ const reducer = createReducer(initialState, (builder) => {
       state.filmPreviews = action.payload.filmPreviews;
     })
     .addCase(setFilm, (state, action) => {
-      state.film = action.payload.film as Film;
+      state.film = action.payload.film as unknown as Film;
     })
     .addCase(setSimilarFilms, (state, action) => {
       state.similarFilms = action.payload.similarFilms;
     })
     .addCase(setPromoFilm, (state, action) => {
-      state.promoFilm = action.payload.promoFilm as PromoFilm;
+      state.promoFilm = action.payload.promoFilm as unknown as PromoFilm;
     })
     .addCase(setReviews, (state, action) => {
       state.reviews = action.payload.reviews;
