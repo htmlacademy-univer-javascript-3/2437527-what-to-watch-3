@@ -1,7 +1,7 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
-import {Film, FilmPreview} from '../types/film-type';
+import {Film, FilmPreview, PromoFilm} from '../types/film-type';
 import {setFilm, setFilms, setLoadingStatus, setPromoFilm, setReviews, setSimilarFilms} from './action';
 import {APIRoute} from '../routes';
 import {Review} from '../types/review';
@@ -51,7 +51,7 @@ export const fetchPromoFilmAction = createAsyncThunk<void, undefined, {
 }>(
   'fetchPromoFilm',
   async (_arg, {dispatch, extra: api}) => {
-    const {data} = await api.get<FilmPreview[]>(APIRoute.Promo);
+    const {data} = await api.get<PromoFilm[]>(APIRoute.Promo);
     dispatch(setPromoFilm({promoFilm: data}));
   },
 );

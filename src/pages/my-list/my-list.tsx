@@ -26,7 +26,7 @@ function MyList(filmPreviews : FilmPreview[]): ReactElement {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <FilmsList {...filmPreviews}/>
+        <FilmsList filmPreviews={filmPreviews}/>
       </section>
 
       <Footer />
