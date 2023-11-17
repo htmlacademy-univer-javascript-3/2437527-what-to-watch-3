@@ -17,12 +17,14 @@ function MoviePageDetails({film} : MoviePageDetailsProps): ReactElement {
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
             {film.starring.map((name, index) => (
-              index < film.starring.length - 1
-                ?
-                <>
-                  {`${name},`}<br />
-                </>
-                : name
+              <span key={crypto.randomUUID()}>
+                {index < film.starring.length - 1
+                  ?
+                  <>
+                    {`${name},`}<br/>
+                  </>
+                  : name}
+              </span>
             ))}
           </span>
         </p>
@@ -31,7 +33,7 @@ function MoviePageDetails({film} : MoviePageDetailsProps): ReactElement {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{`${Math.floor(film.durationInMinutes / 60)}h ${film.durationInMinutes % 60}m`}</span>
+          <span className="film-card__details-value">{`${Math.floor(film.runTime / 60)}h ${film.runTime % 60}m`}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
@@ -39,7 +41,7 @@ function MoviePageDetails({film} : MoviePageDetailsProps): ReactElement {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{film.releaseYear}</span>
+          <span className="film-card__details-value">{film.released}</span>
         </p>
       </div>
     </div>

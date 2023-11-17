@@ -2,11 +2,15 @@ import Logo from '../logo/logo';
 import {PromoFilm} from '../../types/film-type';
 import {ReactElement} from 'react';
 
-function PromoFilmCard({title, genre, year, imgSrc, bgImgSrc} : PromoFilm): ReactElement {
+type PromoFilmCardProps = {
+  promoFilm : PromoFilm;
+}
+
+function PromoFilmCard({promoFilm} : PromoFilmCardProps): ReactElement {
   return (
     <section className="film-card">
       <div className="film-card__bg">
-        <img src={bgImgSrc} alt={title}/>
+        <img src={promoFilm.backgroundImage} alt={promoFilm.name}/>
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -29,16 +33,16 @@ function PromoFilmCard({title, genre, year, imgSrc, bgImgSrc} : PromoFilm): Reac
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src={imgSrc} alt={`${title} poster`} width="218"
+            <img src={promoFilm.posterImage} alt={`${promoFilm.name} poster`} width="218"
               height="327"
             />
           </div>
 
           <div className="film-card__desc">
-            <h2 className="film-card__title">{title}</h2>
+            <h2 className="film-card__title">{promoFilm.name}</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">{genre}</span>
-              <span className="film-card__year">{year}</span>
+              <span className="film-card__genre">{promoFilm.genre}</span>
+              <span className="film-card__year">{promoFilm.released}</span>
             </p>
 
             <div className="film-card__buttons">

@@ -12,3 +12,11 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export const APIRoute = {
+  Films: '/films',
+  Film: (id: number | string) => `/films/${id}`,
+  SimilarFilms: (id: number | string) => `/films/${id}/similar`,
+  Promo: '/promo',
+  Reviews: (id: number | string) => `/comments/${id}`,
+};

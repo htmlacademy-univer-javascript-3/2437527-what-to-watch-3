@@ -1,8 +1,6 @@
 import {ReactElement} from 'react';
 import {Film} from '../../types/film-type';
 
-const ACTORS_COUNT_TO_SHOW = 4;
-
 type MoviePageOverviewProps = {
   film: Film;
 }
@@ -35,7 +33,7 @@ function MoviePageOverview({film} : MoviePageOverviewProps): ReactElement {
         <div className="film-rating__score">{film.rating.toString().replace('.', ',')}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">{getRatingDescription(film.rating)}</span>
-          <span className="film-rating__count">{film.ratingsCount} ratings</span>
+          <span className="film-rating__count">{film.scoresCount} ratings</span>
         </p>
       </div>
 
@@ -49,10 +47,8 @@ function MoviePageOverview({film} : MoviePageOverviewProps): ReactElement {
         <p className="film-card__starring">
           <strong>
             Starring: {
-              film.starring.slice(0, ACTORS_COUNT_TO_SHOW + 1).map((name, index) =>
-                index < ACTORS_COUNT_TO_SHOW
-                  ? `${name}${index === ACTORS_COUNT_TO_SHOW - 1 ? ' ' : ', '}`
-                  : 'and other')
+              film.starring.map((name, index) =>
+                `${name}${index < film.starring.length - 1 ? ', ' : ' '}`)
             }
           </strong>
         </p>
