@@ -27,7 +27,7 @@ function MainPageCatalog({filmPreviews} : MainPageCatalogProps): ReactElement {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenresList filmPreviews={filmPreviews} />
-        <FilmsList {...filmPreviewsOfGenre.slice(0, filmsToShow)}/>
+        <FilmsList filmPreviews={filmPreviewsOfGenre.slice(0, filmsToShow)}/>
         {filmPreviewsOfGenre.length > filmsToShow && (
           <ShowMore onClick={onClick}/>
         )}

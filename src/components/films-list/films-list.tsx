@@ -2,7 +2,11 @@ import FilmCard from '../film-card/film-card';
 import {FilmPreview} from '../../types/film-type';
 import React, {ReactElement} from 'react';
 
-function FilmsList(filmPreviews : FilmPreview[]): ReactElement {
+type SimilarFilmsProps = {
+  filmPreviews: FilmPreview[];
+}
+
+function FilmsList({filmPreviews} : SimilarFilmsProps): ReactElement {
   const [activeId, setActiveCardId] = React.useState(0);
 
   const onMouseEnter = (id: number) => {

@@ -5,16 +5,15 @@ import FilmsList from '../../components/films-list/films-list';
 import Tabs from '../../components/tabs/tabs';
 import {useParams} from 'react-router-dom';
 import {fetchFilmAction, fetchReviews, fetchSimilarFilmsAction} from '../../store/api-actions';
-import {useDispatch} from 'react-redux';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 
 const SIMILAR_FILMS_COUNT = 4;
 
 function MoviePage(): ReactElement {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const params = useParams();
-  const id = params.id;
+  const id = params.id as string;
 
   useEffect(() => {
     dispatch(fetchFilmAction(id));
@@ -93,7 +92,7 @@ function MoviePage(): ReactElement {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsList {...similarFilms}/>
+          <FilmsList filmPreviews={similarFilms}/>
         </section>
         <Footer />
       </div>
