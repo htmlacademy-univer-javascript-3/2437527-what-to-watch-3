@@ -19,7 +19,13 @@ function UserBlock(): ReactElement {
           </div>
         </li>
         <li className="user-block__item">
-          <a className="user-block__link" onClick={() => dispatch(logoutAction())}>Sign out</a>
+          <a className="user-block__link" onClick={() => {
+            void (async () => {
+              await dispatch(logoutAction());
+            })();
+          }}
+          >Sign out
+          </a>
         </li>
       </ul>
     );
