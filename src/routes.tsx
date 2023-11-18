@@ -19,4 +19,6 @@ export const APIRoute = {
   SimilarFilms: (id: number | string) => `/films/${id}/similar`,
   Promo: '/promo',
   Reviews: (id: number | string) => `/comments/${id}`,
+  Login: '/login',
+  Logout: '/logout',
 };

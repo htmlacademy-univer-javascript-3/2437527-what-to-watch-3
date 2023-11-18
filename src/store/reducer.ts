@@ -1,7 +1,19 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {setGenre, setFilms, setLoadingStatus, setFilm, setSimilarFilms, setPromoFilm, setReviews} from './action';
+import {
+  setGenre,
+  setFilms,
+  setLoadingStatus,
+  setFilm,
+  setSimilarFilms,
+  setPromoFilm,
+  setReviews,
+  requireAuthorization,
+  setUser
+} from './action';
 import {Film, FilmPreview, PromoFilm} from '../types/film-type';
 import {Review} from '../types/review';
+import {AuthorizationStatus} from '../routes';
+import {UserData} from '../types/user-data';
 
 export const ALL_GENRES_RUBRIC = 'All genres';
 
@@ -13,6 +25,8 @@ export type InitialState = {
   promoFilm: PromoFilm;
   reviews: Review[];
   isFilmsDataLoading: boolean;
+  authorizationStatus: AuthorizationStatus;
+  user: UserData;
 };
 
 const initialState : InitialState = {
@@ -50,6 +64,13 @@ const initialState : InitialState = {
   similarFilms: [],
   reviews: [],
   isFilmsDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  user: {
+    'name': 'Oliver.conner',
+    'avatarUrl': 'https://url-to-image/image.jpg',
+    'email': 'Oliver.conner@gmail.com',
+    'token': 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20='
+  }
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -74,6 +95,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setLoadingStatus, (state, action) => {
       state.isFilmsDataLoading = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setUser, (state, action) => {
+      state.user = action.payload;
     });
 });
 

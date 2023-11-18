@@ -4,6 +4,7 @@ import {ReviewPage} from '../../types/review-page-type';
 import {AppRoutes} from '../../routes';
 import CommentSubmissionForm from '../../components/comment-submission-form/comment-submission-form';
 import {ReactElement} from 'react';
+import UserBlock from '../../components/user-block/user-block';
 
 function AddReview(reviews : ReviewPage[]): ReactElement {
   const params = useParams();
@@ -32,16 +33,7 @@ function AddReview(reviews : ReviewPage[]): ReactElement {
             </ul>
           </nav>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <UserBlock />
         </header>
 
         <div className="film-card__poster film-card__poster--small">

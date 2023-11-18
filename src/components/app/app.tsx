@@ -1,5 +1,5 @@
 import MainPage from '../../pages/main-page/main-page';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import {AppRoutes, AuthorizationStatus} from '../../routes';
 import SignIn from '../../pages/sign-in/sign-in';
 import MoviePage from '../../pages/movie-page/movie-page';
@@ -15,6 +15,8 @@ import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
 import MyList from '../../pages/my-list/my-list';
 import PrivateRoute from '../private-route/private-route';
+import browserHistory from '../../browser-history';
+import HistoryRouter from '../history-route/history-route';
 
 type AppScreenProps = {
   reviews: ReviewPage[];
@@ -25,15 +27,16 @@ function App({reviews, videoPlayer}: AppScreenProps): ReactElement {
   const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
   const filmPreviews : FilmPreview[] = useAppSelector((state) => state.filmPreviews);
   const promoFilm : PromoFilm = useAppSelector((state) => state.promoFilm);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  if (isFilmsDataLoading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsDataLoading) {
     return (
       <LoadingScreen />
     );
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoutes.Main}
@@ -46,10 +49,8 @@ function App({reviews, videoPlayer}: AppScreenProps): ReactElement {
         <Route
           path={AppRoutes.MyList}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
-              <MyList {...filmPreviews}/>
+            <PrivateRoute authorizationStatus={authorizationStatus}>
+              <MyList filmPreviews={filmPreviews}/>
             </PrivateRoute>
           }
         />
@@ -70,7 +71,7 @@ function App({reviews, videoPlayer}: AppScreenProps): ReactElement {
           element={<NotFoundPage />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
