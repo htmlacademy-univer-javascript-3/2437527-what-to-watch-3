@@ -3,13 +3,11 @@ import {AppRoutes, AuthorizationStatus} from '../../routes';
 import {ReactElement} from 'react';
 
 type PrivateRouteProps = {
-  authorizationStatus: AuthorizationStatus;
   children: ReactElement;
+  authorizationStatus: AuthorizationStatus;
 }
 
-function PrivateRoute(props: PrivateRouteProps): ReactElement {
-  const {authorizationStatus, children} = props;
-
+function PrivateRoute({children, authorizationStatus}: PrivateRouteProps): ReactElement {
   return (
     authorizationStatus === AuthorizationStatus.Auth
       ? children

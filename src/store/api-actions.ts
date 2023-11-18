@@ -2,9 +2,21 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import {Film, FilmPreview, PromoFilm} from '../types/film-type';
-import {setFilm, setFilms, setLoadingStatus, setPromoFilm, setReviews, setSimilarFilms} from './action';
-import {APIRoute} from '../routes';
+import {
+  redirectToRoute,
+  requireAuthorization,
+  setFilm,
+  setFilms,
+  setLoadingStatus,
+  setPromoFilm,
+  setReviews,
+  setSimilarFilms, setUser
+} from './action';
+import {APIRoute, AppRoutes, AuthorizationStatus} from '../routes';
 import {Review} from '../types/review';
+import {AuthData} from '../types/auth-data';
+import {UserData} from '../types/user-data';
+import {dropToken, saveToken} from '../services/token';
 
 export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -65,5 +77,49 @@ export const fetchReviews = createAsyncThunk<void, string, {
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<Review[]>(APIRoute.Reviews(id));
     dispatch(setReviews({reviews: data}));
+  },
+);
+
+export const loginAction = createAsyncThunk<void, AuthData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'login',
+  async ({login: email, password}, {dispatch, extra: api}) => {
+    const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+    saveToken(data.token);
+    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(setUser({name: data.name, email: data.email, avatarUrl: data.avatarUrl, token: data.token}));
+    dispatch(redirectToRoute(AppRoutes.Main));
+  },
+);
+
+export const logoutAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'logout',
+  async (_arg, {dispatch, extra: api}) => {
+    await api.delete(APIRoute.Logout);
+    dropToken();
+    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+  },
+);
+
+export const checkAuthAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'checkAuth',
+  async (_arg, {dispatch, extra: api}) => {
+    try {
+      await api.get(APIRoute.Login);
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    } catch {
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    }
   },
 );

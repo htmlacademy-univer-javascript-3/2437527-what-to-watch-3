@@ -6,7 +6,7 @@ import {useAppSelector} from '../../hooks';
 import {getAllGenres} from '../../helpers/get-all-genres';
 
 const GenreNames : Record<string, string> = {
-  'All genres': 'All genres-list',
+  'All genres': 'All genres',
   'Comedy': 'Comedies',
   'Crime': 'Crime',
   'Documentary': 'Documentary',
