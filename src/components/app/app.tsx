@@ -1,6 +1,6 @@
 import MainPage from '../../pages/main-page/main-page';
 import {Routes, Route} from 'react-router-dom';
-import {AppRoutes, AuthorizationStatus} from '../../routes';
+import {AppRoute, AuthorizationStatus} from '../../routes';
 import SignIn from '../../pages/sign-in/sign-in';
 import MoviePage from '../../pages/movie-page/movie-page';
 import AddReview from '../../pages/add-review/add-rewiew';
@@ -23,7 +23,7 @@ type AppScreenProps = {
   videoPlayer: Video;
 }
 
-function App({reviews, videoPlayer}: AppScreenProps): ReactElement {
+function App({videoPlayer}: AppScreenProps): ReactElement {
   const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
   const filmPreviews : FilmPreview[] = useAppSelector((state) => state.filmPreviews);
   const promoFilm : PromoFilm = useAppSelector((state) => state.promoFilm);
@@ -39,15 +39,15 @@ function App({reviews, videoPlayer}: AppScreenProps): ReactElement {
     <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
-          path={AppRoutes.Main}
+          path={AppRoute.Main}
           element={<MainPage filmPreviews={filmPreviews} promoFilm={promoFilm}/>}
         />
         <Route
-          path={AppRoutes.SignIn}
+          path={AppRoute.SignIn}
           element={<SignIn />}
         />
         <Route
-          path={AppRoutes.MyList}
+          path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={authorizationStatus}>
               <MyList filmPreviews={filmPreviews}/>
@@ -55,19 +55,23 @@ function App({reviews, videoPlayer}: AppScreenProps): ReactElement {
           }
         />
         <Route
-          path={AppRoutes.Film(':id')}
-          element={<MoviePage />}
+          path={AppRoute.Film(':id')}
+          element={<MoviePage authorizationStatus={authorizationStatus}/>}
         />
         <Route
-          path={AppRoutes.AddReview(':id')}
-          element={<AddReview {...reviews}/>}
+          path={AppRoute.AddReview(':id')}
+          element={
+            <PrivateRoute authorizationStatus={authorizationStatus}>
+              <AddReview />
+            </PrivateRoute>
+          }
         />
         <Route
-          path={AppRoutes.Player(':id')}
+          path={AppRoute.Player(':id')}
           element={<Player {...videoPlayer}/>}
         />
         <Route
-          path="*"
+          path={AppRoute.NotFound}
           element={<NotFoundPage />}
         />
       </Routes>

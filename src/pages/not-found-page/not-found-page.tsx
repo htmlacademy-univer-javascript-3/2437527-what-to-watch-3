@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {AppRoutes} from '../../routes';
+import {AppRoute} from '../../routes';
 import {CSSProperties, ReactElement} from 'react';
 
 function NotFoundPage(): ReactElement {
@@ -12,7 +12,7 @@ function NotFoundPage(): ReactElement {
   return (
     <div style={style}>
       <p>404. Страница не найдена</p>
-      <Link to={AppRoutes.Main}>Вернуться на главную</Link>
+      <Link to={AppRoute.Main}>Вернуться на главную</Link>
     </div>
   );
 }

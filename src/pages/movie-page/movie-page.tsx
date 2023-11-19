@@ -3,24 +3,29 @@ import Logo from '../../components/logo/logo';
 import {ReactElement, useEffect} from 'react';
 import FilmsList from '../../components/films-list/films-list';
 import Tabs from '../../components/tabs/tabs';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {fetchFilmAction, fetchReviews, fetchSimilarFilmsAction} from '../../store/api-actions';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import UserBlock from '../../components/user-block/user-block';
+import {AppRoute, AuthorizationStatus} from '../../routes';
 
 const SIMILAR_FILMS_COUNT = 4;
 
-function MoviePage(): ReactElement {
+type MoviePageProps = {
+  authorizationStatus: AuthorizationStatus;
+}
+
+function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
   const dispatch = useAppDispatch();
 
   const params = useParams();
-  const id = params.id as string;
+  const filmId = params.id as string;
 
   useEffect(() => {
-    dispatch(fetchFilmAction(id));
-    dispatch(fetchSimilarFilmsAction(id));
-    dispatch(fetchReviews(id));
-  }, [dispatch, id]);
+    dispatch(fetchFilmAction(filmId));
+    dispatch(fetchSimilarFilmsAction(filmId));
+    dispatch(fetchReviews(filmId));
+  }, [dispatch, filmId]);
 
   const film = useAppSelector((state) => state.film);
   const similarFilms = useAppSelector((state) => state.similarFilms).slice(0, SIMILAR_FILMS_COUNT);
@@ -63,7 +68,8 @@ function MoviePage(): ReactElement {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                {authorizationStatus === AuthorizationStatus.Auth &&
+                  <Link to={AppRoute.AddReview(filmId)} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>

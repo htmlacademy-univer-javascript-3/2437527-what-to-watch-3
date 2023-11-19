@@ -12,11 +12,12 @@ import {
   setReviews,
   setSimilarFilms, setUser
 } from './action';
-import {APIRoute, AppRoutes, AuthorizationStatus} from '../routes';
+import {APIRoute, AppRoute, AuthorizationStatus} from '../routes';
 import {Review} from '../types/review';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {dropToken, saveToken} from '../services/token';
+import {CommentData} from '../types/comment-data';
 
 export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -91,7 +92,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     saveToken(data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(setUser({name: data.name, email: data.email, avatarUrl: data.avatarUrl, token: data.token}));
-    dispatch(redirectToRoute(AppRoutes.Main));
+    dispatch(redirectToRoute(AppRoute.Main));
   },
 );
 
@@ -121,5 +122,18 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
+  },
+);
+
+export const postCommentAction = createAsyncThunk<void, CommentData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'postComment',
+  async ({id: id, comment: comment, rating: rating},
+    {dispatch: dispatch, extra: api}) => {
+    dispatch(redirectToRoute(AppRoute.Film(id)));
+    await api.post<Omit<CommentData, 'id'>>(APIRoute.Reviews(id), {comment: comment, rating: rating});
   },
 );

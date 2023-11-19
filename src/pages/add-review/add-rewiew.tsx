@@ -1,20 +1,28 @@
 import Logo from '../../components/logo/logo';
 import {useParams} from 'react-router-dom';
-import {ReviewPage} from '../../types/review-page-type';
-import {AppRoutes} from '../../routes';
+import {AppRoute} from '../../routes';
 import CommentSubmissionForm from '../../components/comment-submission-form/comment-submission-form';
-import {ReactElement} from 'react';
+import {ReactElement, useEffect} from 'react';
 import UserBlock from '../../components/user-block/user-block';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {fetchFilmAction} from '../../store/api-actions';
 
-function AddReview(reviews : ReviewPage[]): ReactElement {
+function AddReview(): ReactElement {
+  const dispatch = useAppDispatch();
+
   const params = useParams();
-  const id = Number(params.id) ?? 1;
-  const review : ReviewPage = reviews[id - 1];
+  const filmId = params.id as string;
+
+  useEffect(() => {
+    dispatch(fetchFilmAction(filmId));
+  }, [dispatch, filmId]);
+
+  const film = useAppSelector((state) => state.film);
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={review.bgImgSrc} alt={review.title}/>
+          <img src={film.backgroundImage} alt={`${film.name} image`}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -25,7 +33,7 @@ function AddReview(reviews : ReviewPage[]): ReactElement {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href={AppRoutes.Film(review.id)} className="breadcrumbs__link">{review.title}</a>
+                <a href={AppRoute.Film(film.id)} className="breadcrumbs__link">{film.name}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -37,13 +45,13 @@ function AddReview(reviews : ReviewPage[]): ReactElement {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={review.imgSrc} alt={review.title} width="218"
+          <img src={film.posterImage} alt={film.name} width="218"
             height="327"
           />
         </div>
       </div>
 
-      <CommentSubmissionForm />
+      <CommentSubmissionForm filmId={filmId}/>
     </section>
   );
 }
