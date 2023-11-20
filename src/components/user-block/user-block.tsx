@@ -10,7 +10,7 @@ function UserBlock(): ReactElement {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const user = useAppSelector((state) => state.user);
 
-  if (authorizationStatus === AuthorizationStatus.Auth) {
+  if (user !== null && authorizationStatus === AuthorizationStatus.Auth) {
     return (
       <ul className="user-block">
         <li className="user-block__item">

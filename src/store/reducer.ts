@@ -2,7 +2,6 @@ import {createReducer} from '@reduxjs/toolkit';
 import {
   setGenre,
   setFilms,
-  setLoadingStatus,
   setFilm,
   setSimilarFilms,
   setPromoFilm,
@@ -19,58 +18,24 @@ export const ALL_GENRES_RUBRIC = 'All genres';
 
 export type InitialState = {
   genre: string;
-  filmPreviews: FilmPreview[];
-  film: Film;
+  filmPreviews: { filmPreviews: FilmPreview[] } & { isLoaded: boolean };
+  film: { film: Film | null } & { isLoaded: boolean };
   similarFilms: FilmPreview[];
-  promoFilm: PromoFilm;
+  promoFilm: { promoFilm: PromoFilm | null} & { isLoaded: boolean };
   reviews: Review[];
-  isFilmsDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
-  user: UserData;
+  user: UserData | null;
 };
 
 const initialState : InitialState = {
   genre: ALL_GENRES_RUBRIC,
-  filmPreviews: [],
-  film: {
-    'id': 'aba664c3-bdf3-4fb3-b8f3-42e007864bbf',
-    'name': 'The Grand Budapest Hotel',
-    'posterImage': 'https://url-to-image/image.jpg',
-    'backgroundImage': 'https://url-to-image/image.jpg',
-    'backgroundColor': '#ffffff',
-    'videoLink': 'https://url-to-video/video.jpg',
-    'description': 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
-    'rating': 8.9,
-    'scoresCount': 240,
-    'director': 'Wes Anderson',
-    'starring': [
-      'Bill Murray'
-    ],
-    'runTime': 99,
-    'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
-  },
-  promoFilm: {
-    'id': 'aba664c3-bdf3-4fb3-b8f3-42e007864bbf',
-    'name': 'The Grand Budapest Hotel',
-    'posterImage': 'https://url-to-image/image.jpg',
-    'backgroundImage': 'https://url-to-image/image.jpg',
-    'videoLink': 'https://url-to-video/video.mp4',
-    'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
-  },
+  filmPreviews: { filmPreviews: [], isLoaded: false },
+  film: { film: null, isLoaded: false },
   similarFilms: [],
+  promoFilm: { promoFilm: null, isLoaded: false },
   reviews: [],
-  isFilmsDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
-  user: {
-    'name': 'Oliver.conner',
-    'avatarUrl': 'https://url-to-image/image.jpg',
-    'email': 'Oliver.conner@gmail.com',
-    'token': 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20='
-  }
+  user: null
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -79,22 +44,19 @@ const reducer = createReducer(initialState, (builder) => {
       state.genre = action.payload.genre;
     })
     .addCase(setFilms, (state, action) => {
-      state.filmPreviews = action.payload.filmPreviews;
+      state.filmPreviews = action.payload;
     })
     .addCase(setFilm, (state, action) => {
-      state.film = action.payload.film as unknown as Film;
+      state.film = action.payload;
     })
     .addCase(setSimilarFilms, (state, action) => {
       state.similarFilms = action.payload.similarFilms;
     })
     .addCase(setPromoFilm, (state, action) => {
-      state.promoFilm = action.payload.promoFilm as unknown as PromoFilm;
+      state.promoFilm = action.payload;
     })
     .addCase(setReviews, (state, action) => {
       state.reviews = action.payload.reviews;
-    })
-    .addCase(setLoadingStatus, (state, action) => {
-      state.isFilmsDataLoading = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;

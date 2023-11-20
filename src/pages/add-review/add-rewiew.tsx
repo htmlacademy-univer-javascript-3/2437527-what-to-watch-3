@@ -6,6 +6,7 @@ import {ReactElement, useEffect} from 'react';
 import UserBlock from '../../components/user-block/user-block';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchFilmAction} from '../../store/api-actions';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
 
 function AddReview(): ReactElement {
   const dispatch = useAppDispatch();
@@ -17,7 +18,15 @@ function AddReview(): ReactElement {
     dispatch(fetchFilmAction(filmId));
   }, [dispatch, filmId]);
 
-  const film = useAppSelector((state) => state.film);
+  const film = useAppSelector((state) => state.film.film);
+  const isFilmLoaded = useAppSelector((state) => state.film.isLoaded);
+
+  if (!isFilmLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">

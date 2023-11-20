@@ -6,17 +6,15 @@ import {UserData} from '../types/user-data';
 
 export const setGenre = createAction<{genre: string}>('setGenre');
 
-export const setFilms = createAction<{filmPreviews: FilmPreview[]}>('setFilms');
+export const setFilms = createAction<{ filmPreviews: FilmPreview[] } & { isLoaded: boolean }>('setFilms');
 
-export const setFilm = createAction<{film: Film[]}>('setFilm');
+export const setFilm = createAction<{ film: Film | null } & { isLoaded: boolean }>('setFilm');
 
 export const setSimilarFilms = createAction<{similarFilms: FilmPreview[]}>('setSimilarFilms');
 
-export const setPromoFilm = createAction<{promoFilm: PromoFilm[]}>('setPromoFilm');
+export const setPromoFilm = createAction<{ promoFilm: PromoFilm | null} & { isLoaded: boolean }>('setPromoFilm');
 
 export const setReviews = createAction<{reviews: Review[]}>('setReviews');
-
-export const setLoadingStatus = createAction<boolean>('setLoadingStatus');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
 

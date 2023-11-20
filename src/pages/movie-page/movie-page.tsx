@@ -8,6 +8,7 @@ import {fetchFilmAction, fetchReviews, fetchSimilarFilmsAction} from '../../stor
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import UserBlock from '../../components/user-block/user-block';
 import {AppRoute, AuthorizationStatus} from '../../routes';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
 
 const SIMILAR_FILMS_COUNT = 4;
 
@@ -27,9 +28,17 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
     dispatch(fetchReviews(filmId));
   }, [dispatch, filmId]);
 
-  const film = useAppSelector((state) => state.film);
+  const film = useAppSelector((state) => state.film.film);
+  const isFilmLoaded = useAppSelector((state) => state.film.isLoaded);
   const similarFilms = useAppSelector((state) => state.similarFilms).slice(0, SIMILAR_FILMS_COUNT);
   const reviews = useAppSelector((state) => state.reviews);
+
+  if (!isFilmLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <>
       <section className="film-card film-card--full">
@@ -61,13 +70,15 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
                   </svg>
                   <span>Play</span>
                 </button>
+
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"/>
                   </svg>
-                  <span>My list</span>
+                  <Link to={AppRoute.MyList} style={{ textDecoration: 'none' , color: 'inherit'}}>My list</Link>
                   <span className="film-card__count">9</span>
                 </button>
+
                 {authorizationStatus === AuthorizationStatus.Auth &&
                   <Link to={AppRoute.AddReview(filmId)} className="btn film-card__button">Add review</Link>}
               </div>
