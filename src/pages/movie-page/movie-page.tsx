@@ -30,7 +30,7 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
     dispatch(fetchReviews(filmId));
   }, [dispatch, filmId]);
 
-  const film : Film = useAppSelector((state) => state.film.film);
+  const film : Film = useAppSelector((state) => state.film.film) as Film;
   const isFilmLoaded : boolean = useAppSelector((state) => state.film.isLoaded);
   const similarFilms : FilmPreview[] = useAppSelector((state) => state.similarFilms).slice(0, SIMILAR_FILMS_COUNT);
   const reviews : Review[] = useAppSelector((state) => state.reviews);

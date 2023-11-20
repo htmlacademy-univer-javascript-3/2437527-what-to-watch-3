@@ -26,7 +26,7 @@ type AppScreenProps = {
 function App({videoPlayer}: AppScreenProps): ReactElement {
   const filmPreviews : FilmPreview[] = useAppSelector((state) => state.filmPreviews.filmPreviews);
   const isFilmPreviewsLoaded : boolean = useAppSelector((state) => state.filmPreviews.isLoaded);
-  const promoFilm : PromoFilm = useAppSelector((state) => state.promoFilm.promoFilm);
+  const promoFilm : PromoFilm = useAppSelector((state) => state.promoFilm.promoFilm) as PromoFilm;
   const isPromoFilmLoaded : boolean = useAppSelector((state) => state.promoFilm.isLoaded);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
