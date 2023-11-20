@@ -7,6 +7,7 @@ import UserBlock from '../../components/user-block/user-block';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchFilmAction} from '../../store/api-actions';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
+import {Film} from '../../types/film-type';
 
 function AddReview(): ReactElement {
   const dispatch = useAppDispatch();
@@ -18,8 +19,8 @@ function AddReview(): ReactElement {
     dispatch(fetchFilmAction(filmId));
   }, [dispatch, filmId]);
 
-  const film = useAppSelector((state) => state.film.film);
-  const isFilmLoaded = useAppSelector((state) => state.film.isLoaded);
+  const film : Film = useAppSelector((state) => state.film.film);
+  const isFilmLoaded : boolean = useAppSelector((state) => state.film.isLoaded);
 
   if (!isFilmLoaded) {
     return (
