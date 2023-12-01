@@ -22,4 +22,4 @@ export const setUser = createAction<UserData>('setUser');
 
 export const redirectToRoute = createAction<string>('redirectToRoute');
 
-export const setErrorMessage = createAction<string | null>('setErrorMessage');
+export const setErrorMessage = createAction<string | undefined>('setErrorMessage');

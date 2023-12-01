@@ -20,20 +20,20 @@ function SignIn(): ReactElement {
 
     if (isLoginValid(loginRef.current) && isPasswordValid(passwordRef.current)) {
       dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
+        login: loginRef.current?.value,
+        password: passwordRef.current?.value
       }));
       setLoginError(false);
       setPasswordError(false);
-      dispatch(setErrorMessage(null));
+      dispatch(setErrorMessage(undefined));
     } else if (!isLoginValid(loginRef.current)) {
       setLoginError(true);
       setPasswordError(false);
-      dispatch(setErrorMessage(null));
+      dispatch(setErrorMessage(undefined));
     } else {
       setLoginError(false);
       setPasswordError(true);
-      dispatch(setErrorMessage(null));
+      dispatch(setErrorMessage(undefined));
     }
   };
 

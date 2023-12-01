@@ -25,7 +25,7 @@ export type InitialState = {
   reviews: Review[];
   authorizationStatus: AuthorizationStatus;
   user: UserData | null;
-  errorMessage: string | null;
+  errorMessage: string | undefined;
 };
 
 const initialState : InitialState = {
@@ -37,7 +37,7 @@ const initialState : InitialState = {
   reviews: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   user: null,
-  errorMessage: null
+  errorMessage: undefined
 };
 
 const reducer = createReducer(initialState, (builder) => {
