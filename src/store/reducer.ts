@@ -7,7 +7,7 @@ import {
   setPromoFilm,
   setReviews,
   requireAuthorization,
-  setUser
+  setUser, setErrorMessage
 } from './action';
 import {Film, FilmPreview, PromoFilm} from '../types/film-type';
 import {Review} from '../types/review';
@@ -21,10 +21,11 @@ export type InitialState = {
   filmPreviews: { filmPreviews: FilmPreview[] } & { isLoaded: boolean };
   film: { film: Film | null } & { isLoaded: boolean };
   similarFilms: FilmPreview[];
-  promoFilm: { promoFilm: PromoFilm | null} & { isLoaded: boolean };
+  promoFilm: { promoFilm: PromoFilm | null } & { isLoaded: boolean };
   reviews: Review[];
   authorizationStatus: AuthorizationStatus;
   user: UserData | null;
+  errorMessage: string | null;
 };
 
 const initialState : InitialState = {
@@ -35,7 +36,8 @@ const initialState : InitialState = {
   promoFilm: { promoFilm: null, isLoaded: false },
   reviews: [],
   authorizationStatus: AuthorizationStatus.Unknown,
-  user: null
+  user: null,
+  errorMessage: null
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -63,6 +65,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setUser, (state, action) => {
       state.user = action.payload;
+    })
+    .addCase(setErrorMessage, (state, action) => {
+      state.errorMessage = action.payload;
     });
 });
 

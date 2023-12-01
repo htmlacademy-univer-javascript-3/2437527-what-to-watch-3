@@ -21,3 +21,5 @@ export const requireAuthorization = createAction<AuthorizationStatus>('requireAu
 export const setUser = createAction<UserData>('setUser');
 
 export const redirectToRoute = createAction<string>('redirectToRoute');
+
+export const setErrorMessage = createAction<string | null>('setErrorMessage');

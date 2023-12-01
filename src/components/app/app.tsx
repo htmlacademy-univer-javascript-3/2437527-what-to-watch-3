@@ -45,7 +45,11 @@ function App({videoPlayer}: AppScreenProps): ReactElement {
         />
         <Route
           path={AppRoute.SignIn}
-          element={<SignIn />}
+          element={
+            authorizationStatus === AuthorizationStatus.Auth
+              ? <MainPage filmPreviews={filmPreviews} promoFilm={promoFilm}/>
+              : <SignIn />
+          }
         />
         <Route
           path={AppRoute.MyList}

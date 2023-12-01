@@ -4,6 +4,8 @@ import {StatusCodes} from 'http-status-codes';
 import {toast} from 'react-toastify';
 import browserHistory from '../browser-history';
 import {AppRoute} from '../routes';
+import {setErrorMessage} from '../store/action';
+import {store} from '../store';
 
 type DetailMessageType = {
   type: string;
@@ -42,13 +44,15 @@ export const createAPI = (): AxiosInstance => {
   api.interceptors.response.use(
     (response) => response,
     (error: AxiosError<DetailMessageType>) => {
+      const detailMessage = (error.response.data);
       if (error.response && shouldDisplayError(error.response)) {
-        const detailMessage = (error.response.data);
-
         toast.warn(detailMessage.message);
       }
       if (error.response?.status === StatusCodes.NOT_FOUND) {
         browserHistory.push(AppRoute.NotFound);
+      }
+      if (error.response?.status === StatusCodes.BAD_REQUEST) {
+        store.dispatch(setErrorMessage(detailMessage.message));
       }
 
       throw error;
