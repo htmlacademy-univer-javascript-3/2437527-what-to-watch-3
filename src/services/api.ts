@@ -46,13 +46,13 @@ export const createAPI = (): AxiosInstance => {
     (error: AxiosError<DetailMessageType>) => {
       const detailMessage = (error.response?.data);
       if (error.response && shouldDisplayError(error.response)) {
-        toast.warn(detailMessage.message);
+        toast.warn(detailMessage?.message);
       }
       if (error.response?.status === StatusCodes.NOT_FOUND) {
         browserHistory.push(AppRoute.NotFound);
       }
       if (error.response?.status === StatusCodes.BAD_REQUEST) {
-        store.dispatch(setErrorMessage(detailMessage.message));
+        store.dispatch(setErrorMessage(detailMessage?.message));
       }
 
       throw error;
