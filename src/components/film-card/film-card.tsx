@@ -1,7 +1,7 @@
 import {FilmPreview} from '../../types/film-type';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../routes';
-import {ReactElement} from 'react';
+import React, {ReactElement} from 'react';
 import VideoPlayer from '../video-player/video-player';
 
 type FilmCardProps = {
@@ -37,4 +37,5 @@ function FilmCard({filmPreview, onMouseEnter, onMouseExit, isPlaying} : FilmCard
   );
 }
 
-export default FilmCard;
+export const FilmCardMemo = React.memo(FilmCard);
+export default FilmCardMemo;
