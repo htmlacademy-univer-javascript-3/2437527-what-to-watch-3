@@ -11,8 +11,8 @@ import {AppRoute, AuthorizationStatus} from '../../routes';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
 import {Film, FilmPreview} from '../../types/film-type';
 import {Review} from '../../types/review';
-import {getFilm, getSimilarFilms} from "../../store/films/selectors";
-import {getReviews} from "../../store/reviews/selectors";
+import {getFilm, getSimilarFilms} from '../../store/films/selectors';
+import {getReviews} from '../../store/reviews/selectors';
 
 const SIMILAR_FILMS_COUNT = 4;
 

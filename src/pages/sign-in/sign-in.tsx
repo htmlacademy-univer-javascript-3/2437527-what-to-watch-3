@@ -5,7 +5,7 @@ import {loginAction} from '../../store/api-actions';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {isLoginValid, isPasswordValid} from '../../helpers/validate-credentials';
 import {getErrorMessage} from '../../store/data/selectors';
-import {setErrorMessage} from "../../store/data/data";
+import {setErrorMessage} from '../../store/data/data';
 
 function SignIn(): ReactElement {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -26,7 +26,7 @@ function SignIn(): ReactElement {
       }));
       setLoginError(false);
       setPasswordError(false);
-      dispatch(setErrorMessage( undefined));
+      dispatch(setErrorMessage(undefined));
     } else if (!isLoginValid(loginRef.current)) {
       setLoginError(true);
       setPasswordError(false);

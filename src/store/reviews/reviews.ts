@@ -19,6 +19,6 @@ export const reviews = createSlice({
     builder
       .addCase(fetchReviews.fulfilled, (state, value) => {
         state.reviews = value.payload.reviews;
-      })
+      });
   }
 });
