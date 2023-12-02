@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NameSpace} from '../../routes';
 
 export const ALL_GENRES_RUBRIC = 'All genres';
@@ -17,7 +17,7 @@ export const data = createSlice({
   name: NameSpace.Data,
   initialState,
   reducers: {
-    setGenre: (state, value: {genre : string}) => {
+    setGenre: (state, value: PayloadAction<string>) => {
       state.genre = value.payload.genre as string;
     },
     setErrorMessage: (state, value) => {
