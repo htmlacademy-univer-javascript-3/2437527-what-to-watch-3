@@ -8,6 +8,7 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchFilmAction} from '../../store/api-actions';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
 import {Film} from '../../types/film-type';
+import {getFilm} from '../../store/films/selectors';
 
 function AddReview(): ReactElement {
   const dispatch = useAppDispatch();
@@ -19,8 +20,8 @@ function AddReview(): ReactElement {
     dispatch(fetchFilmAction(filmId));
   }, [dispatch, filmId]);
 
-  const film : Film = useAppSelector((state) => state.film.film) as Film;
-  const isFilmLoaded : boolean = useAppSelector((state) => state.film.isLoaded);
+  const film : Film = useAppSelector(getFilm).film as Film;
+  const isFilmLoaded : boolean = useAppSelector(getFilm).isLoaded;
 
   if (!isFilmLoaded) {
     return (

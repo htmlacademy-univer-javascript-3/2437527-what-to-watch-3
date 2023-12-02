@@ -3,12 +3,13 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../routes';
 import {Link} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
+import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
 
 function UserBlock(): ReactElement {
   const dispatch = useAppDispatch();
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const user = useAppSelector((state) => state.user);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const user = useAppSelector(getUser);
 
   if (user !== null && authorizationStatus === AuthorizationStatus.Auth) {
     return (

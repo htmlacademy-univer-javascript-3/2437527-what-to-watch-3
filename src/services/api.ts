@@ -4,8 +4,8 @@ import {StatusCodes} from 'http-status-codes';
 import {toast} from 'react-toastify';
 import browserHistory from '../browser-history';
 import {AppRoute} from '../routes';
-import {setErrorMessage} from '../store/action';
 import {store} from '../store';
+import {setErrorMessage} from '../store/data/data';
 
 type DetailMessageType = {
   type: string;

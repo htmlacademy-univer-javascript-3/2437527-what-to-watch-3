@@ -17,6 +17,8 @@ import MyList from '../../pages/my-list/my-list';
 import PrivateRoute from '../private-route/private-route';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
+import {getFilmPreviews, getPromoFilm} from '../../store/films/selectors';
+import {getAuthorizationStatus} from '../../store/user/selectors';
 
 type AppScreenProps = {
   reviews: ReviewPage[];
@@ -24,11 +26,11 @@ type AppScreenProps = {
 }
 
 function App({videoPlayer}: AppScreenProps): ReactElement {
-  const filmPreviews : FilmPreview[] = useAppSelector((state) => state.filmPreviews.filmPreviews);
-  const isFilmPreviewsLoaded : boolean = useAppSelector((state) => state.filmPreviews.isLoaded);
-  const promoFilm : PromoFilm = useAppSelector((state) => state.promoFilm.promoFilm) as PromoFilm;
-  const isPromoFilmLoaded : boolean = useAppSelector((state) => state.promoFilm.isLoaded);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const filmPreviews : FilmPreview[] = useAppSelector(getFilmPreviews).filmPreviews;
+  const isFilmPreviewsLoaded : boolean = useAppSelector(getFilmPreviews).isLoaded;
+  const promoFilm : PromoFilm = useAppSelector(getPromoFilm).promoFilm as PromoFilm;
+  const isPromoFilmLoaded : boolean = useAppSelector(getPromoFilm).isLoaded;
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || !isFilmPreviewsLoaded || !isPromoFilmLoaded) {
     return (

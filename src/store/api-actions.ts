@@ -4,84 +4,27 @@ import {AppDispatch, State} from '../types/state.js';
 import {Film, FilmPreview, PromoFilm} from '../types/film-type';
 import {
   redirectToRoute,
-  requireAuthorization,
-  setFilm,
-  setFilms,
-  setPromoFilm,
-  setReviews,
-  setSimilarFilms, setUser
 } from './action';
-import {APIRoute, AppRoute, AuthorizationStatus} from '../routes';
+import {APIRoute, AppRoute} from '../routes';
 import {Review} from '../types/review';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {dropToken, saveToken} from '../services/token';
 import {CommentData} from '../types/comment-data';
 
-export const fetchFilmsAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
-  'fetchFilms',
-  async (_arg, {dispatch, extra: api}) => {
-    dispatch(setFilms({filmPreviews: [], isLoaded: false}));
-    const {data} = await api.get<FilmPreview[]>(APIRoute.Films);
-    dispatch(setFilms({filmPreviews: data, isLoaded: true}));
+  'checkAuth',
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<UserData>(APIRoute.Login);
+    return {name: data.name, email: data.email, avatarUrl: data.avatarUrl, token: data.token};
   },
 );
 
-export const fetchFilmAction = createAsyncThunk<void, string, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'fetchFilm',
-  async (id, {dispatch, extra: api}) => {
-    dispatch(setFilm({film: null, isLoaded: false}));
-    const {data} = await api.get<Film>(APIRoute.Film(id));
-    dispatch(setFilm({film: data, isLoaded: true}));
-  },
-);
-
-export const fetchSimilarFilmsAction = createAsyncThunk<void, string, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'fetchSimilarFilms',
-  async (id, {dispatch, extra: api}) => {
-    const {data} = await api.get<FilmPreview[]>(APIRoute.SimilarFilms(id));
-    dispatch(setSimilarFilms({similarFilms: data}));
-  },
-);
-
-export const fetchPromoFilmAction = createAsyncThunk<void, undefined, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'fetchPromoFilm',
-  async (_arg, {dispatch, extra: api}) => {
-    dispatch(setPromoFilm({promoFilm: null, isLoaded: false}));
-    const {data} = await api.get<PromoFilm>(APIRoute.Promo);
-    dispatch(setPromoFilm({promoFilm: data, isLoaded: true}));
-  },
-);
-
-export const fetchReviews = createAsyncThunk<void, string, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'fetchReviews',
-  async (id, {dispatch, extra: api}) => {
-    const {data} = await api.get<Review[]>(APIRoute.Reviews(id));
-    dispatch(setReviews({reviews: data}));
-  },
-);
-
-export const loginAction = createAsyncThunk<void, AuthData, {
+export const loginAction = createAsyncThunk<UserData, AuthData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -90,9 +33,8 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   async ({login: email, password}, {dispatch, extra: api}) => {
     const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(data.token);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    dispatch(setUser({name: data.name, email: data.email, avatarUrl: data.avatarUrl, token: data.token}));
     dispatch(redirectToRoute(AppRoute.Main));
+    return {name: data.name, email: data.email, avatarUrl: data.avatarUrl, token: data.token};
   },
 );
 
@@ -102,27 +44,69 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'logout',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
-    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   },
 );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const fetchReviews = createAsyncThunk<{reviews: Review[]}, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
-  'checkAuth',
-  async (_arg, {dispatch, extra: api}) => {
-    try {
-      const {data} = await api.get<UserData>(APIRoute.Login);
-      dispatch(setUser({name: data.name, email: data.email, avatarUrl: data.avatarUrl, token: data.token}));
-      dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    } catch {
-      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-    }
+  'fetchReviews',
+  async (id, {extra: api}) => {
+    const {data} = await api.get<Review[]>(APIRoute.Reviews(id));
+    return {reviews: data};
+  },
+);
+
+export const fetchFilmsAction = createAsyncThunk<{ filmPreviews: FilmPreview[] } & { isLoaded: boolean }, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchFilms',
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<FilmPreview[]>(APIRoute.Films);
+    return {filmPreviews: data, isLoaded: true};
+  },
+);
+
+export const fetchFilmAction = createAsyncThunk<{ film: Film | null } & { isLoaded: boolean }, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchFilm',
+  async (id, {extra: api}) => {
+    const {data} = await api.get<Film>(APIRoute.Film(id));
+    return {film: data, isLoaded: true};
+  },
+);
+
+export const fetchSimilarFilmsAction = createAsyncThunk<{similarFilms: FilmPreview[]}, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchSimilarFilms',
+  async (id, {extra: api}) => {
+    const {data} = await api.get<FilmPreview[]>(APIRoute.SimilarFilms(id));
+    return {similarFilms: data};
+  },
+);
+
+export const fetchPromoFilmAction = createAsyncThunk<{ promoFilm: PromoFilm | null } & { isLoaded: boolean }, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchPromoFilm',
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<PromoFilm>(APIRoute.Promo);
+    return {promoFilm: data, isLoaded: true};
   },
 );
 

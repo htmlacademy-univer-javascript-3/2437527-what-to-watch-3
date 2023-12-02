@@ -9,13 +9,13 @@ type SimilarFilmsProps = {
 function FilmsList({filmPreviews} : SimilarFilmsProps): ReactElement {
   const [activeId, setActiveCardId] = React.useState(0);
 
-  const onMouseEnter = (id: number) => {
+  const onMouseEnter = React.useCallback((id: number) => {
     setActiveCardId(id);
-  };
+  }, []);
 
-  const onMouseExit = () => {
+  const onMouseExit = React.useCallback(() => {
     setActiveCardId(0);
-  };
+  }, []);
 
   const filmsList : ReactElement[] = [];
   for (let i = 0; i < Object.keys(filmPreviews).length; i++) {

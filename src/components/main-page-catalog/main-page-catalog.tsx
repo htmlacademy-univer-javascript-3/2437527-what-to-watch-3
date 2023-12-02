@@ -6,6 +6,7 @@ import {useAppSelector} from '../../hooks';
 import {FilmPreview} from '../../types/film-type';
 import ShowMore from '../show-more/show-more';
 import {filterFilms} from '../../helpers/filter-films';
+import {getGenre} from '../../store/data/selectors';
 
 const FILMS_ON_PAGE = 8;
 
@@ -15,7 +16,7 @@ type MainPageCatalogProps = {
 
 function MainPageCatalog({filmPreviews} : MainPageCatalogProps): ReactElement {
   const [pagesToShowCount, setPagesToShowCount] = React.useState(1);
-  const filmPreviewsOfGenre : FilmPreview[] = filterFilms(filmPreviews, useAppSelector((state) => state.genre));
+  const filmPreviewsOfGenre : FilmPreview[] = filterFilms(filmPreviews, useAppSelector(getGenre));
   const filmsToShow = pagesToShowCount * FILMS_ON_PAGE;
 
   const onClick = () => {

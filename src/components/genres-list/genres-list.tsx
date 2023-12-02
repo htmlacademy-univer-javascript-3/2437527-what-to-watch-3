@@ -1,9 +1,10 @@
 import React, {ReactElement} from 'react';
 import {FilmPreview} from '../../types/film-type';
 import {useDispatch} from 'react-redux';
-import {setGenre} from '../../store/action';
 import {useAppSelector} from '../../hooks';
 import {getAllGenres} from '../../helpers/get-all-genres';
+import {getGenre} from '../../store/data/selectors';
+import {setGenre} from '../../store/data/data';
 
 const GenreNames : Record<string, string> = {
   'All genres': 'All genres',
@@ -24,12 +25,12 @@ type GenreListProps = {
 
 function GenresList({filmPreviews} : GenreListProps): ReactElement {
   const dispatch = useDispatch();
-  const [selectedGenre, setActiveGenre] = React.useState(useAppSelector((state) => state.genre));
+  const [selectedGenre, setActiveGenre] = React.useState(useAppSelector(getGenre));
   const genres : string[] = getAllGenres(filmPreviews);
 
   const onClick = (genre : string) => {
     setActiveGenre(genre);
-    dispatch(setGenre({genre : genre}));
+    dispatch(setGenre(genre));
   };
 
   return (

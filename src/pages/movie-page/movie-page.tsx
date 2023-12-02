@@ -11,6 +11,8 @@ import {AppRoute, AuthorizationStatus} from '../../routes';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
 import {Film, FilmPreview} from '../../types/film-type';
 import {Review} from '../../types/review';
+import {getFilm, getSimilarFilms} from '../../store/films/selectors';
+import {getReviews} from '../../store/reviews/selectors';
 
 const SIMILAR_FILMS_COUNT = 4;
 
@@ -30,10 +32,10 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
     dispatch(fetchReviews(filmId));
   }, [dispatch, filmId]);
 
-  const film : Film = useAppSelector((state) => state.film.film) as Film;
-  const isFilmLoaded : boolean = useAppSelector((state) => state.film.isLoaded);
-  const similarFilms : FilmPreview[] = useAppSelector((state) => state.similarFilms).slice(0, SIMILAR_FILMS_COUNT);
-  const reviews : Review[] = useAppSelector((state) => state.reviews);
+  const film : Film = useAppSelector(getFilm).film as Film;
+  const isFilmLoaded : boolean = useAppSelector(getFilm).isLoaded;
+  const similarFilms : FilmPreview[] = useAppSelector(getSimilarFilms).slice(0, SIMILAR_FILMS_COUNT);
+  const reviews : Review[] = useAppSelector(getReviews);
 
   if (!isFilmLoaded) {
     return (
