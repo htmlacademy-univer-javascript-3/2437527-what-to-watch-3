@@ -1,4 +1,4 @@
 export type AuthData = {
-  login: string;
-  password: string;
+  login: string | undefined;
+  password: string | undefined;
 };

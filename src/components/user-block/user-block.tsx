@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {AppRoutes, AuthorizationStatus} from '../../routes';
+import {AppRoute, AuthorizationStatus} from '../../routes';
 import {Link} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
 
@@ -10,7 +10,7 @@ function UserBlock(): ReactElement {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const user = useAppSelector((state) => state.user);
 
-  if (authorizationStatus === AuthorizationStatus.Auth) {
+  if (user !== null && authorizationStatus === AuthorizationStatus.Auth) {
     return (
       <ul className="user-block">
         <li className="user-block__item">
@@ -33,7 +33,7 @@ function UserBlock(): ReactElement {
     return (
       <ul className="user-block">
         <li className="user-block__item">
-          <Link className="user-block__link" to={AppRoutes.SignIn}>Sign in</Link>
+          <Link className="user-block__link" to={AppRoute.SignIn}>Sign in</Link>
         </li>
       </ul>
     );

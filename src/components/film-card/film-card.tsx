@@ -1,6 +1,6 @@
 import {FilmPreview} from '../../types/film-type';
 import {Link} from 'react-router-dom';
-import {AppRoutes} from '../../routes';
+import {AppRoute} from '../../routes';
 import {ReactElement} from 'react';
 import VideoPlayer from '../video-player/video-player';
 
@@ -31,7 +31,7 @@ function FilmCard({filmPreview, onMouseEnter, onMouseExit, isPlaying} : FilmCard
         }
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={AppRoutes.Film(filmPreview.id)}>{filmPreview.name}</Link>
+        <Link className="small-film-card__link" to={AppRoute.Film(filmPreview.id)}>{filmPreview.name}</Link>
       </h3>
     </article>
   );

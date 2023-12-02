@@ -3,28 +3,44 @@ import Logo from '../../components/logo/logo';
 import {ReactElement, useEffect} from 'react';
 import FilmsList from '../../components/films-list/films-list';
 import Tabs from '../../components/tabs/tabs';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {fetchFilmAction, fetchReviews, fetchSimilarFilmsAction} from '../../store/api-actions';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import UserBlock from '../../components/user-block/user-block';
+import {AppRoute, AuthorizationStatus} from '../../routes';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
+import {Film, FilmPreview} from '../../types/film-type';
+import {Review} from '../../types/review';
 
 const SIMILAR_FILMS_COUNT = 4;
 
-function MoviePage(): ReactElement {
+type MoviePageProps = {
+  authorizationStatus: AuthorizationStatus;
+}
+
+function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
   const dispatch = useAppDispatch();
 
   const params = useParams();
-  const id = params.id as string;
+  const filmId = params.id as string;
 
   useEffect(() => {
-    dispatch(fetchFilmAction(id));
-    dispatch(fetchSimilarFilmsAction(id));
-    dispatch(fetchReviews(id));
-  }, [dispatch, id]);
+    dispatch(fetchFilmAction(filmId));
+    dispatch(fetchSimilarFilmsAction(filmId));
+    dispatch(fetchReviews(filmId));
+  }, [dispatch, filmId]);
 
-  const film = useAppSelector((state) => state.film);
-  const similarFilms = useAppSelector((state) => state.similarFilms).slice(0, SIMILAR_FILMS_COUNT);
-  const reviews = useAppSelector((state) => state.reviews);
+  const film : Film = useAppSelector((state) => state.film.film) as Film;
+  const isFilmLoaded : boolean = useAppSelector((state) => state.film.isLoaded);
+  const similarFilms : FilmPreview[] = useAppSelector((state) => state.similarFilms).slice(0, SIMILAR_FILMS_COUNT);
+  const reviews : Review[] = useAppSelector((state) => state.reviews);
+
+  if (!isFilmLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <>
       <section className="film-card film-card--full">
@@ -56,14 +72,17 @@ function MoviePage(): ReactElement {
                   </svg>
                   <span>Play</span>
                 </button>
+
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"/>
                   </svg>
-                  <span>My list</span>
+                  <Link to={AppRoute.MyList} style={{ textDecoration: 'none' , color: 'inherit'}}>My list</Link>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+
+                {authorizationStatus === AuthorizationStatus.Auth &&
+                  <Link to={AppRoute.AddReview(filmId)} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>

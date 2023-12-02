@@ -1,23 +1,39 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import {FormEvent, ReactElement, useRef} from 'react';
+import {FormEvent, ReactElement, useRef, useState} from 'react';
 import {loginAction} from '../../store/api-actions';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {isLoginValid, isPasswordValid} from '../../helpers/validate-credentials';
+import {setErrorMessage} from '../../store/action';
 
 function SignIn(): ReactElement {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const errorMessage = useAppSelector((state) => state.errorMessage);
+  const [loginError, setLoginError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const dispatch = useAppDispatch();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (isLoginValid(loginRef.current) && isPasswordValid(passwordRef.current)) {
       dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
+        login: loginRef.current?.value,
+        password: passwordRef.current?.value
       }));
+      setLoginError(false);
+      setPasswordError(false);
+      dispatch(setErrorMessage(undefined));
+    } else if (!isLoginValid(loginRef.current)) {
+      setLoginError(true);
+      setPasswordError(false);
+      dispatch(setErrorMessage(undefined));
+    } else {
+      setLoginError(false);
+      setPasswordError(true);
+      dispatch(setErrorMessage(undefined));
     }
   };
 
@@ -31,6 +47,27 @@ function SignIn(): ReactElement {
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
+          {
+            loginError &&
+            <div className="sign-in__message">
+              <p>Please enter a valid email address</p>
+            </div>
+          }
+
+          {
+            passwordError &&
+            <div className="sign-in__message">
+              <p>Please enter a valid password</p>
+            </div>
+          }
+
+          {
+            errorMessage &&
+            <div className="sign-in__message">
+              <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
+            </div>
+          }
+
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input ref={loginRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email"
