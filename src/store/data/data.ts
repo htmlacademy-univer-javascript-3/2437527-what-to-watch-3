@@ -18,7 +18,7 @@ export const data = createSlice({
   initialState,
   reducers: {
     setGenre: (state, value: PayloadAction<string>) => {
-      state.genre = value.payload.genre as string;
+      state.genre = value.payload;
     },
     setErrorMessage: (state, value) => {
       state.errorMessage = value.payload as string;

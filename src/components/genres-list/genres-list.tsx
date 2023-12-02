@@ -30,7 +30,7 @@ function GenresList({filmPreviews} : GenreListProps): ReactElement {
 
   const onClick = (genre : string) => {
     setActiveGenre(genre);
-    dispatch(setGenre({genre : genre}));
+    dispatch(setGenre(genre));
   };
 
   return (
