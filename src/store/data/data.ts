@@ -17,11 +17,11 @@ export const data = createSlice({
   name: NameSpace.Data,
   initialState,
   reducers: {
-    setGenre: (state, value) => {
-      state.genre = value.payload.genre;
+    setGenre: (state, value: string) => {
+      state.genre = value.payload.genre as string;
     },
     setErrorMessage: (state, value) => {
-      state.errorMessage = value.payload;
+      state.errorMessage = value.payload as string;
     }
   }
 });
