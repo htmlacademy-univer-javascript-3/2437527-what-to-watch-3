@@ -20,7 +20,7 @@ function AddReview(): ReactElement {
     dispatch(fetchFilmAction(filmId));
   }, [dispatch, filmId]);
 
-  const film : Film = useAppSelector(getFilm).film;
+  const film : Film = useAppSelector(getFilm).film as Film;
   const isFilmLoaded : boolean = useAppSelector(getFilm).isLoaded;
 
   if (!isFilmLoaded) {
