@@ -17,7 +17,7 @@ export const data = createSlice({
   name: NameSpace.Data,
   initialState,
   reducers: {
-    setGenre: (state, value: string) => {
+    setGenre: (state, value: {genre : string}) => {
       state.genre = value.payload.genre as string;
     },
     setErrorMessage: (state, value) => {
