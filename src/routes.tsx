@@ -23,3 +23,10 @@ export const APIRoute = {
   Login: '/login',
   Logout: '/logout',
 };
+
+export enum NameSpace {
+  Data = 'DATA',
+  Films = 'FILMS',
+  User = 'USER',
+  Reviews = 'REVIEWS'
+}
