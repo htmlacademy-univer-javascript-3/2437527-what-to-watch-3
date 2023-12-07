@@ -6,7 +6,7 @@ import VideoPlayer from '../video-player/video-player';
 
 type FilmCardProps = {
   filmPreview: FilmPreview;
-  onMouseEnter: (id : number) => void;
+  onMouseEnter: (id : string) => void;
   onMouseExit: () => void;
   isPlaying: boolean;
 };

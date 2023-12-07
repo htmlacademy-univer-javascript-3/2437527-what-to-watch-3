@@ -28,7 +28,7 @@ export type PromoFilm = {
 };
 
 export type FilmPreview = {
-  id: number;
+  id: string;
   name: string;
   previewImage: string;
   previewVideoLink: string;

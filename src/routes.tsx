@@ -22,11 +22,14 @@ export const APIRoute = {
   Reviews: (id: number | string) => `/comments/${id}`,
   Login: '/login',
   Logout: '/logout',
+  Favorites: '/favorite',
+  PostFavorite: (filmId: number | string, status: number | string) => `/favorite/${filmId}/${status}`
 };
 
 export enum NameSpace {
   Data = 'DATA',
   Films = 'FILMS',
   User = 'USER',
-  Reviews = 'REVIEWS'
+  Reviews = 'REVIEWS',
+  Favorites = 'Favorites'
 }

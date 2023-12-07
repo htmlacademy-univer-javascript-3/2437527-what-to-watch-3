@@ -1,10 +1,14 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import {ReactElement, useEffect} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 import FilmsList from '../../components/films-list/films-list';
 import Tabs from '../../components/tabs/tabs';
 import {Link, useParams} from 'react-router-dom';
-import {fetchFilmAction, fetchReviews, fetchSimilarFilmsAction} from '../../store/api-actions';
+import {
+  fetchFilmAction,
+  fetchReviewsAction,
+  fetchSimilarFilmsAction
+} from '../../store/api-actions';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import UserBlock from '../../components/user-block/user-block';
 import {AppRoute, AuthorizationStatus} from '../../routes';
@@ -13,6 +17,7 @@ import {Film, FilmPreview} from '../../types/film-type';
 import {Review} from '../../types/review';
 import {getFilm, getSimilarFilms} from '../../store/films/selectors';
 import {getReviews} from '../../store/reviews/selectors';
+import AddFavoriteButton from '../../components/add-favorite-button/add-favorite-button';
 
 const SIMILAR_FILMS_COUNT = 4;
 
@@ -29,7 +34,7 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
   useEffect(() => {
     dispatch(fetchFilmAction(filmId));
     dispatch(fetchSimilarFilmsAction(filmId));
-    dispatch(fetchReviews(filmId));
+    dispatch(fetchReviewsAction(filmId));
   }, [dispatch, filmId]);
 
   const film : Film = useAppSelector(getFilm).film as Film;
@@ -75,13 +80,7 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
                   <span>Play</span>
                 </button>
 
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"/>
-                  </svg>
-                  <Link to={AppRoute.MyList} style={{ textDecoration: 'none' , color: 'inherit'}}>My list</Link>
-                  <span className="film-card__count">9</span>
-                </button>
+                <AddFavoriteButton film={film}/>
 
                 {authorizationStatus === AuthorizationStatus.Auth &&
                   <Link to={AppRoute.AddReview(filmId)} className="btn film-card__button">Add review</Link>}

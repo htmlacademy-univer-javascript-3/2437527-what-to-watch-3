@@ -1,12 +1,13 @@
 import {ReactElement} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../routes';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
 import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
 
 function UserBlock(): ReactElement {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const user = useAppSelector(getUser);
@@ -15,7 +16,10 @@ function UserBlock(): ReactElement {
     return (
       <ul className="user-block">
         <li className="user-block__item">
-          <div className="user-block__avatar">
+          <div className="user-block__avatar" onClick={() => {
+            navigate(AppRoute.MyList);
+          }}
+          >
             <img src={user.avatarUrl} alt="User avatar" width="63" height="63"/>
           </div>
         </li>
