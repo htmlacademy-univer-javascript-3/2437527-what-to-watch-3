@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import {
   fetchFilmAction,
   fetchFilmsAction, fetchPromoFilmAction,
-  fetchSimilarFilmsAction, postFavorite
+  fetchSimilarFilmsAction
 } from '../api-actions';
 import {NameSpace} from '../../routes';
 import {Film, FilmPreview, PromoFilm} from '../../types/film-type';

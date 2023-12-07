@@ -1,6 +1,6 @@
 import {Film, FilmPreview, PromoFilm} from '../../types/film-type';
-import React, {ReactElement} from 'react';
-import {APIRoute, AppRoute, AuthorizationStatus} from '../../routes';
+import {ReactElement} from 'react';
+import {AppRoute, AuthorizationStatus} from '../../routes';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {postFavorite} from '../../store/api-actions';
 import {getAuthorizationStatus} from '../../store/user/selectors';

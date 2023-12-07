@@ -1,6 +1,6 @@
 import Logo from '../logo/logo';
 import {PromoFilm} from '../../types/film-type';
-import React, {ReactElement} from 'react';
+import {ReactElement} from 'react';
 import UserBlock from '../user-block/user-block';
 import {useAppSelector} from '../../hooks';
 import {getPromoFilm} from '../../store/films/selectors';

@@ -1,7 +1,7 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import FilmsList from '../../components/films-list/films-list';
-import React, {ReactElement} from 'react';
+import {ReactElement} from 'react';
 import UserBlock from '../../components/user-block/user-block';
 import {getFavorites} from '../../store/favorites/selectors';
 import {useAppSelector} from '../../hooks';
