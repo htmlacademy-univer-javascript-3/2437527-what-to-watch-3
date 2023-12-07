@@ -7,8 +7,8 @@ type MoviePageOverviewProps = {
 
 const enum RatingLevels {
   Bad = 0,
-  Normal = 5,
-  Good = 7,
+  Normal = 3,
+  Good = 5,
   VeryGood = 8,
   Awesome = 10
 }
