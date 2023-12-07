@@ -138,7 +138,7 @@ export const postCommentAction = createAsyncThunk<void, CommentData, {
   },
 );
 
-export const postFavorite = createAsyncThunk<void, FavoriteData, {
+export const postFavorite = createAsyncThunk<Film, FavoriteData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
