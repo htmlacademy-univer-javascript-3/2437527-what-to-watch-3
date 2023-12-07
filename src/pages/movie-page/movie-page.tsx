@@ -1,6 +1,6 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import React, {ReactElement, useEffect} from 'react';
+import {ReactElement, useEffect} from 'react';
 import FilmsList from '../../components/films-list/films-list';
 import Tabs from '../../components/tabs/tabs';
 import {Link, useParams} from 'react-router-dom';

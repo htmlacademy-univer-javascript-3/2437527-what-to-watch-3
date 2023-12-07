@@ -145,7 +145,7 @@ export const postFavorite = createAsyncThunk<void, FavoriteData, {
 }>(
   'postFavorite',
   async ({filmId: filmId, status: status},
-    {dispatch, extra: api}) => {
+    {dispatch: dispatch, extra: api}) => {
     const {data} = await api.post<Film>(APIRoute.PostFavorite(filmId, status));
     dispatch(fetchFavoritesAction());
     return data;
