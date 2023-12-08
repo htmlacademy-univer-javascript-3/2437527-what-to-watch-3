@@ -2,7 +2,7 @@ import {FilmPreview} from '../../types/film-type';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../routes';
 import React, {ReactElement} from 'react';
-import VideoPlayer from '../video-player/video-player';
+import MiniPlayer from '../mini-player/mini-player';
 
 type FilmCardProps = {
   filmPreview: FilmPreview;
@@ -21,8 +21,7 @@ function FilmCard({filmPreview, onMouseEnter, onMouseExit, isPlaying} : FilmCard
         {
           (isPlaying)
             ?
-            <VideoPlayer isMiniPlayer isPlaying
-              videoSrc={filmPreview.previewVideoLink} poster={filmPreview.previewImage}
+            <MiniPlayer videoSrc={filmPreview.previewVideoLink} poster={filmPreview.previewImage}
             />
             :
             <img src={filmPreview.previewImage} alt={filmPreview.name}

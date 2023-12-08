@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import {reviewPages} from './mocks/reviewPages';
-import {video} from './mocks/video';
 import {Provider} from 'react-redux';
 import {store} from './store';
 import {checkAuthAction, fetchFilmsAction, fetchPromoFilmAction} from './store/api-actions';
@@ -21,10 +19,7 @@ root.render(
   <React.StrictMode>
     <Provider store = {store}>
       <ToastContainer />
-      <App
-        reviews={reviewPages}
-        videoPlayer={video}
-      />
+      <App />
     </Provider>
   </React.StrictMode>
 );

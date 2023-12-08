@@ -2,13 +2,14 @@ import Logo from '../logo/logo';
 import {PromoFilm} from '../../types/film-type';
 import {ReactElement} from 'react';
 import UserBlock from '../user-block/user-block';
-import {useAppSelector} from '../../hooks';
-import {getPromoFilm} from '../../store/films/selectors';
 import AddFavoriteButton from '../add-favorite-button/add-favorite-button';
+import PlayVideoButton from '../play-video-button/play-video-button';
 
-function PromoFilmCard(): ReactElement {
-  const promoFilm : PromoFilm = useAppSelector(getPromoFilm).promoFilm as PromoFilm;
+type PromoFilmCardProps = {
+  promoFilm: PromoFilm;
+}
 
+function PromoFilmCard({promoFilm} : PromoFilmCardProps): ReactElement {
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -39,14 +40,8 @@ function PromoFilmCard(): ReactElement {
             </p>
 
             <div className="film-card__buttons">
-              <button className="btn btn--play film-card__button" type="button">
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"/>
-                </svg>
-                <span>Play</span>
-              </button>
-
-              <AddFavoriteButton film={promoFilm}/>
+              <PlayVideoButton filmId={promoFilm.id}/>
+              <AddFavoriteButton filmId={promoFilm.id}/>
             </div>
           </div>
         </div>

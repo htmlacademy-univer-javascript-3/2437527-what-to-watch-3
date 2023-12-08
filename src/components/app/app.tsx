@@ -5,9 +5,7 @@ import SignIn from '../../pages/sign-in/sign-in';
 import MoviePage from '../../pages/movie-page/movie-page';
 import AddReview from '../../pages/add-review/add-rewiew';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import {FilmPreview} from '../../types/film-type';
-import {ReviewPage} from '../../types/review-page-type';
-import {Video} from '../../types/video';
+import {FilmPreview, PromoFilm} from '../../types/film-type';
 import Player from '../../pages/player/player';
 import {ReactElement} from 'react';
 import {useAppSelector} from '../../hooks';
@@ -19,14 +17,11 @@ import HistoryRouter from '../history-route/history-route';
 import {getFilmPreviews, getPromoFilm} from '../../store/films/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
-type AppScreenProps = {
-  reviews: ReviewPage[];
-  videoPlayer: Video;
-}
 
-function App({videoPlayer}: AppScreenProps): ReactElement {
+function App(): ReactElement {
   const filmPreviews : FilmPreview[] = useAppSelector(getFilmPreviews).filmPreviews;
   const isFilmPreviewsLoaded : boolean = useAppSelector(getFilmPreviews).isLoaded;
+  const promoFilm : PromoFilm = useAppSelector(getPromoFilm).promoFilm as PromoFilm;
   const isPromoFilmLoaded : boolean = useAppSelector(getPromoFilm).isLoaded;
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
@@ -42,7 +37,7 @@ function App({videoPlayer}: AppScreenProps): ReactElement {
         <Route
           path={AppRoute.Main}
           element={
-            <MainPage filmPreviews={filmPreviews}/>
+            <MainPage filmPreviews={filmPreviews} promoFilm={promoFilm}/>
           }
         />
         <Route
@@ -75,7 +70,7 @@ function App({videoPlayer}: AppScreenProps): ReactElement {
         />
         <Route
           path={AppRoute.Player(':id')}
-          element={<Player {...videoPlayer}/>}
+          element={<Player />}
         />
         <Route
           path={AppRoute.NotFound}

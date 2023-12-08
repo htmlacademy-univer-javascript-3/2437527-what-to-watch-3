@@ -18,6 +18,7 @@ import {Review} from '../../types/review';
 import {getFilm, getSimilarFilms} from '../../store/films/selectors';
 import {getReviews} from '../../store/reviews/selectors';
 import AddFavoriteButton from '../../components/add-favorite-button/add-favorite-button';
+import PlayVideoButton from '../../components/play-video-button/play-video-button';
 
 const SIMILAR_FILMS_COUNT = 4;
 
@@ -73,14 +74,8 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"/>
-                  </svg>
-                  <span>Play</span>
-                </button>
-
-                <AddFavoriteButton film={film}/>
+                <PlayVideoButton filmId={filmId} />
+                <AddFavoriteButton filmId={filmId}/>
 
                 {authorizationStatus === AuthorizationStatus.Auth &&
                   <Link to={AppRoute.AddReview(filmId)} className="btn film-card__button">Add review</Link>}

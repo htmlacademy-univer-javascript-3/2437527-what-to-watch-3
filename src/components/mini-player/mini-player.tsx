@@ -1,15 +1,15 @@
 import {useState, useEffect, useRef, ReactElement} from 'react';
 
 const MINI_PLAYER_MS_DELAY = 1000;
+const MINI_PLAYER_WIDTH = '280';
+const MINI_PLAYER_HEIGHT = '175';
 
 type VideoPlayerProps = {
-  isMiniPlayer: boolean;
-  isPlaying: boolean;
   videoSrc: string;
   poster: string;
 }
 
-function VideoPlayer({isMiniPlayer, isPlaying, videoSrc, poster}: VideoPlayerProps): ReactElement {
+function MiniPlayer({videoSrc, poster}: VideoPlayerProps): ReactElement {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -37,31 +37,23 @@ function VideoPlayer({isMiniPlayer, isPlaying, videoSrc, poster}: VideoPlayerPro
       return;
     }
 
-    if (isPlaying) {
-      if (isMiniPlayer) {
-        setTimeout(() => {
-          playerElement.play();
-        }, MINI_PLAYER_MS_DELAY);
-      } else {
-        playerElement.play();
-      }
-      return;
-    }
+    setTimeout(() => {
+      playerElement.play();
+    }, MINI_PLAYER_MS_DELAY);
 
-    playerElement.pause();
-  }, [isLoaded, isMiniPlayer, isPlaying]);
+  }, [isLoaded]);
 
   return (
     <video
       poster={poster}
       src={videoSrc}
       ref={videoRef}
-      width={isMiniPlayer ? '280' : '1600'}
-      height={isMiniPlayer ? '175' : '900'}
-      muted={isMiniPlayer}
+      width={MINI_PLAYER_WIDTH}
+      height={MINI_PLAYER_HEIGHT}
+      muted
     >
     </video>
   );
 }
 
-export default VideoPlayer;
+export default MiniPlayer;

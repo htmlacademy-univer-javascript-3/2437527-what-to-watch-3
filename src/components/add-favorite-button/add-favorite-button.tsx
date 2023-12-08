@@ -1,4 +1,4 @@
-import {Film, FilmPreview, PromoFilm} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-type';
 import {ReactElement} from 'react';
 import {AppRoute, AuthorizationStatus} from '../../routes';
 import {useAppDispatch, useAppSelector} from '../../hooks';
@@ -8,19 +8,19 @@ import {getFavorites} from '../../store/favorites/selectors';
 import {useNavigate} from 'react-router-dom';
 
 type AddFavoriteButtonProps = {
-  film: Film | PromoFilm;
+  filmId: string;
 };
 
-function AddFavoriteButton({film} : AddFavoriteButtonProps): ReactElement {
+function AddFavoriteButton({filmId} : AddFavoriteButtonProps): ReactElement {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favorites : FilmPreview[] = useAppSelector(getFavorites).favorites;
-  const isFavorite = favorites.map((favoriteFilm) => favoriteFilm.id).includes(film.id);
+  const isFavorite = favorites.map((favoriteFilm) => favoriteFilm.id).includes(filmId);
 
   const onClick = () => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
-      dispatch(postFavorite({filmId: film.id, status: +!isFavorite}));
+      dispatch(postFavorite({filmId: filmId, status: +!isFavorite}));
     } else {
       navigate(AppRoute.SignIn);
     }
