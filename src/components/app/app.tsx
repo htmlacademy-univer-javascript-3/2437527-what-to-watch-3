@@ -44,7 +44,7 @@ function App(): ReactElement {
           path={AppRoute.SignIn}
           element={
             authorizationStatus === AuthorizationStatus.Auth
-              ? <MainPage filmPreviews={filmPreviews}/>
+              ? <MainPage filmPreviews={filmPreviews} promoFilm={promoFilm}/>
               : <SignIn />
           }
         />

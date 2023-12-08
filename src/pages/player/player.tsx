@@ -40,8 +40,8 @@ function Player(): ReactElement {
   };
 
   const handleProgress = () => {
-    const duration = videoRef.current?.duration;
-    const currentTime = videoRef.current?.currentTime;
+    const duration = videoRef.current?.duration as number;
+    const currentTime = videoRef.current?.currentTime as number;
     setProgress(Math.round((currentTime / duration) * 100));
     setRemainingTime(Math.round(duration - currentTime));
   };

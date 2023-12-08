@@ -21,8 +21,7 @@ function FilmCard({filmPreview, onMouseEnter, onMouseExit, isPlaying} : FilmCard
         {
           (isPlaying)
             ?
-            <MiniPlayer videoSrc={filmPreview.previewVideoLink} poster={filmPreview.previewImage}
-            />
+            <MiniPlayer videoSrc={filmPreview.previewVideoLink} poster={filmPreview.previewImage}/>
             :
             <img src={filmPreview.previewImage} alt={filmPreview.name}
               width="280" height="175"
