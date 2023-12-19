@@ -6,7 +6,7 @@ import {ReactElement, useEffect} from 'react';
 import UserBlock from '../../components/user-block/user-block';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchFilmAction} from '../../store/api-actions';
-import LoadingScreen from '../../components/loading-screen/loading-screen';
+import Loader from '../../components/loader/loader';
 import {Film} from '../../types/film-types';
 import {getFilm} from '../../store/films/selectors';
 
@@ -25,7 +25,7 @@ function AddReview(): ReactElement {
 
   if (!isFilmLoaded) {
     return (
-      <LoadingScreen />
+      <Loader isScreenLoader/>
     );
   }
 

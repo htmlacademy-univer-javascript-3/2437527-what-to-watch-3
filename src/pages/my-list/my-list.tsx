@@ -6,7 +6,7 @@ import UserBlock from '../../components/user-block/user-block';
 import {getFavorites} from '../../store/favorites/selectors';
 import {useAppSelector} from '../../hooks';
 import {FilmPreview} from '../../types/film-types';
-import LoadingScreen from '../../components/loading-screen/loading-screen';
+import Loader from '../../components/loader/loader';
 
 function MyList(): ReactElement {
   const favorites : FilmPreview[] = useAppSelector(getFavorites).favorites;
@@ -14,7 +14,7 @@ function MyList(): ReactElement {
 
   if (!isFavoritesLoaded) {
     return (
-      <LoadingScreen />
+      <Loader isScreenLoader/>
     );
   }
 

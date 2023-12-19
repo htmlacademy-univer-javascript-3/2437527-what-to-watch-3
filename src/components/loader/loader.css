@@ -1,9 +1,16 @@
-.loader {
+.screen-loader {
   position: absolute;
   width: 200px;
   height: 200px;
   top: 300px;
   right: 45%;
+}
+
+.element-loader {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  right: calc(50% - 100px / 2);
 }
 
 .loader-inner {

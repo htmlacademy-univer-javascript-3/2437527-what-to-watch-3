@@ -11,14 +11,14 @@ type Films = {
   filmPreviews: { filmPreviews: FilmPreview[] } & { isLoaded: boolean };
   film: { film: Film | null } & { isLoaded: boolean };
   similarFilms: FilmPreview[];
-  promoFilm: { promoFilm: PromoFilm | null } & { isLoaded: boolean };
+  promoFilm: { promoFilm: PromoFilm | null };
 }
 
 const initialState: Films = {
   filmPreviews: { filmPreviews: [], isLoaded: false },
   film: { film: null, isLoaded: false },
   similarFilms: [],
-  promoFilm: { promoFilm: null, isLoaded: false },
+  promoFilm: { promoFilm: null },
 };
 
 export const films = createSlice({

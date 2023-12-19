@@ -8,7 +8,7 @@ import {getFavorites} from '../../store/favorites/selectors';
 import {useNavigate} from 'react-router-dom';
 
 type AddFavoriteButtonProps = {
-  filmId: string;
+  filmId: string | undefined;
 };
 
 function AddFavoriteButton({filmId} : AddFavoriteButtonProps): ReactElement {
@@ -16,13 +16,15 @@ function AddFavoriteButton({filmId} : AddFavoriteButtonProps): ReactElement {
   const navigate = useNavigate();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favorites : FilmPreview[] = useAppSelector(getFavorites).favorites;
-  const isFavorite = favorites.map((favoriteFilm) => favoriteFilm.id).includes(filmId);
+  const isFavorite = filmId ? favorites.map((favoriteFilm) => favoriteFilm.id).includes(filmId) : false;
 
   const onClick = () => {
-    if (authorizationStatus === AuthorizationStatus.Auth) {
-      dispatch(postFavorite({filmId: filmId, status: +!isFavorite}));
-    } else {
-      navigate(AppRoute.SignIn);
+    if (filmId) {
+      if (authorizationStatus === AuthorizationStatus.Auth) {
+        dispatch(postFavorite({filmId: filmId, status: +!isFavorite}));
+      } else {
+        navigate(AppRoute.SignIn);
+      }
     }
   };
 

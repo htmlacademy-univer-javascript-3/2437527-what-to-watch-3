@@ -3,13 +3,15 @@ import {AppRoute} from '../../routes';
 import {useNavigate} from 'react-router-dom';
 
 type PlayVideoButtonProps = {
-  filmId: string;
+  filmId: string | undefined;
 };
 
 function PlayVideoButton({filmId} : PlayVideoButtonProps): ReactElement {
   const navigate = useNavigate();
   const onClick = () => {
-    navigate(AppRoute.Player(filmId));
+    if (filmId) {
+      navigate(AppRoute.Player(filmId));
+    }
   };
 
   return (

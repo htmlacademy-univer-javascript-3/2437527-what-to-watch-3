@@ -5,31 +5,18 @@ import SignIn from '../../pages/sign-in/sign-in';
 import MoviePage from '../../pages/movie-page/movie-page';
 import AddReview from '../../pages/add-review/add-rewiew';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import {FilmPreview, PromoFilm} from '../../types/film-types';
 import Player from '../../pages/player/player';
 import {ReactElement} from 'react';
 import {useAppSelector} from '../../hooks';
-import LoadingScreen from '../loading-screen/loading-screen';
 import MyList from '../../pages/my-list/my-list';
 import PrivateRoute from '../private-route/private-route';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
-import {getFilmPreviews, getPromoFilm} from '../../store/films/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
 
 function App(): ReactElement {
-  const filmPreviews : FilmPreview[] = useAppSelector(getFilmPreviews).filmPreviews;
-  const isFilmPreviewsLoaded : boolean = useAppSelector(getFilmPreviews).isLoaded;
-  const promoFilm : PromoFilm = useAppSelector(getPromoFilm).promoFilm as PromoFilm;
-  const isPromoFilmLoaded : boolean = useAppSelector(getPromoFilm).isLoaded;
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-
-  if (authorizationStatus === AuthorizationStatus.Unknown || !isFilmPreviewsLoaded || !isPromoFilmLoaded) {
-    return (
-      <LoadingScreen />
-    );
-  }
 
   return (
     <HistoryRouter history={browserHistory}>
@@ -37,14 +24,14 @@ function App(): ReactElement {
         <Route
           path={AppRoute.Main}
           element={
-            <MainPage filmPreviews={filmPreviews} promoFilm={promoFilm} authorizationStatus={authorizationStatus}/>
+            <MainPage authorizationStatus={authorizationStatus}/>
           }
         />
         <Route
           path={AppRoute.SignIn}
           element={
             authorizationStatus === AuthorizationStatus.Auth
-              ? <MainPage filmPreviews={filmPreviews} promoFilm={promoFilm} authorizationStatus={authorizationStatus}/>
+              ? <MainPage authorizationStatus={authorizationStatus}/>
               : <SignIn />
           }
         />

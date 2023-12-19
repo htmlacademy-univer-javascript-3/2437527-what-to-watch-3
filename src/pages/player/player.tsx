@@ -4,7 +4,7 @@ import {fetchFilmAction} from '../../store/api-actions';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {Film} from '../../types/film-types';
 import {getFilm} from '../../store/films/selectors';
-import LoadingScreen from '../../components/loading-screen/loading-screen';
+import Loader from '../../components/loader/loader';
 import browserHistory from '../../browser-history';
 import {getRemainingTime} from '../../helpers/get-remaining-time';
 
@@ -75,7 +75,7 @@ function Player(): ReactElement {
 
   if (!isFilmLoaded) {
     return (
-      <LoadingScreen />
+      <Loader isScreenLoader/>
     );
   }
 

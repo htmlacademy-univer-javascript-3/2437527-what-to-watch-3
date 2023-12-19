@@ -12,7 +12,7 @@ import {
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import UserBlock from '../../components/user-block/user-block';
 import {AppRoute, AuthorizationStatus} from '../../routes';
-import LoadingScreen from '../../components/loading-screen/loading-screen';
+import Loader from '../../components/loader/loader';
 import {Film, FilmPreview} from '../../types/film-types';
 import {Review} from '../../types/review';
 import {getFilm, getSimilarFilms} from '../../store/films/selectors';
@@ -45,7 +45,7 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
 
   if (!isFilmLoaded) {
     return (
-      <LoadingScreen />
+      <Loader isScreenLoader/>
     );
   }
 
