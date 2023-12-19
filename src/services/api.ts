@@ -7,9 +7,10 @@ import {AppRoute} from '../routes';
 import {store} from '../store';
 import {setErrorMessage} from '../store/data/data';
 
-type DetailMessageType = {
-  type: string;
+type ErrorMessage = {
+  errorType: string;
   message: string;
+  details: { property: string } & { value: string } & { messages: string[] }[];
 }
 
 const StatusCodeMapping: Record<number, boolean> = {
@@ -43,16 +44,22 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.response.use(
     (response) => response,
-    (error: AxiosError<DetailMessageType>) => {
-      const detailMessage = (error.response?.data);
+    (error: AxiosError<ErrorMessage>) => {
       if (error.response && shouldDisplayError(error.response)) {
-        toast.warn(detailMessage?.message);
-      }
-      if (error.response?.status === StatusCodes.NOT_FOUND) {
-        browserHistory.push(AppRoute.NotFound);
-      }
-      if (error.response?.status === StatusCodes.BAD_REQUEST) {
-        store.dispatch(setErrorMessage(detailMessage?.message));
+        const errorMessage : ErrorMessage = error.response.data;
+
+        if (error.response?.status === StatusCodes.NOT_FOUND) {
+          browserHistory.push(AppRoute.NotFound);
+        }
+        if (error.response?.status === StatusCodes.BAD_REQUEST) {
+          store.dispatch(setErrorMessage(errorMessage.message));
+        }
+
+        if (errorMessage.errorType === 'VALIDATION_ERROR') {
+          toast.error(errorMessage.details[0].messages[0]);
+        } else if (errorMessage.errorType !== 'COMMON_ERROR') {
+          toast.warn(errorMessage.message);
+        }
       }
 
       throw error;
