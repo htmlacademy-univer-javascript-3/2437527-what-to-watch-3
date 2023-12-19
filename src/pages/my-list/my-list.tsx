@@ -5,7 +5,7 @@ import {ReactElement} from 'react';
 import UserBlock from '../../components/user-block/user-block';
 import {getFavorites} from '../../store/favorites/selectors';
 import {useAppSelector} from '../../hooks';
-import {FilmPreview} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-types';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
 
 function MyList(): ReactElement {

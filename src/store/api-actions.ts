@@ -1,7 +1,7 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
-import {Film, FilmPreview, PromoFilm} from '../types/film-type';
+import {Film, FilmPreview, PromoFilm} from '../types/film-types';
 import {
   redirectToRoute,
 } from './action';

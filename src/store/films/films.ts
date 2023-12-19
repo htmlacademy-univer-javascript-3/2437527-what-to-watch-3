@@ -5,7 +5,7 @@ import {
   fetchSimilarFilmsAction
 } from '../api-actions';
 import {NameSpace} from '../../routes';
-import {Film, FilmPreview, PromoFilm} from '../../types/film-type';
+import {Film, FilmPreview, PromoFilm} from '../../types/film-types';
 
 type Films = {
   filmPreviews: { filmPreviews: FilmPreview[] } & { isLoaded: boolean };

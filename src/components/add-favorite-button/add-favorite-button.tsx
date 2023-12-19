@@ -1,4 +1,4 @@
-import {FilmPreview} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-types';
 import {ReactElement} from 'react';
 import {AppRoute, AuthorizationStatus} from '../../routes';
 import {useAppDispatch, useAppSelector} from '../../hooks';

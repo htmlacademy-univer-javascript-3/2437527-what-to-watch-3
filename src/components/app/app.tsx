@@ -5,7 +5,7 @@ import SignIn from '../../pages/sign-in/sign-in';
 import MoviePage from '../../pages/movie-page/movie-page';
 import AddReview from '../../pages/add-review/add-rewiew';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import {FilmPreview, PromoFilm} from '../../types/film-type';
+import {FilmPreview, PromoFilm} from '../../types/film-types';
 import Player from '../../pages/player/player';
 import {ReactElement} from 'react';
 import {useAppSelector} from '../../hooks';
@@ -37,7 +37,7 @@ function App(): ReactElement {
         <Route
           path={AppRoute.Main}
           element={
-            <MainPage filmPreviews={filmPreviews} promoFilm={promoFilm}/>
+            <MainPage filmPreviews={filmPreviews} promoFilm={promoFilm} authorizationStatus={authorizationStatus}/>
           }
         />
         <Route

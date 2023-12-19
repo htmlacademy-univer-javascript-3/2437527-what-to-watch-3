@@ -7,7 +7,7 @@ import UserBlock from '../../components/user-block/user-block';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchFilmAction} from '../../store/api-actions';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
-import {Film} from '../../types/film-type';
+import {Film} from '../../types/film-types';
 import {getFilm} from '../../store/films/selectors';
 
 function AddReview(): ReactElement {

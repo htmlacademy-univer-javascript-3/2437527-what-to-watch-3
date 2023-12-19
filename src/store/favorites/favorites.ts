@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchFavoritesAction} from '../api-actions';
 import {NameSpace} from '../../routes';
-import {FilmPreview} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-types';
 
 type Favorites = {
   favorites: { favorites: FilmPreview[] } & { isLoaded: boolean };

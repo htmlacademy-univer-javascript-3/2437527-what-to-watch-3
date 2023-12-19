@@ -1,4 +1,4 @@
-import {FilmPreview} from '../types/film-type';
+import {FilmPreview} from '../types/film-types';
 import {ALL_GENRES_RUBRIC} from '../store/data/data';
 
 export function filterFilms(filmPreviews : FilmPreview[], genre : string) {

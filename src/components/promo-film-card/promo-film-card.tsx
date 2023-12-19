@@ -1,15 +1,17 @@
 import Logo from '../logo/logo';
-import {PromoFilm} from '../../types/film-type';
+import {PromoFilm} from '../../types/film-types';
 import {ReactElement} from 'react';
 import UserBlock from '../user-block/user-block';
 import AddFavoriteButton from '../add-favorite-button/add-favorite-button';
 import PlayVideoButton from '../play-video-button/play-video-button';
+import {AuthorizationStatus} from '../../routes';
 
 type PromoFilmCardProps = {
   promoFilm: PromoFilm;
+  authorizationStatus: AuthorizationStatus;
 }
 
-function PromoFilmCard({promoFilm} : PromoFilmCardProps): ReactElement {
+function PromoFilmCard({promoFilm, authorizationStatus} : PromoFilmCardProps): ReactElement {
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -41,7 +43,9 @@ function PromoFilmCard({promoFilm} : PromoFilmCardProps): ReactElement {
 
             <div className="film-card__buttons">
               <PlayVideoButton filmId={promoFilm.id}/>
-              <AddFavoriteButton filmId={promoFilm.id}/>
+
+              {authorizationStatus === AuthorizationStatus.Auth &&
+                <AddFavoriteButton filmId={promoFilm.id}/>}
             </div>
           </div>
         </div>

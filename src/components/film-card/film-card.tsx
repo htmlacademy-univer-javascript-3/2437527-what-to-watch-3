@@ -1,4 +1,4 @@
-import {FilmPreview} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-types';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../routes';
 import React, {ReactElement} from 'react';

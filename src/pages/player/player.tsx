@@ -2,14 +2,12 @@ import {ReactElement, useEffect, useRef, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {fetchFilmAction} from '../../store/api-actions';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {Film} from '../../types/film-type';
+import {Film} from '../../types/film-types';
 import {getFilm} from '../../store/films/selectors';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
 import browserHistory from '../../browser-history';
 import {getRemainingTime} from '../../helpers/get-remaining-time';
 
-const FULLSCREEN_PLAYER_WIDTH = '1920';
-const FULLSCREEN_PLAYER_HEIGHT = '1080';
 
 function Player(): ReactElement {
   const dispatch = useAppDispatch();
@@ -86,17 +84,14 @@ function Player(): ReactElement {
   };
   return (
     <div className="player">
-      <div className="player__video">
-        <video
-          poster={film.posterImage}
-          src={film.videoLink}
-          ref={videoRef}
-          width={FULLSCREEN_PLAYER_WIDTH}
-          height={FULLSCREEN_PLAYER_HEIGHT}
-          onTimeUpdate={handleProgress}
-        >
-        </video>
-      </div>
+      <video
+        poster={film.backgroundImage}
+        src={film.videoLink}
+        ref={videoRef}
+        className="player__video"
+        onTimeUpdate={handleProgress}
+      >
+      </video>
 
       <button type="button" className="player__exit" onClick={() => {
         browserHistory.back();

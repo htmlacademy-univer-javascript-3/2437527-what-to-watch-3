@@ -13,7 +13,7 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import UserBlock from '../../components/user-block/user-block';
 import {AppRoute, AuthorizationStatus} from '../../routes';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
-import {Film, FilmPreview} from '../../types/film-type';
+import {Film, FilmPreview} from '../../types/film-types';
 import {Review} from '../../types/review';
 import {getFilm, getSimilarFilms} from '../../store/films/selectors';
 import {getReviews} from '../../store/reviews/selectors';
@@ -54,7 +54,7 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.posterImage} alt={film.name}/>
+            <img src={film.backgroundImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -75,7 +75,9 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
 
               <div className="film-card__buttons">
                 <PlayVideoButton filmId={filmId} />
-                <AddFavoriteButton filmId={filmId}/>
+
+                {authorizationStatus === AuthorizationStatus.Auth &&
+                  <AddFavoriteButton filmId={filmId}/>}
 
                 {authorizationStatus === AuthorizationStatus.Auth &&
                   <Link to={AppRoute.AddReview(filmId)} className="btn film-card__button">Add review</Link>}

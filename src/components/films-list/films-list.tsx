@@ -1,5 +1,5 @@
 import FilmCard from '../film-card/film-card';
-import {FilmPreview} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-types';
 import React, {ReactElement} from 'react';
 
 type SimilarFilmsProps = {

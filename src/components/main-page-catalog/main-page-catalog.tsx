@@ -3,7 +3,7 @@ import GenresList from '../genres-list/genres-list';
 import FilmsList from '../films-list/films-list';
 import React, {ReactElement} from 'react';
 import {useAppSelector} from '../../hooks';
-import {FilmPreview} from '../../types/film-type';
+import {FilmPreview} from '../../types/film-types';
 import ShowMore from '../show-more/show-more';
 import {filterFilms} from '../../helpers/filter-films';
 import {getGenre} from '../../store/data/selectors';
