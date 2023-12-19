@@ -4,7 +4,7 @@ import MoviePageDetails from '../../pages/movie-page/movie-page-details';
 import MoviePageReviews from '../../pages/movie-page/movie-page-reviews';
 import {Film} from '../../types/film-types';
 import {Review} from '../../types/review';
-import {transparentButtonStyle} from '../../helpers/styles';
+import {transparentButtonStyle} from '../../helpers/transparent-button-style';
 
 type Tab = {
   name: string;

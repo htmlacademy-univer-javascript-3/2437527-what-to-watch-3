@@ -1,5 +1,5 @@
 import {ReactElement} from 'react';
-import '../../../public/css/loader.css';
+import './loading-screen.css';
 
 function LoadingScreen(): ReactElement {
   return (
