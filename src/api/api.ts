@@ -46,11 +46,8 @@ export const createAPI = (): AxiosInstance => {
       if (error.response && shouldDisplayError(error.response)) {
         const errorMessage : ErrorMessage = error.response.data;
 
-        if (error.response?.status === StatusCodes.BAD_REQUEST) {
-          store.dispatch(setErrorMessage(errorMessage.message));
-        }
-
         if (errorMessage.errorType === 'VALIDATION_ERROR') {
+          store.dispatch(setErrorMessage(errorMessage.message));
           toast.error(errorMessage.details[0].messages[0]);
         } else if (errorMessage.errorType !== 'COMMON_ERROR') {
           toast.warn(errorMessage.message);

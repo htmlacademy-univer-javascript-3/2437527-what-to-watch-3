@@ -17,21 +17,17 @@ function FilmsList({filmPreviews} : SimilarFilmsProps): ReactElement {
     setActiveCardId('');
   }, []);
 
-  const films : ReactElement[] = [];
-  for (let i = 0; i < Object.keys(filmPreviews).length; i++) {
-    films.push(
-      <FilmCard
-        onMouseEnter={onMouseEnter}
-        onMouseExit={onMouseExit}
-        key={filmPreviews[i].id}
-        filmPreview={filmPreviews[i]}
-        isPlaying={activeId === filmPreviews[i].id}
-      />);
-  }
-
   return (
     <div className="catalog__films-list">
-      {films}
+      {filmPreviews.map((filmPreview) => (
+        <FilmCard
+          onMouseEnter={onMouseEnter}
+          onMouseExit={onMouseExit}
+          key={filmPreview.id}
+          filmPreview={filmPreview}
+          isPlaying={activeId === filmPreview.id}
+        />
+      ))}
     </div>
   );
 }
