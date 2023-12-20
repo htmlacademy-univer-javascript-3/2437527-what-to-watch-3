@@ -21,7 +21,7 @@ export const reviews = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchReviewsAction.pending, (state, value) => {
+      .addCase(fetchReviewsAction.pending, (state) => {
         state.isLoaded = false;
         state.hasError = false;
       })
@@ -30,7 +30,7 @@ export const reviews = createSlice({
         state.reviews = value.payload;
         state.hasError = false;
       })
-      .addCase(fetchReviewsAction.rejected, (state, value) => {
+      .addCase(fetchReviewsAction.rejected, (state) => {
         state.isLoaded = false;
         state.hasError = true;
       });

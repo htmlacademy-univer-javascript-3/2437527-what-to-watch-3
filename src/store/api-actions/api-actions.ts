@@ -14,7 +14,6 @@ import {Favorite} from '../../types/favorite/favorite';
 import {PromoFilm} from '../../types/films/promo-film';
 import {FilmPreview} from '../../types/films/film-preview';
 import {ApiRoutes} from '../../api/api-routes';
-import {FavoritesState} from '../favorites/favorites';
 
 export const fetchFavoritesAction = createAsyncThunk<FilmPreview[], undefined, {
   dispatch: AppDispatch;

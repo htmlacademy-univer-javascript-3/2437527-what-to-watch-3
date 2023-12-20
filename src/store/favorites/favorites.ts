@@ -21,7 +21,7 @@ export const favorites = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchFavoritesAction.pending, (state, value) => {
+      .addCase(fetchFavoritesAction.pending, (state) => {
         state.isLoaded = false;
         state.hasError = false;
       })
@@ -30,7 +30,7 @@ export const favorites = createSlice({
         state.favorites = value.payload;
         state.hasError = false;
       })
-      .addCase(fetchFavoritesAction.rejected, (state, value) => {
+      .addCase(fetchFavoritesAction.rejected, (state) => {
         state.isLoaded = false;
         state.hasError = true;
       });

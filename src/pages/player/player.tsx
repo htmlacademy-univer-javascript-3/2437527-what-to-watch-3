@@ -6,6 +6,7 @@ import {getFilm} from '../../store/films/selectors';
 import Loader from '../../components/loader/loader';
 import browserHistory from '../../components/history-route/browser-history';
 import {getRemainingTime} from '../../helpers/get-remaining-time';
+import {Film} from "../../types/films/film";
 
 
 function Player(): ReactElement {
@@ -18,7 +19,7 @@ function Player(): ReactElement {
   const params = useParams();
   const filmId = params.id as string;
   const filmData = useAppSelector(getFilm);
-  const film = filmData.film;
+  const film = filmData.film as Film;
   const isFilmLoaded = filmData.isLoaded;
   const hasFilmError = filmData.hasError;
 

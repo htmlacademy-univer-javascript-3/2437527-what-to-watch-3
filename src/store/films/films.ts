@@ -18,7 +18,7 @@ export const films = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchFilmAction.pending, (state, value) => {
+      .addCase(fetchFilmAction.pending, (state) => {
         state.filmState.isLoaded = false;
         state.filmState.hasError = false;
       })
@@ -27,12 +27,12 @@ export const films = createSlice({
         state.filmState.film = value.payload;
         state.filmState.hasError = false;
       })
-      .addCase(fetchFilmAction.rejected, (state, value) => {
+      .addCase(fetchFilmAction.rejected, (state) => {
         state.filmState.isLoaded = false;
         state.filmState.hasError = true;
       })
 
-      .addCase(fetchFilmsAction.pending, (state, value) => {
+      .addCase(fetchFilmsAction.pending, (state) => {
         state.filmPreviewsState.isLoaded = false;
         state.filmPreviewsState.hasError = false;
       })
@@ -41,12 +41,12 @@ export const films = createSlice({
         state.filmPreviewsState.filmPreviews = value.payload;
         state.filmPreviewsState.hasError = false;
       })
-      .addCase(fetchFilmsAction.rejected, (state, value) => {
+      .addCase(fetchFilmsAction.rejected, (state) => {
         state.filmPreviewsState.isLoaded = false;
         state.filmPreviewsState.hasError = true;
       })
 
-      .addCase(fetchSimilarFilmsAction.pending, (state, value) => {
+      .addCase(fetchSimilarFilmsAction.pending, (state) => {
         state.similarFilmsState.isLoaded = false;
         state.similarFilmsState.hasError = false;
       })
@@ -55,12 +55,12 @@ export const films = createSlice({
         state.similarFilmsState.similarFilms = value.payload;
         state.similarFilmsState.hasError = false;
       })
-      .addCase(fetchSimilarFilmsAction.rejected, (state, value) => {
+      .addCase(fetchSimilarFilmsAction.rejected, (state) => {
         state.similarFilmsState.isLoaded = false;
         state.similarFilmsState.hasError = true;
       })
 
-      .addCase(fetchPromoFilmAction.pending, (state, value) => {
+      .addCase(fetchPromoFilmAction.pending, (state) => {
         state.promoFilmState.isLoaded = false;
         state.promoFilmState.hasError = false;
       })
@@ -69,7 +69,7 @@ export const films = createSlice({
         state.promoFilmState.promoFilm = value.payload;
         state.promoFilmState.hasError = false;
       })
-      .addCase(fetchPromoFilmAction.rejected, (state, value) => {
+      .addCase(fetchPromoFilmAction.rejected, (state) => {
         state.promoFilmState.isLoaded = false;
         state.promoFilmState.hasError = true;
       });

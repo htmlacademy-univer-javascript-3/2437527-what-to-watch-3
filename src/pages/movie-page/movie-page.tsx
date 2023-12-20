@@ -18,6 +18,7 @@ import {getReviews} from '../../store/reviews/selectors';
 import AddFavoriteButton from '../../components/add-favorite-button/add-favorite-button';
 import PlayVideoButton from '../../components/play-video-button/play-video-button';
 import {AuthorizationStatus} from '../../const/authorization-status';
+import {Film} from '../../types/films/film';
 
 const SIMILAR_FILMS_COUNT = 4;
 
@@ -38,7 +39,7 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
   }, [dispatch, filmId]);
 
   const filmData = useAppSelector(getFilm);
-  const film = filmData.film;
+  const film = filmData.film as Film;
   const isFilmLoaded = filmData.isLoaded;
   const hasFilmError = filmData.hasError;
   const similarFilms = useAppSelector(getSimilarFilms).similarFilms.slice(0, SIMILAR_FILMS_COUNT);
