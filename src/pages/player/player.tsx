@@ -42,6 +42,10 @@ function Player(): ReactElement {
     const currentTime = videoRef.current?.currentTime as number;
     setProgress(Math.round((currentTime / duration) * 100));
     setRemainingTime(Math.round(duration - currentTime));
+
+    if (currentTime === duration) {
+      setIsPlaying(false);
+    }
   };
 
   useEffect(() => {
@@ -60,7 +64,7 @@ function Player(): ReactElement {
   useEffect(() => {
     const playerElement = videoRef.current;
 
-    if (!isLoaded || !playerElement) {
+    if (!playerElement) {
       return;
     }
 

@@ -1,5 +1,5 @@
 import Logo from '../../components/logo/logo';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {AppRoute} from '../../routes';
 import CommentSubmissionForm from '../../components/comment-submission-form/comment-submission-form';
 import {ReactElement, useEffect} from 'react';
@@ -44,7 +44,7 @@ function AddReview(): ReactElement {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href={AppRoute.Film(film.id)} className="breadcrumbs__link">{film.name}</a>
+                <Link className="breadcrumbs__link" to={AppRoute.Film(film.id)}>{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
