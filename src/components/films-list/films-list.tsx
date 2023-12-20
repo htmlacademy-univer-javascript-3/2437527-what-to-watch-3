@@ -17,9 +17,9 @@ function FilmsList({filmPreviews} : SimilarFilmsProps): ReactElement {
     setActiveCardId('');
   }, []);
 
-  const filmsList : ReactElement[] = [];
+  const films : ReactElement[] = [];
   for (let i = 0; i < Object.keys(filmPreviews).length; i++) {
-    filmsList.push(
+    films.push(
       <FilmCard
         onMouseEnter={onMouseEnter}
         onMouseExit={onMouseExit}
@@ -31,7 +31,7 @@ function FilmsList({filmPreviews} : SimilarFilmsProps): ReactElement {
 
   return (
     <div className="catalog__films-list">
-      {filmsList}
+      {films}
     </div>
   );
 }
