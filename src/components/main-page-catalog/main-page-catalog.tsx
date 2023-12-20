@@ -8,7 +8,7 @@ import {filterFilms} from '../../helpers/filter-films';
 import {getGenre} from '../../store/data/selectors';
 import {getFilmPreviews} from '../../store/films/selectors';
 import Loader from '../loader/loader';
-import {FilmPreview} from "../../types/films/film-preview";
+import {FilmPreview} from '../../types/films/film-preview';
 
 const FILMS_ON_PAGE = 8;
 

@@ -13,7 +13,7 @@ import PrivateRoute from '../private-route/private-route';
 import browserHistory from '../history-route/browser-history';
 import HistoryRouter from '../history-route/history-route';
 import {getAuthorizationStatus} from '../../store/user/selectors';
-import {AuthorizationStatus} from "../../const/authorization-status";
+import {AuthorizationStatus} from '../../const/authorization-status';
 
 
 function App(): ReactElement {

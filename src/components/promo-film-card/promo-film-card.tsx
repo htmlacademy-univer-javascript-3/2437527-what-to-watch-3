@@ -5,8 +5,8 @@ import AddFavoriteButton from '../add-favorite-button/add-favorite-button';
 import PlayVideoButton from '../play-video-button/play-video-button';
 import {getPromoFilm} from '../../store/films/selectors';
 import {useAppSelector} from '../../hooks/hooks';
-import {PromoFilm} from "../../types/films/promo-film";
-import {AuthorizationStatus} from "../../const/authorization-status";
+import {PromoFilm} from '../../types/films/promo-film';
+import {AuthorizationStatus} from '../../const/authorization-status';
 
 type PromoFilmCardProps = {
   authorizationStatus: AuthorizationStatus;

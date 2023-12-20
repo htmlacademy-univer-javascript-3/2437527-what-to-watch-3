@@ -6,7 +6,7 @@ import UserBlock from '../../components/user-block/user-block';
 import {getFavorites} from '../../store/favorites/selectors';
 import {useAppSelector} from '../../hooks/hooks';
 import Loader from '../../components/loader/loader';
-import {FilmPreview} from "../../types/films/film-preview";
+import {FilmPreview} from '../../types/films/film-preview';
 
 function MyList(): ReactElement {
   const favorites : FilmPreview[] = useAppSelector(getFavorites).favorites;

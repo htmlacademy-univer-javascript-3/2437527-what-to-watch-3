@@ -1,6 +1,6 @@
 import FilmCard from '../film-card/film-card';
 import React, {ReactElement} from 'react';
-import {FilmPreview} from "../../types/films/film-preview";
+import {FilmPreview} from '../../types/films/film-preview';
 
 type SimilarFilmsProps = {
   filmPreviews: FilmPreview[];

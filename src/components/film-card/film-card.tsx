@@ -2,7 +2,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {AppRoutes} from '../../const/app-routes';
 import React, {ReactElement} from 'react';
 import MiniPlayer from '../mini-player/mini-player';
-import {FilmPreview} from "../../types/films/film-preview";
+import {FilmPreview} from '../../types/films/film-preview';
 
 type FilmCardProps = {
   filmPreview: FilmPreview;

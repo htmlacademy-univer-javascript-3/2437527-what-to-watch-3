@@ -4,7 +4,7 @@ import {AppRoutes} from '../../const/app-routes';
 import {Link, useNavigate} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions/api-actions';
 import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
-import {AuthorizationStatus} from "../../const/authorization-status";
+import {AuthorizationStatus} from '../../const/authorization-status';
 
 function UserBlock(): ReactElement {
   const dispatch = useAppDispatch();

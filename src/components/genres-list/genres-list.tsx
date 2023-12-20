@@ -5,7 +5,7 @@ import {getAllGenres} from '../../helpers/get-all-genres';
 import {getGenre} from '../../store/data/selectors';
 import {setGenre} from '../../store/data/data';
 import {transparentButtonStyle} from '../../const/transparent-button-style';
-import {FilmPreview} from "../../types/films/film-preview";
+import {FilmPreview} from '../../types/films/film-preview';
 
 
 type GenreListProps = {
