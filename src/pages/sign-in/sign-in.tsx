@@ -1,8 +1,8 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import {FormEvent, ReactElement, useRef, useState} from 'react';
-import {loginAction} from '../../store/api-actions';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {loginAction} from '../../store/api-actions/api-actions';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import {isLoginValid, isPasswordValid} from '../../helpers/validate-credentials';
 import {getErrorMessage} from '../../store/data/selectors';
 import {setErrorMessage} from '../../store/data/data';

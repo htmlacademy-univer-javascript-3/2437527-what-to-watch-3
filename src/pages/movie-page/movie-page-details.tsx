@@ -1,5 +1,5 @@
 import {ReactElement} from 'react';
-import {Film} from '../../types/film-types';
+import {Film} from '../../types/films/film';
 
 type MoviePageDetailsProps = {
   film: Film;

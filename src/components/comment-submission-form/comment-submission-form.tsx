@@ -1,7 +1,7 @@
 import Rating from '../rating/rating';
 import React, {ReactElement, SyntheticEvent} from 'react';
-import {postCommentAction} from '../../store/api-actions';
-import {useAppDispatch} from '../../hooks';
+import {postCommentAction} from '../../store/api-actions/api-actions';
+import {useAppDispatch} from '../../hooks/hooks';
 import {isCommentFormValid} from '../../helpers/validate-comment-form';
 
 const STAR_COUNT = 10;

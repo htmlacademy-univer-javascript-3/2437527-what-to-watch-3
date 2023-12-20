@@ -2,9 +2,9 @@ import React, {ReactElement} from 'react';
 import MoviePageOverview from '../../pages/movie-page/movie-page-overview';
 import MoviePageDetails from '../../pages/movie-page/movie-page-details';
 import MoviePageReviews from '../../pages/movie-page/movie-page-reviews';
-import {Film} from '../../types/film-types';
-import {Review} from '../../types/review';
-import {transparentButtonStyle} from '../../helpers/transparent-button-style';
+import {Film} from '../../types/films/film';
+import {Review} from '../../types/review/review';
+import {transparentButtonStyle} from '../../const/transparent-button-style';
 
 type Tab = {
   name: string;

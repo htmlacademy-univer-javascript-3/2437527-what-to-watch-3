@@ -1,12 +1,12 @@
 import Logo from '../logo/logo';
-import {PromoFilm} from '../../types/film-types';
 import {ReactElement} from 'react';
 import UserBlock from '../user-block/user-block';
 import AddFavoriteButton from '../add-favorite-button/add-favorite-button';
 import PlayVideoButton from '../play-video-button/play-video-button';
-import {AuthorizationStatus} from '../../routes';
 import {getPromoFilm} from '../../store/films/selectors';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/hooks';
+import {PromoFilm} from "../../types/films/promo-film";
+import {AuthorizationStatus} from "../../const/authorization-status";
 
 type PromoFilmCardProps = {
   authorizationStatus: AuthorizationStatus;

@@ -2,13 +2,13 @@ import Footer from '../footer/footer';
 import GenresList from '../genres-list/genres-list';
 import FilmsList from '../films-list/films-list';
 import React, {ReactElement} from 'react';
-import {useAppSelector} from '../../hooks';
-import {FilmPreview} from '../../types/film-types';
+import {useAppSelector} from '../../hooks/hooks';
 import ShowMore from '../show-more/show-more';
 import {filterFilms} from '../../helpers/filter-films';
 import {getGenre} from '../../store/data/selectors';
 import {getFilmPreviews} from '../../store/films/selectors';
 import Loader from '../loader/loader';
+import {FilmPreview} from "../../types/films/film-preview";
 
 const FILMS_ON_PAGE = 8;
 

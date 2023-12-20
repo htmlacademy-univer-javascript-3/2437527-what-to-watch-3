@@ -1,11 +1,12 @@
-import {FilmPreview} from '../../types/film-types';
 import {ReactElement} from 'react';
-import {AppRoute, AuthorizationStatus} from '../../routes';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {postFavorite} from '../../store/api-actions';
+import {AppRoutes} from '../../const/app-routes';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import {postFavorite} from '../../store/api-actions/api-actions';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 import {getFavorites} from '../../store/favorites/selectors';
 import {useNavigate} from 'react-router-dom';
+import {FilmPreview} from '../../types/films/film-preview';
+import {AuthorizationStatus} from '../../const/authorization-status';
 
 type AddFavoriteButtonProps = {
   filmId: string | undefined;
@@ -23,7 +24,7 @@ function AddFavoriteButton({filmId} : AddFavoriteButtonProps): ReactElement {
       if (authorizationStatus === AuthorizationStatus.Auth) {
         dispatch(postFavorite({filmId: filmId, status: +!isFavorite}));
       } else {
-        navigate(AppRoute.SignIn);
+        navigate(AppRoutes.SignIn);
       }
     }
   };

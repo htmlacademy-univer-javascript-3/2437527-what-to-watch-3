@@ -4,9 +4,9 @@ import FilmsList from '../../components/films-list/films-list';
 import {ReactElement} from 'react';
 import UserBlock from '../../components/user-block/user-block';
 import {getFavorites} from '../../store/favorites/selectors';
-import {useAppSelector} from '../../hooks';
-import {FilmPreview} from '../../types/film-types';
+import {useAppSelector} from '../../hooks/hooks';
 import Loader from '../../components/loader/loader';
+import {FilmPreview} from "../../types/films/film-preview";
 
 function MyList(): ReactElement {
   const favorites : FilmPreview[] = useAppSelector(getFavorites).favorites;

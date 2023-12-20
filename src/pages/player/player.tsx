@@ -1,11 +1,11 @@
 import {ReactElement, useEffect, useRef, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {fetchFilmAction} from '../../store/api-actions';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {Film} from '../../types/film-types';
+import {fetchFilmAction} from '../../store/api-actions/api-actions';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import {Film} from '../../types/films/film';
 import {getFilm} from '../../store/films/selectors';
 import Loader from '../../components/loader/loader';
-import browserHistory from '../../browser-history';
+import browserHistory from '../../components/history-route/browser-history';
 import {getRemainingTime} from '../../helpers/get-remaining-time';
 
 

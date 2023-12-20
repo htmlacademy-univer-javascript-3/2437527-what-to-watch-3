@@ -1,8 +1,8 @@
-import {FilmPreview} from '../../types/film-types';
 import {Link, useNavigate} from 'react-router-dom';
-import {AppRoute} from '../../routes';
+import {AppRoutes} from '../../const/app-routes';
 import React, {ReactElement} from 'react';
 import MiniPlayer from '../mini-player/mini-player';
+import {FilmPreview} from "../../types/films/film-preview";
 
 type FilmCardProps = {
   filmPreview: FilmPreview;
@@ -19,7 +19,7 @@ function FilmCard({filmPreview, onMouseEnter, onMouseExit, isPlaying} : FilmCard
       onMouseEnter={() => onMouseEnter(filmPreview.id)}
       onMouseLeave={() => onMouseExit()}
     >
-      <div className="small-film-card__image" onClick={() => navigate(AppRoute.Film(filmPreview.id))}>
+      <div className="small-film-card__image" onClick={() => navigate(AppRoutes.Film(filmPreview.id))}>
         {
           (isPlaying)
             ?
@@ -31,7 +31,7 @@ function FilmCard({filmPreview, onMouseEnter, onMouseExit, isPlaying} : FilmCard
         }
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={AppRoute.Film(filmPreview.id)}>{filmPreview.name}</Link>
+        <Link className="small-film-card__link" to={AppRoutes.Film(filmPreview.id)}>{filmPreview.name}</Link>
       </h3>
     </article>
   );

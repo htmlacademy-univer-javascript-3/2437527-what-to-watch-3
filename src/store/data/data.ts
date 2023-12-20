@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {NameSpace} from '../../routes';
+import {NameSpace} from '../namespace';
 
 export const ALL_GENRES_RUBRIC = 'All genres';
 

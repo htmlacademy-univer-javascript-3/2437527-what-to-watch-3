@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchReviewsAction} from '../api-actions';
-import {NameSpace} from '../../routes';
-import {Review} from '../../types/review';
+import {fetchReviewsAction} from '../api-actions/api-actions';
+import {Review} from '../../types/review/review';
+import {NameSpace} from '../namespace';
 
 type Reviews = {
   reviews: Review[];

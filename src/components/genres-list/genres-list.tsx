@@ -1,11 +1,11 @@
 import React, {ReactElement} from 'react';
-import {FilmPreview} from '../../types/film-types';
 import {useDispatch} from 'react-redux';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/hooks';
 import {getAllGenres} from '../../helpers/get-all-genres';
 import {getGenre} from '../../store/data/selectors';
 import {setGenre} from '../../store/data/data';
-import {transparentButtonStyle} from '../../helpers/transparent-button-style';
+import {transparentButtonStyle} from '../../const/transparent-button-style';
+import {FilmPreview} from "../../types/films/film-preview";
 
 
 type GenreListProps = {

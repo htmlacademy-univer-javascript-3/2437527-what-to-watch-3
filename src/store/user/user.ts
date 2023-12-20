@@ -1,14 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {checkAuthAction, loginAction, logoutAction} from '../api-actions';
-import {UserData} from '../../types/user-data';
-import {AuthorizationStatus, NameSpace} from '../../routes';
+import {checkAuthAction, loginAction, logoutAction} from '../api-actions/api-actions';
+import {User} from '../../types/user/user';
+import {NameSpace} from '../namespace';
+import {AuthorizationStatus} from '../../const/authorization-status';
 
-type User = {
+type UserData = {
   authorizationStatus: AuthorizationStatus;
-  user: UserData | null;
+  user: User | null;
 }
 
-const initialState: User = {
+const initialState: UserData = {
   authorizationStatus: AuthorizationStatus.NoAuth,
   user: null
 };

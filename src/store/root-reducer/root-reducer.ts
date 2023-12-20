@@ -1,10 +1,10 @@
 import {combineReducers} from '@reduxjs/toolkit';
-import {data} from './data/data';
-import {user} from './user/user';
-import {reviews} from './reviews/reviews';
-import {films} from './films/films';
-import {NameSpace} from '../routes';
-import {favorites} from './favorites/favorites';
+import {data} from '../data/data';
+import {user} from '../user/user';
+import {reviews} from '../reviews/reviews';
+import {films} from '../films/films';
+import {favorites} from '../favorites/favorites';
+import {NameSpace} from '../namespace';
 
 export const rootReducer = combineReducers({
   [NameSpace.Data]: data.reducer,

@@ -8,17 +8,19 @@ import {
   fetchFilmAction,
   fetchReviewsAction,
   fetchSimilarFilmsAction
-} from '../../store/api-actions';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+} from '../../store/api-actions/api-actions';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import UserBlock from '../../components/user-block/user-block';
-import {AppRoute, AuthorizationStatus} from '../../routes';
+import {AppRoutes} from '../../const/app-routes';
 import Loader from '../../components/loader/loader';
-import {Film, FilmPreview} from '../../types/film-types';
-import {Review} from '../../types/review';
+import {Film} from '../../types/films/film';
+import {Review} from '../../types/review/review';
 import {getFilm, getSimilarFilms} from '../../store/films/selectors';
 import {getReviews} from '../../store/reviews/selectors';
 import AddFavoriteButton from '../../components/add-favorite-button/add-favorite-button';
 import PlayVideoButton from '../../components/play-video-button/play-video-button';
+import {FilmPreview} from "../../types/films/film-preview";
+import {AuthorizationStatus} from "../../const/authorization-status";
 
 const SIMILAR_FILMS_COUNT = 4;
 
@@ -80,7 +82,7 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
                   <AddFavoriteButton filmId={filmId}/>}
 
                 {authorizationStatus === AuthorizationStatus.Auth &&
-                  <Link to={AppRoute.AddReview(filmId)} className="btn film-card__button">Add review</Link>}
+                  <Link to={AppRoutes.AddReview(filmId)} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>

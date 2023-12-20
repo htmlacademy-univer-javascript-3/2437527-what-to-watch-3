@@ -1,13 +1,13 @@
 import Logo from '../../components/logo/logo';
 import {Link, useParams} from 'react-router-dom';
-import {AppRoute} from '../../routes';
+import {AppRoutes} from '../../const/app-routes';
 import CommentSubmissionForm from '../../components/comment-submission-form/comment-submission-form';
 import {ReactElement, useEffect} from 'react';
 import UserBlock from '../../components/user-block/user-block';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {fetchFilmAction} from '../../store/api-actions';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import {fetchFilmAction} from '../../store/api-actions/api-actions';
 import Loader from '../../components/loader/loader';
-import {Film} from '../../types/film-types';
+import {Film} from '../../types/films/film';
 import {getFilm} from '../../store/films/selectors';
 
 function AddReview(): ReactElement {
@@ -44,7 +44,7 @@ function AddReview(): ReactElement {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link className="breadcrumbs__link" to={AppRoute.Film(film.id)}>{film.name}</Link>
+                <Link className="breadcrumbs__link" to={AppRoutes.Film(film.id)}>{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>

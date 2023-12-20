@@ -1,5 +1,5 @@
 import {ReactElement} from 'react';
-import {AppRoute} from '../../routes';
+import {AppRoutes} from '../../const/app-routes';
 import {useNavigate} from 'react-router-dom';
 
 type PlayVideoButtonProps = {
@@ -10,7 +10,7 @@ function PlayVideoButton({filmId} : PlayVideoButtonProps): ReactElement {
   const navigate = useNavigate();
   const onClick = () => {
     if (filmId) {
-      navigate(AppRoute.Player(filmId));
+      navigate(AppRoutes.Player(filmId));
     }
   };
 
