@@ -3,12 +3,16 @@ import {fetchReviewsAction} from '../api-actions/api-actions';
 import {Review} from '../../types/review/review';
 import {NameSpace} from '../namespace';
 
-type Reviews = {
+type ReviewsState = {
   reviews: Review[];
+  isLoaded: boolean;
+  hasError: boolean;
 }
 
-const initialState: Reviews = {
+const initialState: ReviewsState = {
   reviews: [],
+  isLoaded: false,
+  hasError: false
 };
 
 export const reviews = createSlice({
@@ -17,8 +21,18 @@ export const reviews = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchReviewsAction.pending, (state, value) => {
+        state.isLoaded = false;
+        state.hasError = false;
+      })
       .addCase(fetchReviewsAction.fulfilled, (state, value) => {
-        state.reviews = value.payload.reviews;
+        state.isLoaded = true;
+        state.reviews = value.payload;
+        state.hasError = false;
+      })
+      .addCase(fetchReviewsAction.rejected, (state, value) => {
+        state.isLoaded = false;
+        state.hasError = true;
       });
   }
 });

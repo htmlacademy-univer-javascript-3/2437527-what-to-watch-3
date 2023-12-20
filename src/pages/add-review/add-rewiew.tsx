@@ -7,7 +7,6 @@ import UserBlock from '../../components/user-block/user-block';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import {fetchFilmAction} from '../../store/api-actions/api-actions';
 import Loader from '../../components/loader/loader';
-import {Film} from '../../types/films/film';
 import {getFilm} from '../../store/films/selectors';
 
 function AddReview(): ReactElement {
@@ -20,10 +19,12 @@ function AddReview(): ReactElement {
     dispatch(fetchFilmAction(filmId));
   }, [dispatch, filmId]);
 
-  const film : Film = useAppSelector(getFilm).film as Film;
-  const isFilmLoaded : boolean = useAppSelector(getFilm).isLoaded;
+  const filmData = useAppSelector(getFilm);
+  const film = filmData.film;
+  const isFilmLoaded = filmData.isLoaded;
+  const hasFilmError = filmData.hasError;
 
-  if (!isFilmLoaded) {
+  if (!isFilmLoaded || hasFilmError) {
     return (
       <Loader isScreenLoader/>
     );

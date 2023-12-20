@@ -2,7 +2,6 @@ import {ReactElement, useEffect, useRef, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {fetchFilmAction} from '../../store/api-actions/api-actions';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
-import {Film} from '../../types/films/film';
 import {getFilm} from '../../store/films/selectors';
 import Loader from '../../components/loader/loader';
 import browserHistory from '../../components/history-route/browser-history';
@@ -18,8 +17,10 @@ function Player(): ReactElement {
 
   const params = useParams();
   const filmId = params.id as string;
-  const film : Film = useAppSelector(getFilm).film as Film;
-  const isFilmLoaded : boolean = useAppSelector(getFilm).isLoaded;
+  const filmData = useAppSelector(getFilm);
+  const film = filmData.film;
+  const isFilmLoaded = filmData.isLoaded;
+  const hasFilmError = filmData.hasError;
 
   useEffect(() => {
     dispatch(fetchFilmAction(filmId));
@@ -77,7 +78,7 @@ function Player(): ReactElement {
   }, [isLoaded, isPlaying]);
 
 
-  if (!isFilmLoaded) {
+  if (!isFilmLoaded || hasFilmError) {
     return (
       <Loader isScreenLoader/>
     );

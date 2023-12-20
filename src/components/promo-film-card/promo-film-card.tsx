@@ -5,7 +5,6 @@ import AddFavoriteButton from '../add-favorite-button/add-favorite-button';
 import PlayVideoButton from '../play-video-button/play-video-button';
 import {getPromoFilm} from '../../store/films/selectors';
 import {useAppSelector} from '../../hooks/hooks';
-import {PromoFilm} from '../../types/films/promo-film';
 import {AuthorizationStatus} from '../../const/authorization-status';
 
 type PromoFilmCardProps = {
@@ -13,7 +12,7 @@ type PromoFilmCardProps = {
 }
 
 function PromoFilmCard({authorizationStatus} : PromoFilmCardProps): ReactElement {
-  const promoFilm : PromoFilm = useAppSelector(getPromoFilm).promoFilm as PromoFilm;
+  const promoFilm = useAppSelector(getPromoFilm).promoFilm;
 
   return (
     <section className="film-card">

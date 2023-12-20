@@ -13,8 +13,9 @@ import {FilmPreview} from '../../types/films/film-preview';
 const FILMS_ON_PAGE = 8;
 
 function MainPageCatalog(): ReactElement {
-  const filmPreviews : FilmPreview[] = useAppSelector(getFilmPreviews).filmPreviews;
-  const isFilmPreviewsLoaded : boolean = useAppSelector(getFilmPreviews).isLoaded;
+  const filmPreviewsData = useAppSelector(getFilmPreviews);
+  const filmPreviews = filmPreviewsData.filmPreviews;
+  const isFilmPreviewsLoaded = filmPreviewsData.isLoaded;
   const [pagesToShowCount, setPagesToShowCount] = React.useState(1);
   const filmPreviewsOfGenre : FilmPreview[] = filterFilms(filmPreviews, useAppSelector(getGenre));
   const filmsToShow = pagesToShowCount * FILMS_ON_PAGE;

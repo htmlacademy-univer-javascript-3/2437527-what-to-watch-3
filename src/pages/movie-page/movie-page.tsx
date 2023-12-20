@@ -13,13 +13,10 @@ import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import UserBlock from '../../components/user-block/user-block';
 import {AppRoutes} from '../../const/app-routes';
 import Loader from '../../components/loader/loader';
-import {Film} from '../../types/films/film';
-import {Review} from '../../types/review/review';
 import {getFilm, getSimilarFilms} from '../../store/films/selectors';
 import {getReviews} from '../../store/reviews/selectors';
 import AddFavoriteButton from '../../components/add-favorite-button/add-favorite-button';
 import PlayVideoButton from '../../components/play-video-button/play-video-button';
-import {FilmPreview} from '../../types/films/film-preview';
 import {AuthorizationStatus} from '../../const/authorization-status';
 
 const SIMILAR_FILMS_COUNT = 4;
@@ -40,12 +37,14 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
     dispatch(fetchReviewsAction(filmId));
   }, [dispatch, filmId]);
 
-  const film : Film = useAppSelector(getFilm).film as Film;
-  const isFilmLoaded : boolean = useAppSelector(getFilm).isLoaded;
-  const similarFilms : FilmPreview[] = useAppSelector(getSimilarFilms).slice(0, SIMILAR_FILMS_COUNT);
-  const reviews : Review[] = useAppSelector(getReviews);
+  const filmData = useAppSelector(getFilm);
+  const film = filmData.film;
+  const isFilmLoaded = filmData.isLoaded;
+  const hasFilmError = filmData.hasError;
+  const similarFilms = useAppSelector(getSimilarFilms).similarFilms.slice(0, SIMILAR_FILMS_COUNT);
+  const reviews = useAppSelector(getReviews).reviews;
 
-  if (!isFilmLoaded) {
+  if (!isFilmLoaded || hasFilmError) {
     return (
       <Loader isScreenLoader/>
     );

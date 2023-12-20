@@ -14,8 +14,9 @@ import {Favorite} from '../../types/favorite/favorite';
 import {PromoFilm} from '../../types/films/promo-film';
 import {FilmPreview} from '../../types/films/film-preview';
 import {ApiRoutes} from '../../api/api-routes';
+import {FavoritesState} from '../favorites/favorites';
 
-export const fetchFavoritesAction = createAsyncThunk<{ favorites: FilmPreview[] } & { isLoaded: boolean }, undefined, {
+export const fetchFavoritesAction = createAsyncThunk<FilmPreview[], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -23,7 +24,7 @@ export const fetchFavoritesAction = createAsyncThunk<{ favorites: FilmPreview[] 
   'fetchFavorites',
   async (_arg, {extra: api}) => {
     const {data} = await api.get<FilmPreview[]>(ApiRoutes.Favorites);
-    return {favorites: data, isLoaded: true};
+    return data;
   },
 );
 
@@ -67,7 +68,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchFilmsAction = createAsyncThunk<{ filmPreviews: FilmPreview[] } & { isLoaded: boolean }, undefined, {
+export const fetchFilmsAction = createAsyncThunk<FilmPreview[], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -75,11 +76,11 @@ export const fetchFilmsAction = createAsyncThunk<{ filmPreviews: FilmPreview[] }
   'fetchFilms',
   async (_arg, {extra: api}) => {
     const {data} = await api.get<FilmPreview[]>(ApiRoutes.Films);
-    return {filmPreviews: data, isLoaded: true};
+    return data;
   },
 );
 
-export const fetchFilmAction = createAsyncThunk<{ film: Film | null } & { isLoaded: boolean }, string, {
+export const fetchFilmAction = createAsyncThunk<Film, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -87,11 +88,11 @@ export const fetchFilmAction = createAsyncThunk<{ film: Film | null } & { isLoad
   'fetchFilm',
   async (id, {extra: api}) => {
     const {data} = await api.get<Film>(ApiRoutes.Film(id));
-    return {film: data, isLoaded: true};
+    return data;
   },
 );
 
-export const fetchSimilarFilmsAction = createAsyncThunk<{similarFilms: FilmPreview[]}, string, {
+export const fetchSimilarFilmsAction = createAsyncThunk<FilmPreview[], string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -99,11 +100,11 @@ export const fetchSimilarFilmsAction = createAsyncThunk<{similarFilms: FilmPrevi
   'fetchSimilarFilms',
   async (id, {extra: api}) => {
     const {data} = await api.get<FilmPreview[]>(ApiRoutes.SimilarFilms(id));
-    return {similarFilms: data};
+    return data;
   },
 );
 
-export const fetchPromoFilmAction = createAsyncThunk<{ promoFilm: PromoFilm | null } & { isLoaded: boolean }, undefined, {
+export const fetchPromoFilmAction = createAsyncThunk<PromoFilm, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -111,11 +112,11 @@ export const fetchPromoFilmAction = createAsyncThunk<{ promoFilm: PromoFilm | nu
   'fetchPromoFilm',
   async (_arg, {extra: api}) => {
     const {data} = await api.get<PromoFilm>(ApiRoutes.Promo);
-    return {promoFilm: data, isLoaded: true};
+    return data;
   },
 );
 
-export const fetchReviewsAction = createAsyncThunk<{reviews: Review[]}, string, {
+export const fetchReviewsAction = createAsyncThunk<Review[], string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -123,7 +124,7 @@ export const fetchReviewsAction = createAsyncThunk<{reviews: Review[]}, string, 
   'fetchReviews',
   async (id, {extra: api}) => {
     const {data} = await api.get<Review[]>(ApiRoutes.Reviews(id));
-    return {reviews: data};
+    return data;
   },
 );
 

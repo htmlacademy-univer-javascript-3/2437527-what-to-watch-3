@@ -5,7 +5,6 @@ import {postFavorite} from '../../store/api-actions/api-actions';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 import {getFavorites} from '../../store/favorites/selectors';
 import {useNavigate} from 'react-router-dom';
-import {FilmPreview} from '../../types/films/film-preview';
 import {AuthorizationStatus} from '../../const/authorization-status';
 
 type AddFavoriteButtonProps = {
@@ -16,7 +15,7 @@ function AddFavoriteButton({filmId} : AddFavoriteButtonProps): ReactElement {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const favorites : FilmPreview[] = useAppSelector(getFavorites).favorites;
+  const favorites = useAppSelector(getFavorites).favorites;
   const isFavorite = filmId ? favorites.map((favoriteFilm) => favoriteFilm.id).includes(filmId) : false;
 
   const onClick = () => {

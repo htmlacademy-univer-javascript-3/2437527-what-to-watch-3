@@ -3,12 +3,16 @@ import {fetchFavoritesAction} from '../api-actions/api-actions';
 import {FilmPreview} from '../../types/films/film-preview';
 import {NameSpace} from '../namespace';
 
-type Favorites = {
-  favorites: { favorites: FilmPreview[] } & { isLoaded: boolean };
+export type FavoritesState = {
+  favorites: FilmPreview[];
+  isLoaded: boolean;
+  hasError: boolean;
 }
 
-const initialState: Favorites = {
-  favorites: { favorites: [], isLoaded: false },
+const initialState: FavoritesState = {
+  favorites: [],
+  isLoaded: false,
+  hasError: false
 };
 
 export const favorites = createSlice({
@@ -17,8 +21,18 @@ export const favorites = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchFavoritesAction.pending, (state, value) => {
+        state.isLoaded = false;
+        state.hasError = false;
+      })
       .addCase(fetchFavoritesAction.fulfilled, (state, value) => {
+        state.isLoaded = true;
         state.favorites = value.payload;
+        state.hasError = false;
+      })
+      .addCase(fetchFavoritesAction.rejected, (state, value) => {
+        state.isLoaded = false;
+        state.hasError = true;
       });
   }
 });
