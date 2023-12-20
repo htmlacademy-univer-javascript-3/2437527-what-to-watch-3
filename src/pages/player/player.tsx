@@ -7,6 +7,7 @@ import Loader from '../../components/loader/loader';
 import browserHistory from '../../components/history-route/browser-history';
 import {getRemainingTime} from '../../helpers/get-remaining-time';
 import {Film} from '../../types/films/film';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 
 function Player(): ReactElement {
@@ -74,8 +75,11 @@ function Player(): ReactElement {
     playerElement.pause();
   }, [isLoaded, isPlaying]);
 
+  if (hasFilmError) {
+    return (<NotFoundPage />);
+  }
 
-  if (!isFilmLoaded || hasFilmError) {
+  if (!isFilmLoaded) {
     return (
       <Loader isScreenLoader/>
     );

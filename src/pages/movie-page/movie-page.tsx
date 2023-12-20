@@ -19,6 +19,7 @@ import AddFavoriteButton from '../../components/add-favorite-button/add-favorite
 import PlayVideoButton from '../../components/play-video-button/play-video-button';
 import {AuthorizationStatus} from '../../const/authorization-status';
 import {Film} from '../../types/films/film';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 const SIMILAR_FILMS_COUNT = 4;
 
@@ -45,7 +46,11 @@ function MoviePage({authorizationStatus} : MoviePageProps): ReactElement {
   const similarFilms = useAppSelector(getSimilarFilms).similarFilms.slice(0, SIMILAR_FILMS_COUNT);
   const reviews = useAppSelector(getReviews).reviews;
 
-  if (!isFilmLoaded || hasFilmError) {
+  if (hasFilmError) {
+    return (<NotFoundPage />);
+  }
+
+  if (!isFilmLoaded) {
     return (
       <Loader isScreenLoader/>
     );
