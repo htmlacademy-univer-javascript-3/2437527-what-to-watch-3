@@ -20,7 +20,7 @@ function MainPageCatalog(): ReactElement {
   const filmPreviewsOfGenre : FilmPreview[] = filterFilms(filmPreviews, useAppSelector(getGenre));
   const filmsToShow = pagesToShowCount * FILMS_ON_PAGE;
 
-  const onClick = () => {
+  const handleButtonClick = () => {
     setPagesToShowCount(pagesToShowCount + 1);
   };
 
@@ -33,7 +33,7 @@ function MainPageCatalog(): ReactElement {
             <GenresList filmPreviews={filmPreviews}/>
             <FilmsList filmPreviews={filmPreviewsOfGenre.slice(0, filmsToShow)}/>
             {filmPreviewsOfGenre.length > filmsToShow && (
-              <ShowMore onClick={onClick}/>
+              <ShowMore onClick={handleButtonClick}/>
             )}
           </>}
       </section>

@@ -1,8 +1,10 @@
 import {useState, useEffect, useRef, ReactElement} from 'react';
 
-const MINI_PLAYER_MS_DELAY = 1000;
-const MINI_PLAYER_WIDTH = '280';
-const MINI_PLAYER_HEIGHT = '175';
+const MiniPlayerSettings = {
+  MsDelay: 1000,
+  Width: '280',
+  Height: '175'
+} as const;
 
 type VideoPlayerProps = {
   videoSrc: string;
@@ -39,7 +41,7 @@ function MiniPlayer({videoSrc, poster}: VideoPlayerProps): ReactElement {
 
     setTimeout(() => {
       playerElement.play();
-    }, MINI_PLAYER_MS_DELAY);
+    }, MiniPlayerSettings.MsDelay);
 
   }, [isLoaded]);
 
@@ -48,8 +50,8 @@ function MiniPlayer({videoSrc, poster}: VideoPlayerProps): ReactElement {
       poster={poster}
       src={videoSrc}
       ref={videoRef}
-      width={MINI_PLAYER_WIDTH}
-      height={MINI_PLAYER_HEIGHT}
+      width={MiniPlayerSettings.Width}
+      height={MiniPlayerSettings.Height}
       muted
     >
     </video>

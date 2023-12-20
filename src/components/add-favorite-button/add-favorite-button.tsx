@@ -18,7 +18,7 @@ function AddFavoriteButton({filmId} : AddFavoriteButtonProps): ReactElement {
   const favorites = useAppSelector(getFavorites).favorites;
   const isFavorite = filmId ? favorites.map((favoriteFilm) => favoriteFilm.id).includes(filmId) : false;
 
-  const onClick = () => {
+  const handleButtonClick = () => {
     if (filmId) {
       if (authorizationStatus === AuthorizationStatus.Auth) {
         dispatch(postFavorite({filmId: filmId, status: +!isFavorite}));
@@ -29,7 +29,7 @@ function AddFavoriteButton({filmId} : AddFavoriteButtonProps): ReactElement {
   };
 
   return (
-    <button className="btn btn--list film-card__button" type="button" onClick={onClick}>
+    <button className="btn btn--list film-card__button" type="button" onClick={handleButtonClick}>
       <svg viewBox="0 0 19 20" width="19" height="20">
         <use xlinkHref= {authorizationStatus === AuthorizationStatus.Auth
         && isFavorite ? '#in-list' : '#add'}

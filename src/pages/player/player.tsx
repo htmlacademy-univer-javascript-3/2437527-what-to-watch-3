@@ -6,7 +6,7 @@ import {getFilm} from '../../store/films/selectors';
 import Loader from '../../components/loader/loader';
 import browserHistory from '../../components/history-route/browser-history';
 import {getRemainingTime} from '../../helpers/get-remaining-time';
-import {Film} from "../../types/films/film";
+import {Film} from '../../types/films/film';
 
 
 function Player(): ReactElement {
@@ -33,7 +33,7 @@ function Player(): ReactElement {
     setIsLoaded(true);
   };
 
-  const onFullscreenButtonClick = () => {
+  const handleButtonClick = () => {
     if (videoRef.current?.requestFullscreen) {
       videoRef.current?.requestFullscreen();
     }
@@ -123,7 +123,7 @@ function Player(): ReactElement {
           </button>
           <div className="player__name">{film.name}</div>
 
-          <button type="button" className="player__full-screen" onClick={onFullscreenButtonClick}>
+          <button type="button" className="player__full-screen" onClick={handleButtonClick}>
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"/>
             </svg>

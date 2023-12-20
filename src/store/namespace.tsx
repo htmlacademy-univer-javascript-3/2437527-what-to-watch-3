@@ -5,4 +5,3 @@ export enum NameSpace {
     Reviews = 'REVIEWS',
     Favorites = 'Favorites'
 }
-

@@ -17,7 +17,7 @@ function GenresList({filmPreviews} : GenreListProps): ReactElement {
   const [selectedGenre, setActiveGenre] = React.useState(useAppSelector(getGenre));
   const genres : string[] = getAllGenres(filmPreviews);
 
-  const onClick = (genre : string) => {
+  const handleButtonClick = (genre : string) => {
     setActiveGenre(genre);
     dispatch(setGenre(genre));
   };
@@ -29,7 +29,7 @@ function GenresList({filmPreviews} : GenreListProps): ReactElement {
           <li key = {crypto.randomUUID()}
             className={`catalog__genres-item ${genre === selectedGenre ? 'catalog__genres-item--active' : ''}`}
           >
-            <button onClick={() => onClick(genre)}
+            <button onClick={() => handleButtonClick(genre)}
               className="catalog__genres-link" style={TransparentButtonStyle}
             >{genre}
             </button>

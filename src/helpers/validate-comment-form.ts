@@ -1,6 +1,8 @@
-const LOWER_CHARACTER_LIMIT = 50;
-const UPPER_CHARACTER_LIMIT = 400;
+const CharacterLimits = {
+  Lower: 50,
+  Upper: 400,
+} as const;
 
 export function isCommentFormValid(comment: string, rating: number) {
-  return comment.length >= LOWER_CHARACTER_LIMIT && comment.length <= UPPER_CHARACTER_LIMIT && rating > 0;
+  return comment.length >= CharacterLimits.Lower && comment.length <= CharacterLimits.Upper && rating > 0;
 }
