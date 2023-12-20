@@ -1,16 +1,9 @@
 import {ReactElement} from 'react';
 import {Film} from '../../types/films/film';
+import {RatingLevels} from '../../const/rating-levels';
 
 type MoviePageOverviewProps = {
   film: Film;
-}
-
-const enum RatingLevels {
-  Bad = 0,
-  Normal = 3,
-  Good = 5,
-  VeryGood = 8,
-  Awesome = 10
 }
 
 function getRatingDescription(ratingValue : number) {
