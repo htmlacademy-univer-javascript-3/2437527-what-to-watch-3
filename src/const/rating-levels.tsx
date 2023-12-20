@@ -1,4 +1,4 @@
-export const enum RatingLevels {
+export enum RatingLevels {
   Bad = 0,
   Normal = 3,
   Good = 5,

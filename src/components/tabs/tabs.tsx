@@ -4,7 +4,7 @@ import MoviePageDetails from '../../pages/movie-page/movie-page-details';
 import MoviePageReviews from '../../pages/movie-page/movie-page-reviews';
 import {Film} from '../../types/films/film';
 import {Review} from '../../types/review/review';
-import {transparentButtonStyle} from '../../const/transparent-button-style';
+import {TransparentButtonStyle} from '../../const/transparent-button-style';
 
 type Tab = {
   name: string;
@@ -42,7 +42,7 @@ function Tabs({film, reviews} : TabsProps): ReactElement {
             tabs.map((tab, index) => (
               <li key={tab.name} className={`film-nav__item ${activeTab === index ? 'film-nav__item--active' : ''}`}>
                 <button onClick={() => setActiveTab(index)} className="film-nav__link"
-                  style={transparentButtonStyle}
+                  style={TransparentButtonStyle}
                 >{tab.name}
                 </button>
               </li>))

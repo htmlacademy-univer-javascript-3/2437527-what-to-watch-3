@@ -4,7 +4,7 @@ import {useAppSelector} from '../../hooks/hooks';
 import {getAllGenres} from '../../helpers/get-all-genres';
 import {getGenre} from '../../store/data/selectors';
 import {setGenre} from '../../store/data/data';
-import {transparentButtonStyle} from '../../const/transparent-button-style';
+import {TransparentButtonStyle} from '../../const/transparent-button-style';
 import {FilmPreview} from '../../types/films/film-preview';
 
 
@@ -30,7 +30,7 @@ function GenresList({filmPreviews} : GenreListProps): ReactElement {
             className={`catalog__genres-item ${genre === selectedGenre ? 'catalog__genres-item--active' : ''}`}
           >
             <button onClick={() => onClick(genre)}
-              className="catalog__genres-link" style={transparentButtonStyle}
+              className="catalog__genres-link" style={TransparentButtonStyle}
             >{genre}
             </button>
           </li>

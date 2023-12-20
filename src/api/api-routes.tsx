@@ -1,4 +1,4 @@
-export const APIRoutes = {
+export const ApiRoutes = {
   Main: '/',
   Films: '/films',
   Film: (id: number | string) => `/films/${id}`,
@@ -9,4 +9,4 @@ export const APIRoutes = {
   Logout: '/logout',
   Favorites: '/favorite',
   PostFavorite: (filmId: number | string, status: number | string) => `/favorite/${filmId}/${status}`
-};
+} as const;

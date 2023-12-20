@@ -13,7 +13,7 @@ import {Comment} from '../../types/comment/comment';
 import {Favorite} from '../../types/favorite/favorite';
 import {PromoFilm} from '../../types/films/promo-film';
 import {FilmPreview} from '../../types/films/film-preview';
-import {APIRoutes} from '../../api/api-routes';
+import {ApiRoutes} from '../../api/api-routes';
 
 export const fetchFavoritesAction = createAsyncThunk<{ favorites: FilmPreview[] } & { isLoaded: boolean }, undefined, {
   dispatch: AppDispatch;
@@ -22,7 +22,7 @@ export const fetchFavoritesAction = createAsyncThunk<{ favorites: FilmPreview[] 
 }>(
   'fetchFavorites',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<FilmPreview[]>(APIRoutes.Favorites);
+    const {data} = await api.get<FilmPreview[]>(ApiRoutes.Favorites);
     return {favorites: data, isLoaded: true};
   },
 );
@@ -34,7 +34,7 @@ export const checkAuthAction = createAsyncThunk<User, undefined, {
 }>(
   'checkAuth',
   async (_arg, {dispatch, extra: api}) => {
-    const {data} = await api.get<User>(APIRoutes.Login);
+    const {data} = await api.get<User>(ApiRoutes.Login);
     dispatch(fetchFavoritesAction());
     return {name: data.name, email: data.email, avatarUrl: data.avatarUrl, token: data.token};
   },
@@ -47,10 +47,10 @@ export const loginAction = createAsyncThunk<User, Auth, {
 }>(
   'login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data} = await api.post<User>(APIRoutes.Login, {email, password});
+    const {data} = await api.post<User>(ApiRoutes.Login, {email, password});
     saveToken(data.token);
     dispatch(fetchFavoritesAction());
-    dispatch(redirectToRoute(APIRoutes.Main));
+    dispatch(redirectToRoute(ApiRoutes.Main));
     return {name: data.name, email: data.email, avatarUrl: data.avatarUrl, token: data.token};
   },
 );
@@ -62,7 +62,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 }>(
   'logout',
   async (_arg, {extra: api}) => {
-    await api.delete(APIRoutes.Logout);
+    await api.delete(ApiRoutes.Logout);
     dropToken();
   },
 );
@@ -74,7 +74,7 @@ export const fetchFilmsAction = createAsyncThunk<{ filmPreviews: FilmPreview[] }
 }>(
   'fetchFilms',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<FilmPreview[]>(APIRoutes.Films);
+    const {data} = await api.get<FilmPreview[]>(ApiRoutes.Films);
     return {filmPreviews: data, isLoaded: true};
   },
 );
@@ -86,7 +86,7 @@ export const fetchFilmAction = createAsyncThunk<{ film: Film | null } & { isLoad
 }>(
   'fetchFilm',
   async (id, {extra: api}) => {
-    const {data} = await api.get<Film>(APIRoutes.Film(id));
+    const {data} = await api.get<Film>(ApiRoutes.Film(id));
     return {film: data, isLoaded: true};
   },
 );
@@ -98,7 +98,7 @@ export const fetchSimilarFilmsAction = createAsyncThunk<{similarFilms: FilmPrevi
 }>(
   'fetchSimilarFilms',
   async (id, {extra: api}) => {
-    const {data} = await api.get<FilmPreview[]>(APIRoutes.SimilarFilms(id));
+    const {data} = await api.get<FilmPreview[]>(ApiRoutes.SimilarFilms(id));
     return {similarFilms: data};
   },
 );
@@ -110,7 +110,7 @@ export const fetchPromoFilmAction = createAsyncThunk<{ promoFilm: PromoFilm | nu
 }>(
   'fetchPromoFilm',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<PromoFilm>(APIRoutes.Promo);
+    const {data} = await api.get<PromoFilm>(ApiRoutes.Promo);
     return {promoFilm: data, isLoaded: true};
   },
 );
@@ -122,7 +122,7 @@ export const fetchReviewsAction = createAsyncThunk<{reviews: Review[]}, string, 
 }>(
   'fetchReviews',
   async (id, {extra: api}) => {
-    const {data} = await api.get<Review[]>(APIRoutes.Reviews(id));
+    const {data} = await api.get<Review[]>(ApiRoutes.Reviews(id));
     return {reviews: data};
   },
 );
@@ -135,8 +135,8 @@ export const postCommentAction = createAsyncThunk<void, Comment, {
   'postComment',
   async ({id: id, comment: comment, rating: rating},
     {dispatch: dispatch, extra: api}) => {
-    dispatch(redirectToRoute(APIRoutes.Film(id)));
-    await api.post<Omit<Comment, 'id'>>(APIRoutes.Reviews(id), {comment: comment, rating: rating});
+    dispatch(redirectToRoute(ApiRoutes.Film(id)));
+    await api.post<Omit<Comment, 'id'>>(ApiRoutes.Reviews(id), {comment: comment, rating: rating});
   },
 );
 
@@ -148,7 +148,7 @@ export const postFavorite = createAsyncThunk<Film, Favorite, {
   'postFavorite',
   async ({filmId: filmId, status: status},
     {dispatch: dispatch, extra: api}) => {
-    const {data} = await api.post<Film>(APIRoutes.PostFavorite(filmId, status));
+    const {data} = await api.post<Film>(ApiRoutes.PostFavorite(filmId, status));
     dispatch(fetchFavoritesAction());
     return data;
   },

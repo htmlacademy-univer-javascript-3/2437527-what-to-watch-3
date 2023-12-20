@@ -6,4 +6,4 @@ export const AppRoutes = {
   Film: (id: number | string) => `/films/${id}`,
   Player: (id: number | string) => `/player/${id}`,
   AddReview: (id: number | string) => `/films/${id}/review`,
-};
+} as const;

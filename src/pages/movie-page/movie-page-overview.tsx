@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {Film} from '../../types/films/film';
-import {getRatingDescription} from "../../helpers/get-rating-description";
+import {getRatingDescription} from '../../helpers/get-rating-description';
 
 type MoviePageOverviewProps = {
   film: Film;
