@@ -1,14 +1,14 @@
 import Logo from '../../components/logo/logo';
-import {useParams} from 'react-router-dom';
-import {AppRoute} from '../../routes';
+import {Link, useParams} from 'react-router-dom';
+import {AppRoutes} from '../../const/app-routes';
 import CommentSubmissionForm from '../../components/comment-submission-form/comment-submission-form';
 import {ReactElement, useEffect} from 'react';
 import UserBlock from '../../components/user-block/user-block';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {fetchFilmAction} from '../../store/api-actions';
-import LoadingScreen from '../../components/loading-screen/loading-screen';
-import {Film} from '../../types/film-type';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import {fetchFilmAction} from '../../store/api-actions/api-actions';
+import Loader from '../../components/loader/loader';
 import {getFilm} from '../../store/films/selectors';
+import {Film} from '../../types/films/film';
 
 function AddReview(): ReactElement {
   const dispatch = useAppDispatch();
@@ -20,12 +20,14 @@ function AddReview(): ReactElement {
     dispatch(fetchFilmAction(filmId));
   }, [dispatch, filmId]);
 
-  const film : Film = useAppSelector(getFilm).film as Film;
-  const isFilmLoaded : boolean = useAppSelector(getFilm).isLoaded;
+  const filmData = useAppSelector(getFilm);
+  const film = filmData.film as Film;
+  const isFilmLoaded = filmData.isLoaded;
+  const hasFilmError = filmData.hasError;
 
-  if (!isFilmLoaded) {
+  if (!isFilmLoaded || hasFilmError) {
     return (
-      <LoadingScreen />
+      <Loader isScreenLoader/>
     );
   }
 
@@ -44,7 +46,7 @@ function AddReview(): ReactElement {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href={AppRoute.Film(film.id)} className="breadcrumbs__link">{film.name}</a>
+                <Link className="breadcrumbs__link" to={AppRoutes.Film(film.id)}>{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>

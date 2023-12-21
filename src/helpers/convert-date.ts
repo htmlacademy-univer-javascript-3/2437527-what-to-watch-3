@@ -1,4 +1,4 @@
-const months : Record<string, string> = {
+const Months : Record<string, string> = {
   '01': 'January',
   '02': 'February',
   '03': 'March',
@@ -11,9 +11,9 @@ const months : Record<string, string> = {
   '10': 'October',
   '11': 'November',
   '12': 'December'
-};
+} as const;
 
 export function convertDate(date : string) {
   const [year, month, day] = date.split('T')[0].split('-');
-  return `${months[month]} ${day}, ${year}`;
+  return `${Months[month]} ${day}, ${year}`;
 }

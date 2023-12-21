@@ -1,7 +1,7 @@
 import Rating from '../rating/rating';
 import React, {ReactElement, SyntheticEvent} from 'react';
-import {postCommentAction} from '../../store/api-actions';
-import {useAppDispatch} from '../../hooks';
+import {postCommentAction} from '../../store/api-actions/api-actions';
+import {useAppDispatch} from '../../hooks/hooks';
 import {isCommentFormValid} from '../../helpers/validate-comment-form';
 
 const STAR_COUNT = 10;
@@ -23,7 +23,7 @@ function CommentSubmissionForm({filmId} : CommentSubmissionFormProps): ReactElem
     setFormData({...formData, [name]: value});
   };
 
-  const onStarClick = (evt : SyntheticEvent) => {
+  const handleInputClick = (evt : SyntheticEvent) => {
     const {name, value} = evt.target as HTMLInputElement;
     setFormData({...formData, [name]: value});
   };
@@ -38,7 +38,7 @@ function CommentSubmissionForm({filmId} : CommentSubmissionFormProps): ReactElem
         <div className="rating">
           <div className="rating__stars">
             {Array.from({length: STAR_COUNT}, (_, i) => (i + 1).toString()).reverse()
-              .map((value) => (<Rating value = {value} key = {value} onStarClick={onStarClick}/>))}
+              .map((value) => (<Rating value = {value} key = {value} onClick={handleInputClick}/>))}
           </div>
         </div>
 

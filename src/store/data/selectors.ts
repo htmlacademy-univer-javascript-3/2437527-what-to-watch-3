@@ -1,5 +1,5 @@
-import {State} from '../../types/state';
-import {NameSpace} from '../../routes';
+import {State} from '../../types/state/state';
+import {NameSpace} from '../namespace';
 
-export const getGenre = (state: State): string => state[NameSpace.Data].genre;
-export const getErrorMessage = (state: State): string | undefined => state[NameSpace.Data].errorMessage;
+export const getGenre = (state: State) => state[NameSpace.Data].genre;
+export const getErrorMessage = (state: State) => state[NameSpace.Data].errorMessage;

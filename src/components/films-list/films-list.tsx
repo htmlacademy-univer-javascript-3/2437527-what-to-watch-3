@@ -1,37 +1,33 @@
 import FilmCard from '../film-card/film-card';
-import {FilmPreview} from '../../types/film-type';
 import React, {ReactElement} from 'react';
+import {FilmPreview} from '../../types/films/film-preview';
 
 type SimilarFilmsProps = {
   filmPreviews: FilmPreview[];
 }
 
 function FilmsList({filmPreviews} : SimilarFilmsProps): ReactElement {
-  const [activeId, setActiveCardId] = React.useState(0);
+  const [activeId, setActiveCardId] = React.useState('');
 
-  const onMouseEnter = React.useCallback((id: number) => {
+  const onMouseEnter = React.useCallback((id: string) => {
     setActiveCardId(id);
   }, []);
 
   const onMouseExit = React.useCallback(() => {
-    setActiveCardId(0);
+    setActiveCardId('');
   }, []);
-
-  const filmsList : ReactElement[] = [];
-  for (let i = 0; i < Object.keys(filmPreviews).length; i++) {
-    filmsList.push(
-      <FilmCard
-        onMouseEnter={onMouseEnter}
-        onMouseExit={onMouseExit}
-        key={filmPreviews[i].id}
-        filmPreview={filmPreviews[i]}
-        isPlaying={activeId === filmPreviews[i].id}
-      />);
-  }
 
   return (
     <div className="catalog__films-list">
-      {filmsList}
+      {filmPreviews.map((filmPreview) => (
+        <FilmCard
+          onMouseEnter={onMouseEnter}
+          onMouseExit={onMouseExit}
+          key={filmPreview.id}
+          filmPreview={filmPreview}
+          isPlaying={activeId === filmPreview.id}
+        />
+      ))}
     </div>
   );
 }

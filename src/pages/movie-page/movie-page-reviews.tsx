@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {convertDate} from '../../helpers/convert-date';
-import {Review} from '../../types/review';
+import {Review} from '../../types/review/review';
 
 type MoviePageReviewsProps = {
   reviews: Review[];

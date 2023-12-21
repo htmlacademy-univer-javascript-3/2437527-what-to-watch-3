@@ -1,14 +1,18 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchReviews} from '../api-actions';
-import {NameSpace} from '../../routes';
-import {Review} from '../../types/review';
+import {fetchReviewsAction} from '../api-actions/api-actions';
+import {Review} from '../../types/review/review';
+import {NameSpace} from '../namespace';
 
-type Reviews = {
+type ReviewsState = {
   reviews: Review[];
+  isLoaded: boolean;
+  hasError: boolean;
 }
 
-const initialState: Reviews = {
+const initialState: ReviewsState = {
   reviews: [],
+  isLoaded: false,
+  hasError: false
 };
 
 export const reviews = createSlice({
@@ -17,8 +21,18 @@ export const reviews = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchReviews.fulfilled, (state, value) => {
-        state.reviews = value.payload.reviews;
+      .addCase(fetchReviewsAction.pending, (state) => {
+        state.isLoaded = false;
+        state.hasError = false;
+      })
+      .addCase(fetchReviewsAction.fulfilled, (state, value) => {
+        state.isLoaded = true;
+        state.reviews = value.payload;
+        state.hasError = false;
+      })
+      .addCase(fetchReviewsAction.rejected, (state) => {
+        state.isLoaded = false;
+        state.hasError = true;
       });
   }
 });

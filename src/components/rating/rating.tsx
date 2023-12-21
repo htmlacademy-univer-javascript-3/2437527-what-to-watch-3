@@ -2,14 +2,14 @@ import {ReactElement, SyntheticEvent} from 'react';
 
 type RatingProps = {
   value: string;
-  onStarClick: (evt : SyntheticEvent) => void;
+  onClick: (evt : SyntheticEvent) => void;
 };
 
-function Rating({value, onStarClick} : RatingProps): ReactElement {
+function Rating({value, onClick} : RatingProps): ReactElement {
   return (
     <>
       <input className="rating__input" id={`star-${value}`} type="radio" name="rating"
-        value={value} onClick={onStarClick}
+        value={value} onClick={onClick}
       />
       <label className="rating__label" htmlFor={`star-${value}`}>Rating {value}</label>
     </>

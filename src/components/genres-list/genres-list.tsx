@@ -1,23 +1,12 @@
 import React, {ReactElement} from 'react';
-import {FilmPreview} from '../../types/film-type';
 import {useDispatch} from 'react-redux';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/hooks';
 import {getAllGenres} from '../../helpers/get-all-genres';
 import {getGenre} from '../../store/data/selectors';
 import {setGenre} from '../../store/data/data';
+import {TransparentButtonStyle} from '../../const/transparent-button-style';
+import {FilmPreview} from '../../types/films/film-preview';
 
-const GenreNames : Record<string, string> = {
-  'All genres': 'All genres',
-  'Comedy': 'Comedies',
-  'Crime': 'Crime',
-  'Documentary': 'Documentary',
-  'Drama': 'Dramas',
-  'Horror': 'Horror',
-  'Kids & Family': 'Kids & Family',
-  'Romance': 'Romance',
-  'Sci-Fi': 'Sci-Fi',
-  'Thriller': 'Thrillers'
-};
 
 type GenreListProps = {
   filmPreviews: FilmPreview[];
@@ -28,7 +17,7 @@ function GenresList({filmPreviews} : GenreListProps): ReactElement {
   const [selectedGenre, setActiveGenre] = React.useState(useAppSelector(getGenre));
   const genres : string[] = getAllGenres(filmPreviews);
 
-  const onClick = (genre : string) => {
+  const handleButtonClick = (genre : string) => {
     setActiveGenre(genre);
     dispatch(setGenre(genre));
   };
@@ -40,10 +29,10 @@ function GenresList({filmPreviews} : GenreListProps): ReactElement {
           <li key = {crypto.randomUUID()}
             className={`catalog__genres-item ${genre === selectedGenre ? 'catalog__genres-item--active' : ''}`}
           >
-            <a onClick={() => onClick(genre)}
-              className="catalog__genres-link"
-            >{GenreNames[genre]}
-            </a>
+            <button onClick={() => handleButtonClick(genre)}
+              className="catalog__genres-link" style={TransparentButtonStyle}
+            >{genre}
+            </button>
           </li>
         ))
       }

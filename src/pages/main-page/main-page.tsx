@@ -1,18 +1,17 @@
 import PromoFilmCard from '../../components/promo-film-card/promo-film-card';
 import MainPageCatalog from '../../components/main-page-catalog/main-page-catalog';
-import {FilmPreview, PromoFilm} from '../../types/film-type';
 import {ReactElement} from 'react';
+import {AuthorizationStatus} from '../../const/authorization-status';
 
 type AppScreenProps = {
-  promoFilm: PromoFilm;
-  filmPreviews: FilmPreview[];
+  authorizationStatus: AuthorizationStatus;
 }
 
-function MainPage({promoFilm, filmPreviews}: AppScreenProps): ReactElement {
+function MainPage({authorizationStatus}: AppScreenProps): ReactElement {
   return (
     <>
-      <PromoFilmCard promoFilm={promoFilm}/>
-      <MainPageCatalog filmPreviews={filmPreviews}/>
+      <PromoFilmCard authorizationStatus={authorizationStatus}/>
+      <MainPageCatalog />
     </>
   );
 }

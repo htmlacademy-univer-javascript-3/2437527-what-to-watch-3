@@ -1,29 +1,9 @@
 import {ReactElement} from 'react';
-import {Film} from '../../types/film-type';
+import {Film} from '../../types/films/film';
+import {getRatingDescription} from '../../helpers/get-rating-description';
 
 type MoviePageOverviewProps = {
   film: Film;
-}
-
-const enum RatingLevels {
-  Bad = 0,
-  Normal = 5,
-  Good = 7,
-  VeryGood = 8,
-  Awesome = 10
-}
-
-function getRatingDescription(ratingValue : number) {
-  if (ratingValue >= RatingLevels.Awesome) {
-    return 'Awesome';
-  } else if (ratingValue >= RatingLevels.VeryGood) {
-    return 'Very good';
-  } else if (ratingValue >= RatingLevels.Good) {
-    return 'Good';
-  } else if (ratingValue >= RatingLevels.Normal) {
-    return 'Normal';
-  }
-  return 'Bad';
 }
 
 function MoviePageOverview({film} : MoviePageOverviewProps): ReactElement {

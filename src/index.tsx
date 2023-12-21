@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import {reviewPages} from './mocks/reviewPages';
-import {video} from './mocks/video';
 import {Provider} from 'react-redux';
 import {store} from './store';
-import {checkAuthAction, fetchFilmsAction, fetchPromoFilmAction} from './store/api-actions';
+import {checkAuthAction, fetchFilmsAction, fetchPromoFilmAction} from './store/api-actions/api-actions';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,10 +19,8 @@ root.render(
   <React.StrictMode>
     <Provider store = {store}>
       <ToastContainer />
-      <App
-        reviews={reviewPages}
-        videoPlayer={video}
-      />
+      <App />
     </Provider>
   </React.StrictMode>
 );
+
