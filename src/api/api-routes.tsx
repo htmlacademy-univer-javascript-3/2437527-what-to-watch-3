@@ -1,4 +1,4 @@
-export const enum ApiRoutes {
+export enum ApiRoutes {
   Main = '/',
   Films = '/films',
   Film = (id: number | string) => `/films/${id}`,
