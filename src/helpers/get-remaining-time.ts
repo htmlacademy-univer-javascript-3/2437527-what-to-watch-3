@@ -3,7 +3,7 @@ const Time = {
   SecondsInHour: 3600,
 } as const;
 
-const getFormattedTime = (time: number) => `${time < 10 ? `0${time}` : time}`;
+const getFormattedTime = (time: number) => time.toString().padStart(2, '0');
 
 export function getRemainingTime(remainingSeconds: number) {
   const hours = Math.floor(remainingSeconds / Time.SecondsInHour);

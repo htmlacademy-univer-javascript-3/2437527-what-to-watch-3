@@ -40,7 +40,7 @@ function Player(): ReactElement {
     }
   };
 
-  const handleProgress = () => {
+  const handleProgressChange = () => {
     const duration = videoRef.current?.duration as number;
     const currentTime = videoRef.current?.currentTime as number;
     setProgress(Math.round((currentTime / duration) * 100));
@@ -95,7 +95,7 @@ function Player(): ReactElement {
         src={film.videoLink}
         ref={videoRef}
         className="player__video"
-        onTimeUpdate={handleProgress}
+        onTimeUpdate={handleProgressChange}
         onEnded={() => setIsPlaying(false)}
       >
       </video>

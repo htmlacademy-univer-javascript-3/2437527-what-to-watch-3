@@ -1,5 +1,5 @@
 import MainPage from '../../pages/main-page/main-page';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, Navigate} from 'react-router-dom';
 import {AppRoutes} from '../../const/app-routes';
 import SignIn from '../../pages/sign-in/sign-in';
 import MoviePage from '../../pages/movie-page/movie-page';
@@ -32,7 +32,7 @@ function App(): ReactElement {
           path={AppRoutes.SignIn}
           element={
             authorizationStatus === AuthorizationStatus.Auth
-              ? <MainPage authorizationStatus={authorizationStatus}/>
+              ? <Navigate to={AppRoutes.Main} />
               : <SignIn />
           }
         />

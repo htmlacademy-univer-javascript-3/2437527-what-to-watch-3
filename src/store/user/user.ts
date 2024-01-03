@@ -10,7 +10,7 @@ type UserData = {
 }
 
 const initialState: UserData = {
-  authorizationStatus: AuthorizationStatus.NoAuth,
+  authorizationStatus: AuthorizationStatus.Unknown,
   user: null
 };
 
